@@ -17,7 +17,45 @@ void instructorLogin(Array a);
 void studentLogin(Array a);
 void instructorQuery(Array a);
 void studentQuery(Array a);
+void verifyInput(int argc, char *argv[]);
 //void viewStats(Array a); prints everything maybe?
+
+int main(int argc, char *argv[]) {
+    verifyInput(argc, argv);
+    cout << "success\n";
+} // main
+
+void verifyInput(int argc, char *argv[]) {
+    if (argc != 3) {
+      cerr << "Usage: main [instructors_file] [students_file]" << endl;
+      exit(0);
+    }
+    bool s = false;
+    bool i = false;
+    string bad = "";
+    for (int i = 1; i < argc; i++) {
+      if (argv[i] == "students.txt") {
+        s = true;
+      } else if (argv[i] == "instructors.txt") {
+        i = true;
+      }
+      else {
+        bad = argv[i];
+      }
+    }
+    if (!s & i) {
+      cerr << "Error: cannot parse students information from file " << bad << endl;
+      exit(0);
+    } else if (s & !i) {
+      cerr << "Error: cannot parse instructors information from file " << bad << endl;
+      exit(0);
+    } else if (!s & !i) {
+      cerr << "Error: cannot parse instructors or students information from file " << bad << endl;
+      exit(0);
+    } else {
+      cout << "Parsing instructors and students information success." << endl;
+    }
+}
 
 string selectLogin(Array a) {
     keyboard = "";
@@ -78,6 +116,4 @@ void studentQuery(Array a) {
 
 //void viewStats???
 
-int main(int argc, char *argv[]) {
-    // needs code
-} // main
+

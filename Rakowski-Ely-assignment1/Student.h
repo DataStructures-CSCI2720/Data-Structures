@@ -1,6 +1,7 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -34,14 +35,14 @@ public:
     int getFinalGrade();
     double getOverallGrade();
 
-    /* Setters */
+    /* setters */
     void setStudentName(string fullName); //std::string fullName
     void setProjectGrade(int grade);
     void setQuizGrade(int grade);
     void setMidtermGrade(int grade);
     void setFinalGrade(int grade);
-    // void setUsername(string username);
-    // void setPassword(string password);
+    void setUsername(string username);
+    void setPassword(string password);
 
 
 };

@@ -9,6 +9,8 @@ bool Student :: login(string username, string password) {
 } // login
 
 // void Student :: printStudent(Student s) {} // print student
+
+
 /* getters */
 string Student :: getStudentName() {
     return this -> fullName;
@@ -45,7 +47,7 @@ void Student :: setStudentName(string fullName) {
     this -> fullName = fullName;
 }
 
-void Student :: setProjectName(int grade) {
+void Student :: setProjectGrade(int grade) {
     this -> projectGrade = grade;
 }
 
