@@ -12,52 +12,6 @@ string keyboard;
 string password;
 string username;
 
-string selectLogin(Array a); // select type
-void instructorLogin(Array a);
-void studentLogin(Array a);
-void instructorQuery(Array a);
-void studentQuery(Array a);
-void verifyInput(int argc, char *argv[]);
-//void viewStats(Array a); prints everything maybe?
-
-int main(int argc, char *argv[]) {
-    verifyInput(argc, argv);
-    cout << "success\n";
-} // main
-
-void verifyInput(int argc, char *argv[]) {
-    if (argc != 3) {
-      cerr << "Usage: main [instructors_file] [students_file]" << endl;
-      exit(0);
-    }
-    bool s = false;
-    bool i = false;
-    string bad = "";
-    for (int i = 1; i < argc; i++) {
-      if (argv[i] == "students.txt") {
-        s = true;
-      } else if (argv[i] == "instructors.txt") {
-        i = true;
-      }
-      else {
-        bad = argv[i];
-      }
-    }
-    if (!s & i) {
-      cerr << "Error: cannot parse students information from file " << bad << endl;
-      exit(0);
-    } else if (s & !i) {
-      cerr << "Error: cannot parse instructors information from file " << bad << endl;
-      exit(0);
-    } else if (!s & !i) {
-      cerr << "Error: cannot parse instructors or students information from file " << bad << endl;
-      exit(0);
-    } else {
-      cout << "Parsing instructors and students information success." << endl;
-    }
-}
-
-string selectLogin(Array a) {
 string selectLogin(Array arr); // main screen
 void instructorLogin(Array arr); // is what is is
 void studentLogin(Array arr);
@@ -148,3 +102,27 @@ void studentQuery(Array arr) {
 
 //void viewStats???
 
+int main(int argc, char *argv[]) {
+    // the array should be passed in here ./main instructors.txt student.txt
+    if (argc != 3) {
+        cout << "Please put in the correct amount of files.\n./main [instructors.txt] [student.txt]"
+             << endl;
+        return 0; // exit program
+    } else {
+        string instructorsText = argv[1];
+        string studentText = argv[2];
+    }
+    if (studentText != "student.txt") {
+        cout << "\nError: cannot parse students information from file" <<
+            "\nnot_a_file_name" << endl;
+        return 0;
+    } else if (instructorsText != "instructors.txt") {
+        cout << "\nError: cannot parse instructors information from file" <<
+            "\nnot_a_file_name" << endl;
+    } else {
+        cout << "Parsing instructors and students information success.\n. . .\n" << endl;
+        // also i think this is where we pass the two text files to array to be parsed (not done)
+        selectLogin(arr); // starts the instructor student interface function
+    } // else
+    return 0;
+} // main
