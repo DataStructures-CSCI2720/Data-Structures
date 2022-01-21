@@ -7,7 +7,7 @@ private:
 
 public:
     static Student studentArr[20];
-    static Instructor instructorArr[3];
+    //static Instructor instructorArr[3];
 
 };
 

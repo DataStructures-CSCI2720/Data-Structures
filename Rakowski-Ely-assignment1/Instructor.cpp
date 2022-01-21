@@ -5,10 +5,19 @@
 
 using namespace std;
 
-//bool Instructor :: login(string username, string password) {
-    // needs to add stuff
-
-//} // login
+bool Instructor::login(string username, string password) {
+    string user, pass, n, l;
+    ifstream instructors("instructors.txt");
+    while (instructors >> user >> pass >> n >> l) {
+        if ((user == username)&&(pass == password)) {
+            setUsername(user);
+            setPassword(pass);
+            setInstructorName(n + " " + l);
+            return true;
+        }
+    }
+    return false;
+} // login
 
 void Instructor::printInstructor() {
     cout << getInstructorName() << " (" << getUsername() << ", " << getPassword() << ") \n\n";

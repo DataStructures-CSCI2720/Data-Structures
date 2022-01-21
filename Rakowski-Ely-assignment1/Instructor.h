@@ -13,7 +13,7 @@ private:
     string password;
 
 public:
-   // bool login(string username, string password);
+    bool login(string username, string password);
 
     void printInstructor();
     /* getters */
