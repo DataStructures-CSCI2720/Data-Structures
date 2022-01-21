@@ -6,13 +6,17 @@
 
 using namespace std;
 
-Instructor instructor;
-Student student;
+//Instructor instructor;
+//Student student;
 string keyboard;
 string password;
 string username;
+Student s[20];
 
-string selectLogin(Array arr); // main screen
+void verifyArgs(int argc, char *argv[]);
+void getStudents();
+
+/*string selectLogin(Array arr); // main screen
 void instructorLogin(Array arr); // is what is is
 void studentLogin(Array arr);
 void instructorQuery(Array arr); // once login in instructor screen
@@ -21,8 +25,8 @@ void studentQuery(Array arr); // once logged in student screen
 string selectLogin(Array arr) {
     keyboard = "";
     cout << "User types,\n    1 - Instructor\n    2 - Student" << endl;
-    cout << "Select a login user type or enter 3 to exit:" << end; // endl??
-    cin << keyboard;
+    cout << "Select a login user type or enter 3 to exit:" << endl; 
+    cin >> keyboard;
     if (keyboard == "1") {
         instructorLogin(arr); // go to instructor user interface
     } else if (keyboard == "2") {
@@ -35,9 +39,9 @@ string selectLogin(Array arr) {
         selectLogin(arr); // restarts on main screen
     } // else
 
-} // select login / type
+} // select login / type */
 
-void instructorLogin(Array arr) {
+/*void instructorLogin(Array arr) {
   cout << "Enter credentials to login,\n\tEnter username:" << endl;
   cin >> username;
   cout << "\tEnter password:" << endl;
@@ -52,7 +56,7 @@ void instructorLogin(Array arr) {
   }
 } /* instructorLogin */
 
-void studentLogin(Array arr) {
+/*void studentLogin(Array arr) {
   cout << "Enter credentials to login,\n\tEnter username:" << endl;
   cin >> username;
   cout << "\tEnter password:" << endl;
@@ -67,7 +71,7 @@ void studentLogin(Array arr) {
   }
 } /* studentLogin */
 
-void instructorQuery(Array arr) {
+/*void instructorQuery(Array arr) {
     cout << "\nQuery options,\n\t1 - view grades of a student"
          << "\n\t2 - view stats"
          << "\nEnter option number: " << endl;
@@ -82,9 +86,9 @@ void instructorQuery(Array arr) {
         instructorQuery(arr);
     } // else
 
-} // instrctor query
+} // instrctor query */
 
-void studentQuery(Array arr) {
+/*void studentQuery(Array arr) {
     cout << "\nDo you want to view grades (y/n)? " << endl;
     string yesorno;
     cin >> yesorno;
@@ -98,31 +102,62 @@ void studentQuery(Array arr) {
         studentQuery(arr);
         // selectType(arr); this is another option
     }
-} // student query
+} // student query */
 
 //void viewStats???
 
 int main(int argc, char *argv[]) {
+    //verifyArgs(argc, argv);
+    getStudents();
+    
+    for (int i = 0; i < 20; i++) {
+        s[i].printStudent();
+    }
+    
+    
+    return 0;
+} // main
+
+void getStudents() {
+    ifstream students("students.txt");
+    string u;
+    string p;
+    string n;
+    string l;
+    int s1;
+    int s2;
+    int s3;
+    int s4;
+    int i = 0;
+    while (students >> u >> p >> n >> l >> s1 >> s2 >> s3 >> s4) {
+        s[i].setUsername(u);
+        s[i].setPassword(p);
+        s[i].setStudentName(n + " " + l);
+        s[i].setProjectGrade(s1);
+        s[i].setQuizGrade(s2);
+        s[i].setMidtermGrade(s3);
+        s[i].setFinalGrade(s4);
+        i++;
+    }
+}
+
+void verifyArgs(int argc, char *argv[]) {
     // the array should be passed in here ./main instructors.txt student.txt
     if (argc != 3) {
         cout << "Please put in the correct amount of files.\n./main [instructors.txt] [student.txt]"
              << endl;
-        return 0; // exit program
-    } else {
-        string instructorsText = argv[1];
-        string studentText = argv[2];
-    }
-    if (studentText != "student.txt") {
-        cout << "\nError: cannot parse students information from file" <<
-            "\nnot_a_file_name" << endl;
-        return 0;
-    } else if (instructorsText != "instructors.txt") {
+        exit(0); // exit program
+    } // if
+   
+    if (argv[1] != "instructors.txt") {
         cout << "\nError: cannot parse instructors information from file" <<
             "\nnot_a_file_name" << endl;
+        exit(0);
+    } else if (argv[2] != "student.txt") {
+        cout << "\nError: cannot parse students information from file" <<
+            "\nnot_a_file_name" << endl;
+        exit(0);
     } else {
         cout << "Parsing instructors and students information success.\n. . .\n" << endl;
-        // also i think this is where we pass the two text files to array to be parsed (not done)
-        selectLogin(arr); // starts the instructor student interface function
     } // else
-    return 0;
-} // main
+}

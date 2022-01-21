@@ -4,11 +4,36 @@
 
 using namespace std;
 
-bool Student :: login(string username, string password) {
-    // need to add stuff
-} // login
+/*Student::Student(string user, string pass, string name, int p, int q, int m, int f) {
+    username = user;
+    password = pass;
+    fullName = name;
+    projectGrade = p;
+    quizGrade = q;
+    midtermGrade = m;
+    finalGrade = f;
+}
 
-// void Student :: printStudent(Student s) {} // print student
+Student::Student() {
+    username = "";
+    password = "";
+    fullName = "";
+    projectGrade = 0;
+    quizGrade = 0;
+    midtermGrade = 0;
+    finalGrade = 0;
+}*/
+
+
+/*bool Student :: login(string username, string password) {
+    // need to add stuff
+} // login*/
+
+void Student::printStudent() {
+    cout << getStudentName() << " (" << getUsername() << ", " << getPassword() << ") " << endl;
+    cout << "Project Score: " << getProjectGrade() << "  Quiz Score: " << getQuizGrade() << endl;
+    cout << "Midterm Score: " << getMidtermGrade() << "  Final Score: " << getFinalGrade() << "\n\n";
+} // print student
 
 
 /* getters */
