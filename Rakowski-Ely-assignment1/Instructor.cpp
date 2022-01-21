@@ -5,10 +5,14 @@
 
 using namespace std;
 
-bool Instructor :: login(string username, string password) {
+//bool Instructor :: login(string username, string password) {
     // needs to add stuff
 
-} // login
+//} // login
+
+void Instructor::printInstructor() {
+    cout << getInstructorName() << " (" << getUsername() << ", " << getPassword() << ") \n\n";
+}
 
 string Instructor :: getInstructorName() {
     return this -> fullName;
@@ -22,7 +26,7 @@ string Instructor :: getPassword() {
     return this -> password;
 } // get password
 
-Student Instructor :: getStudent(string username) { //student instructor
+/*Student Instructor :: getStudent(string username) { //student instructor
     // needs to add stuff
 } // get student
 
@@ -36,9 +40,9 @@ Student Instructor :: getMaxStudent(int gradeType) {
 
 double Instructor :: getAvg(int gradeType) {
     // needs to add stuff
-} // getAvg
+} // getAvg*/
 
-/*
+
 
 void Instructor :: setInstructorName(string fullName) {
     this -> fullName = fullName;
@@ -52,4 +56,4 @@ void Instructor :: setPassword(string password) {
     this -> password = password;
 }
 
-*/
+

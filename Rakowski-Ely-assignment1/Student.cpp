@@ -1,40 +1,36 @@
 #include <iostream>
 #include "Student.h"
 #include "Array.h"
+#include <string.h>
+#include <stdio.h>
+#include <fstream>
 
 using namespace std;
 
-/*Student::Student(string user, string pass, string name, int p, int q, int m, int f) {
-    username = user;
-    password = pass;
-    fullName = name;
-    projectGrade = p;
-    quizGrade = q;
-    midtermGrade = m;
-    finalGrade = f;
-}
-
-Student::Student() {
-    username = "";
-    password = "";
-    fullName = "";
-    projectGrade = 0;
-    quizGrade = 0;
-    midtermGrade = 0;
-    finalGrade = 0;
-}*/
-
-
-/*bool Student :: login(string username, string password) {
-    // need to add stuff
-} // login*/
+bool Student :: login(string username, string password) {
+    string user, pass, n, l;
+    int p, q, m, f;
+    ifstream students("students.txt");
+    while (students >> user >> pass >> n >> l >> p >> q >> m >> f) {
+        if ((user == username)&&(pass == password)) {
+            setUsername(user);
+            setPassword(pass);
+            setStudentName(n + " " + l);
+            setProjectGrade(p);
+            setQuizGrade(q);
+            setMidtermGrade(m);
+            setFinalGrade(f);
+            return true;
+        }
+    }
+    return false;
+} // login
 
 void Student::printStudent() {
     cout << getStudentName() << " (" << getUsername() << ", " << getPassword() << ") " << endl;
     cout << "Project Score: " << getProjectGrade() << "  Quiz Score: " << getQuizGrade() << endl;
     cout << "Midterm Score: " << getMidtermGrade() << "  Final Score: " << getFinalGrade() << "\n\n";
 } // print student
-
 
 /* getters */
 string Student :: getStudentName() {
@@ -57,7 +53,9 @@ int Student :: getFinalGrade() {
     return this -> finalGrade;
 }
 
-// getOverall grade
+double Student::getOverallGrade() {
+    return getProjectGrade()*0.3 + getQuizGrade()*0.1 + getMidtermGrade()*0.2 + getFinalGrade()*0.4;
+}
 
 string Student :: getUsername() {
     return this -> username;

@@ -22,10 +22,7 @@ private:
 
 public:
 
-   // Student();
-    //Student(string user, string pass, string name, int p, int q, int m, int f);
-
-    //bool login(string username, string password);
+    bool login(string username, string password);
     
     void printStudent();
 
