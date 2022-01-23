@@ -34,9 +34,14 @@ string Instructor :: getUsername() {
 string Instructor :: getPassword() {
     return this -> password;
 } // get password
-
-/*Student Instructor :: getStudent(string username) { //student instructor
-    // needs to add stuff
+/*
+Student Instructor :: getStudent(string username) { //student instructor
+    ifstream students("students.txt");
+    while (students >> user >> pass >> n >> l) {
+        if(user == username) {
+            // not sure how im supposed to access the username
+        }
+    }
 } // get student
 
 Student Instructor :: getMinStudent(int gradeType) {
@@ -64,5 +69,3 @@ void Instructor :: setUsername(string username) {
 void Instructor :: setPassword(string password) {
     this -> password = password;
 }
-
-

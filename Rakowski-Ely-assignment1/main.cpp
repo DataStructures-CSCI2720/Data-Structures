@@ -12,23 +12,25 @@ void verifyArgs(int argc, char *argv[]);
 //void getStudents();
 //void getInstructors();
 int getOp();
-void studentPath();
-void instructorPath();
+void selectLogin();
+void instructorLogin();
+void studentLogin();
+void instructorQuery(Instructor instructObj);
+void studentQuery(Student studentObj);
+void instructOptionOne();
+void instructOptionTwo();
+void viewStats(Student studentObj);
+void viewGradeTypes();
+//void studentPath();
+//void instructorPath();
 
 int main(int argc, char *argv[]) {
     verifyArgs(argc, argv); // verifies text arguments
-    int o = getOp();
-    if (o == 3) {
-        exit(0);
-    } else if (o == 2) {
-        studentPath();
-    } else if (o == 1) {
-        instructorPath();
-    }
-    // needs to loop back to login
-    return 0;
+//    int o = getOp();
+    selectLogin();
 } // main
 
+/*
 void studentPath() {
     Student s;
     string user, pass;
@@ -56,7 +58,9 @@ void studentPath() {
     cout << "Exiting...\n";
     //MAKE IT LOOP BACK TO LOGIN
 }
+*/
 
+/*
 void instructorPath() { // need to add instructor viewing student work
     Instructor I;
     string user, pass;
@@ -73,7 +77,9 @@ void instructorPath() { // need to add instructor viewing student work
         exit(0);
     }
 }
+*/
 
+/*
 int getOp() {
     int num = 4;
     while (num > 3) {
@@ -85,6 +91,7 @@ int getOp() {
     }
     return num;
 }
+*/
 
 /*void getStudents() { // probably gonna delete this block later
     ifstream students("students.txt");
@@ -144,92 +151,128 @@ void verifyArgs(int argc, char *argv[]) {
     } // else
 }
 
-/*string selectLogin(Array arr); // main screen
-void instructorLogin(Array arr); // is what is is
-void studentLogin(Array arr);
-void instructorQuery(Array arr); // once login in instructor screen
-void studentQuery(Array arr); // once logged in student screen
-
-string selectLogin(Array arr) {
-    keyboard = "";
+void selectLogin() {
+    string keyboard = "";
     cout << "User types,\n    1 - Instructor\n    2 - Student" << endl;
-    cout << "Select a login user type or enter 3 to exit:" << endl; 
+    cout << "Select a login user type or enter 3 to exit:" << endl;
     cin >> keyboard;
     if (keyboard == "1") {
-        instructorLogin(arr); // go to instructor user interface
+        instructorLogin(); // go to instructor user interface
     } else if (keyboard == "2") {
-        studentLogin(arr); // go to student user interface
+        studentLogin(); // go to student user interface
     } else if (keyboard == "3") {
         cout << "Exiting . . ." << endl; // exit
         exit(0);
     } else {
         cout << "Invalid option. Please enter a valid option.\n" << endl;
-        selectLogin(arr); // restarts on main screen
+        selectLogin(); // restarts on main screen
     } // else
+} // select login
 
-} // select login / type */
-
-/*void instructorLogin(Array arr) {
-  cout << "Enter credentials to login,\n\tEnter username:" << endl;
-  cin >> username;
-  cout << "\tEnter password:" << endl;
-  cin >> password;
-  if (instructor.login(username, password)) {
-    instructor = arr.getInstructor(username, password);
-    cout << "You are now logged in as instructor " << instructor.getInstructorName() << "." << endl;
-    instructorQuery(arr); // goes to instructor interface
-  } else {
-    cout << "Login as instructor failed.\n" << endl;
-    selectLogin(arr); // restarts to main screen
-  }
+void instructorLogin() {
+    Instructor instructObject;
+    string username, password;
+    cout << "Enter credentials to login,\n\tEnter username:" << endl;
+    cin >> username;
+    cout << "\tEnter password:" << endl;
+    cin >> password;
+    if (instructObject.login(username, password)) {
+        cout << "You are now logged in as instructor " << instructObject.getInstructorName() << "." << endl;
+        instructorQuery(instructObject); // goes to instructor interface
+    } else {
+        cout << "Login as instructor failed.\n" << endl;
+        selectLogin(); // restarts to main screen
+    }
 } /* instructorLogin */
 
-/*void studentLogin(Array arr) {
-  cout << "Enter credentials to login,\n\tEnter username:" << endl;
-  cin >> username;
-  cout << "\tEnter password:" << endl;
-  cin >> password;
-  if (student.login(username, password)) {
-    student = arr.getStudent(username, password);
-    cout << "You are now logged in as student " << student.getStudentName() << "." << endl;
-    studentQuery(arr); // goes to student interface
-  } else {
-    cout << "Login as student failed.\n" << endl;
-    selectLogin(arr); // restarts to main screen
-  }
+void studentLogin() {
+    Student studentObject;
+    string username, password;
+    cout << "Enter credentials to login,\n\tEnter username:" << endl;
+    cin >> username;
+    cout << "\tEnter password:" << endl;
+    cin >> password;
+    if (studentObject.login(username, password)) {
+        cout << "You are now logged in as student " << studentObject.getStudentName() << "." << endl;
+        studentQuery(studentObject); // goes to student interface
+    } else {
+        cout << "Login as student failed.\n" << endl;
+        selectLogin(); // restarts to main screen
+    }
 } /* studentLogin */
 
-/*void instructorQuery(Array arr) {
+void instructorQuery(Instructor instructObject) {
     cout << "\nQuery options,\n\t1 - view grades of a student"
          << "\n\t2 - view stats"
          << "\nEnter option number: " << endl;
-    string option;
+    char option;
     cin >> option;
     if (option == '1') {
-        // not implemented yet
+        instructOptionOne(); // not implemented completely
     } else if (option == '2') {
-        // not implemented yet -- might need a helper method here
+        viewGradeTypes();
+        char gt;
+        cin >> gt;
+        if (gt == '1') { //project grade
+            // not done
+        } else if (gt == '2') { // quiz grade
+            // not done
+        } else if (gt == '3') { // midterm grade
+            // not done
+        } else if (gt == '4') { // final grade
+            // not done
+        } else if (gt == '5') { // overall grade
+            // not done
+        }
+
+
     } else {
         cout << "\nInvalid option. Please enter a valid option." << endl;
-        instructorQuery(arr);
+        instructorQuery(instructObject);
     } // else
 
 } // instrctor query */
 
-/*void studentQuery(Array arr) {
+void studentQuery(Student studentObj) {
     cout << "\nDo you want to view grades (y/n)? " << endl;
-    string yesorno;
-    cin >> yesorno;
-    if (yesorno == 'y') {
-        // not implemented yet, but need to call a helper method
-    } else if (yesorno == 'n') {
-        selectLogin(arr); // returns to start
-    } else { // might want to ask how he wants to handle this
-        // doesnt say we need this option but i implemented anyway like instructorquery
-        cout << "\Invalid option. Please enter a valid option. (y/n)" << endl;
-        studentQuery(arr);
-        // selectType(arr); this is another option
+    char opt;
+    cin >> opt;
+    if (opt == 'y') {
+        viewStats(studentObj);
+    } else if (opt == 'n') {
+        selectLogin(); // returns to start
+    } else {
+        cout << "\nInvalid option. Please enter a valid option. (y/n)" << endl;
+        studentQuery(studentObj);
     }
 } // student query */
 
-//void viewStats???
+void viewStats(Student studentObj) {
+    cout << "Student name: " << studentObj.getStudentName() << endl;
+    cout << "\tProject\t" << studentObj.getProjectGrade() << "%\n\t";
+    cout << "Quiz\t" << studentObj.getQuizGrade() << "%\n\t";
+    cout << "Midterm\t" << studentObj.getMidtermGrade() << "%\n\t";
+    cout << "Final\t" << studentObj.getFinalGrade() << "%\n\t";
+    cout << "Overall\t" << studentObj.getOverallGrade() << "%\n\n";
+} // view stats
+
+void instructOptionOne() { //method in instructor needs to be created getStudent();
+    string username;
+    cout << "Enter student username to view grades: " << endl;
+    cin >> username;
+
+} // instructoptionone
+
+void instructOptionTwo() {
+
+} // instructoptiontwo
+
+void viewGradeTypes() {
+    cout << "Grade Types," << endl;
+    cout << "\n\t1 - Project grade" << endl;
+    cout << "\n\t2 - Quiz grade" << endl;
+    cout << "\n\t3 - Midterm grade" << endl;
+    cout << "\n\t4 - Final grade" << endl;
+    cout << "\n\t5 - Overall grade" << endl;
+    cout << "\nSelect a grade type to view stats:" << endl;
+}
