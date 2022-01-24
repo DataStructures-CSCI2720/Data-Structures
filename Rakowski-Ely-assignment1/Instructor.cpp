@@ -50,15 +50,123 @@ Student Instructor :: getStudent(string username) { //student instructor
         }
     }
 } // get student
-/*
+
 Student Instructor :: getMinStudent(int gradeType) {
-    // needs to add stuff
+    Student s[20];
+    string user, pass, n, l;
+    int p, q, m, f, i = 0;
+    ifstream students("students.txt");
+    while (students >> user >> pass >> n >> l >> p >> q >> m >> f) {
+            s[i].setUsername(user);
+            s[i].setPassword(pass);
+            s[i].setStudentName(n + " " + l);
+            s[i].setProjectGrade(p);
+            s[i].setQuizGrade(q);
+            s[i].setMidtermGrade(m);
+            s[i].setFinalGrade(f);
+            i++;
+    }
+    Student min = s[0];
+    switch(gradeType) {
+        case 1:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getProjectGrade() < min.getProjectGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        case 2:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getQuizGrade() < min.getQuizGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        case 3:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getMidtermGrade() < min.getMidtermGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        case 4:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getFinalGrade() < min.getFinalGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        case 5:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getOverallGrade() < min.getOverallGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        default:
+            cout << "Invalid option. Please enter a valid option.";
+    }
+    return min;
 } // getMinStudent
 
 Student Instructor :: getMaxStudent(int gradeType) {
-    // needs to add stuff
+    Student s[20];
+    string user, pass, n, l;
+    int p, q, m, f, i = 0;
+    ifstream students("students.txt");
+    while (students >> user >> pass >> n >> l >> p >> q >> m >> f) {
+            s[i].setUsername(user);
+            s[i].setPassword(pass);
+            s[i].setStudentName(n + " " + l);
+            s[i].setProjectGrade(p);
+            s[i].setQuizGrade(q);
+            s[i].setMidtermGrade(m);
+            s[i].setFinalGrade(f);
+            i++;
+    }
+    Student min = s[0];
+    switch(gradeType) {
+        case 1:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getProjectGrade() > min.getProjectGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        case 2:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getQuizGrade() > min.getQuizGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        case 3:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getMidtermGrade() > min.getMidtermGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        case 4:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getFinalGrade() > min.getFinalGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        case 5:
+            for (int i = 0; i < 20; i++) {
+                if (s[i].getOverallGrade() > min.getOverallGrade()) {
+                    min = s[i];
+                }
+            }
+            break;
+        default:
+            cout << "Invalid option. Please enter a valid option.";
+    }
+    return min;
 } //getMaxStudent
-
+/*
 double Instructor :: getAvg(int gradeType) {
     // needs to add stuff
 } // getAvg*/
