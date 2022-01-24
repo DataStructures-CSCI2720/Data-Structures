@@ -15,7 +15,7 @@ private:
 public:
     bool login(string username, string password);
 
-    void printInstructor();
+    //void printInstructor();
     /* getters */
     string getUsername();
     string getPassword();

@@ -26,11 +26,11 @@ bool Student :: login(string username, string password) {
     return false;
 } // login
 
-void Student::printStudent() {
+/*void Student::printStudent() {
     cout << getStudentName() << " (" << getUsername() << ", " << getPassword() << ") " << endl;
     cout << "Project Score: " << getProjectGrade() << "  Quiz Score: " << getQuizGrade() << endl;
     cout << "Midterm Score: " << getMidtermGrade() << "  Final Score: " << getFinalGrade() << "\n\n";
-} // print student
+} // print student*/
 
 /* getters */
 string Student :: getStudentName() {

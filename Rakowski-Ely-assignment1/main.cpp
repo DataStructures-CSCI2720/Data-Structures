@@ -9,8 +9,6 @@
 using namespace std;
 
 void verifyArgs(int argc, char *argv[]);
-//void getStudents();
-//void getInstructors();
 int getOp();
 void selectLogin();
 void instructorLogin();
@@ -21,115 +19,11 @@ void instructOptionOne(Instructor instructObj);
 void instructOptionTwo();
 void viewStats(Student studentObj);
 void viewGradeTypes();
-//void studentPath();
-//void instructorPath();
 
 int main(int argc, char *argv[]) {
     verifyArgs(argc, argv); // verifies text arguments
-//    int o = getOp();
     selectLogin();
 } // main
-
-/*
-void studentPath() {
-    Student s;
-    string user, pass;
-    cout << "Enter credentials to login,\n\t" << "Enter username:  ";
-    cin >> user;
-    cout << "Enter password:  ";
-    cin >> pass;
-    if (s.login(user, pass)) {
-        cout << "You are now logged in as student " << s.getStudentName() << ".\n";
-    } else {
-        cout << "Login as student failed.\n";
-        exit(0);
-    }
-    string ans;
-    cout << "Do you want to view grades (y/n)?  ";
-    cin >> ans;
-    if (ans == "y") {
-        cout << "Student name: " << s.getStudentName() << endl;
-        cout << "\tProject\t" << s.getProjectGrade() << "%\n\t";
-        cout << "Quiz\t" << s.getQuizGrade() << "%\n\t";
-        cout << "Midterm\t" << s.getMidtermGrade() << "%\n\t";
-        cout << "Final\t" << s.getFinalGrade() << "%\n\t";
-        cout << "Overall\t" << s.getOverallGrade() << "%\n\n";
-    }
-    cout << "Exiting...\n";
-    //MAKE IT LOOP BACK TO LOGIN
-}
-*/
-
-/*
-void instructorPath() { // need to add instructor viewing student work
-    Instructor I;
-    string user, pass;
-    cout << "Enter credentials to login,\n\t" << "Enter username:  ";
-    cin >> user;
-    cout << "Enter password:  ";
-    cin >> pass;
-    if (I.login(user, pass)) {
-        cout << "You are now logged in as instructor " << I.getInstructorName() << ".\n";
-        cout << "Exiting...\n";
-        exit(0);
-    } else {
-        cout << "Login as student failed.\n";
-        exit(0);
-    }
-}
-*/
-
-/*
-int getOp() {
-    int num = 4;
-    while (num > 3) {
-        cout << "User types,\n\t" << "1 - Instructor\n\t" << "2 - Student\n" << "Select a login user type or enter 3 to exit:  ";
-        cin >> num;
-        if (num > 3) {
-            cout << "Invalid option. Please enter a valid option.\n" << endl;
-        }
-    }
-    return num;
-}
-*/
-
-/*void getStudents() { // probably gonna delete this block later
-    ifstream students("students.txt");
-    string u;
-    string p;
-    string n;
-    string l;
-    int s1;
-    int s2;
-    int s3;
-    int s4;
-    int i = 0;
-    while (students >> u >> p >> n >> l >> s1 >> s2 >> s3 >> s4) {
-        s[i].setUsername(u);
-        s[i].setPassword(p);
-        s[i].setStudentName(n + " " + l);
-        s[i].setProjectGrade(s1);
-        s[i].setQuizGrade(s2);
-        s[i].setMidtermGrade(s3);
-        s[i].setFinalGrade(s4);
-        i++;
-    }
-}
-
-void getInstructors() {
-    ifstream instructors("instructors.txt");
-    string u;
-    string p;
-    string n;
-    string l;
-    int j = 0;
-    while (instructors >> u >> p >> n >> l) {
-        i[j].setUsername(u);
-        i[j].setPassword(p);
-        i[j].setInstructorName(n + " " + l);
-        j++;
-    }
-}*/
 
 void verifyArgs(int argc, char *argv[]) {
     // the array should be passed in here ./main instructors.txt student.txt

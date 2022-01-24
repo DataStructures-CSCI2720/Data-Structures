@@ -24,7 +24,7 @@ public:
 
     bool login(string username, string password);
     
-    void printStudent();
+    //void printStudent();
 
     /* getters */
     string getStudentName();

@@ -21,9 +21,9 @@ bool Instructor::login(string username, string password) {
     return false;
 } // login
 
-void Instructor::printInstructor() {
+/*void Instructor::printInstructor() {
     cout << getInstructorName() << " (" << getUsername() << ", " << getPassword() << ") \n\n";
-}
+}*/
 
 string Instructor :: getInstructorName() {
     return this -> fullName;
