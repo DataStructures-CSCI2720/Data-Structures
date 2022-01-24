@@ -1,7 +1,9 @@
 #include "Instructor.h"
 #include "Array.h"
+#include "Student.h"
 #include <iostream>
 #include <fstream>
+
 
 using namespace std;
 
@@ -34,16 +36,21 @@ string Instructor :: getUsername() {
 string Instructor :: getPassword() {
     return this -> password;
 } // get password
-/*
+
 Student Instructor :: getStudent(string username) { //student instructor
+    string user, pass, n, l;
+    int p, q, m, f;
     ifstream students("students.txt");
-    while (students >> user >> pass >> n >> l) {
+
+    while (students >> user >> pass >> n >> l >> p >> q >> m >> f) {
         if(user == username) {
-            // not sure how im supposed to access the username
+            Student student;
+            student.login(user, pass);
+            return student;
         }
     }
 } // get student
-
+/*
 Student Instructor :: getMinStudent(int gradeType) {
     // needs to add stuff
 } // getMinStudent

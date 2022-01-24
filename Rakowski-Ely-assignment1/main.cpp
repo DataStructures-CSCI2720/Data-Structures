@@ -17,7 +17,7 @@ void instructorLogin();
 void studentLogin();
 void instructorQuery(Instructor instructObj);
 void studentQuery(Student studentObj);
-void instructOptionOne();
+void instructOptionOne(Instructor instructObj);
 void instructOptionTwo();
 void viewStats(Student studentObj);
 void viewGradeTypes();
@@ -208,7 +208,7 @@ void instructorQuery(Instructor instructObject) {
     char option;
     cin >> option;
     if (option == '1') {
-        instructOptionOne(); // not implemented completely
+        instructOptionOne(instructObject);
     } else if (option == '2') {
         viewGradeTypes();
         char gt;
@@ -223,6 +223,9 @@ void instructorQuery(Instructor instructObject) {
             // not done
         } else if (gt == '5') { // overall grade
             // not done
+        } else {
+            cout << "Invalid option!" << endl;
+            exit(0);
         }
 
 
@@ -256,14 +259,15 @@ void viewStats(Student studentObj) {
     cout << "Overall\t" << studentObj.getOverallGrade() << "%\n\n";
 } // view stats
 
-void instructOptionOne() { //method in instructor needs to be created getStudent();
+void instructOptionOne(Instructor instructObj) {
     string username;
     cout << "Enter student username to view grades: " << endl;
     cin >> username;
-
+    Student studentView = instructObj.getStudent(username);
+    viewStats(studentView);
 } // instructoptionone
 
-void instructOptionTwo() {
+void instructOptionTwo(Instructor instuctObj) {
 
 } // instructoptiontwo
 

@@ -20,17 +20,17 @@ public:
     string getUsername();
     string getPassword();
     string getInstructorName();
-   // Student getStudent(string username);
+    Student getStudent(string username);
    // Student getMinStudent(int gradeType);
    // Student getMaxStudent(int gradeType);
   //  double getAvg(int gradeType);
 
     /* setters */
-    
+
       void setInstructorName(string fullName);
       void setUsername(string username);
       void setPassword(string password);
-     
+
 
 };
 
