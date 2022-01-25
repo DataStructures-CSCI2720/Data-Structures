@@ -45,11 +45,11 @@ void verifyArgs(int argc, char *argv[]) {
         exit(0); // exit if incorrect args
     } // if
     if (strcmp(argv[1],"instructors.txt") != 0) {
-        cout << "\nError: cannot parse instructors information from file" <<
+        cout << "Error: cannot parse instructors information from file" <<
             "\nnot_a_file_name" << endl;
         exit(0); // exit if incorrect args
     } else if (strcmp(argv[2],"students.txt") != 0) {
-        cout << "\nError: cannot parse students information from file" <<
+        cout << "Error: cannot parse students information from file" <<
             "\nnot_a_file_name" << endl;
         exit(0); // exit if incorrect args
     } else {
@@ -74,7 +74,7 @@ void selectLogin() {
         cout << "Exiting . . ." << endl; // exit
         exit(0);
     } else {
-        cout << "Invalid option. Please enter a valid option.\n" << endl;
+        cout << "\nInvalid option. Please enter a valid option.\n" << endl;
         selectLogin(); // restarts on main screen
     } // else
 } // selectLogin
@@ -87,15 +87,15 @@ void selectLogin() {
 void instructorLogin() {
     Instructor instructObject;
     string username, password;
-    cout << "Enter credentials to login,\n\tEnter username:  ";
+    cout << "\nEnter credentials to login,\n\tEnter username:  ";
     cin >> username;
     cout << "\tEnter password:  ";
     cin >> password;
     if (instructObject.login(username, password)) {
-        cout << "You are now logged in as instructor " << instructObject.getInstructorName() << "." << endl;
+        cout << "\nYou are now logged in as instructor " << instructObject.getInstructorName() << "." << endl;
         instructorQuery(instructObject); // goes to instructor interface
     } else {
-        cout << "Login as instructor failed.\n" << endl;
+        cout << "\nLogin as instructor failed.\n" << endl;
         selectLogin(); // restarts to main screen
     }
 } // instructorLogin
@@ -107,15 +107,15 @@ void instructorLogin() {
 void studentLogin() {
     Student studentObject;
     string username, password;
-    cout << "Enter credentials to login,\n\tEnter username:  ";
+    cout << "\nEnter credentials to login,\n\tEnter username:  ";
     cin >> username;
     cout << "\tEnter password:  ";
     cin >> password;
     if (studentObject.login(username, password)) {
-        cout << "You are now logged in as student " << studentObject.getStudentName() << "." << endl;
+        cout << "\nYou are now logged in as student " << studentObject.getStudentName() << "." << endl;
         studentQuery(studentObject); // goes to student interface
     } else {
-        cout << "Login as student failed.\n" << endl;
+        cout << "\nLogin as student failed.\n" << endl;
         selectLogin(); // restarts to main screen
     } // if
 } // studentLogin
@@ -156,6 +156,7 @@ void studentQuery(Student studentObj) {
         viewStats(studentObj); // prints student grades
         selectLogin(); // returns back to login screen
     } else if (opt == 'n') {
+        cout << " " << endl;
         selectLogin(); // returns to start
     } else {
         cout << "\nInvalid option. Please enter a valid option. (y/n)" << endl;
@@ -169,7 +170,7 @@ void studentQuery(Student studentObj) {
  * @param studentObj student signed in
  */
 void viewStats(Student studentObj) {
-    cout << "Student name: " << studentObj.getStudentName() << endl;
+    cout << "\nStudent name: " << studentObj.getStudentName() << endl;
     cout << "\tProject\t" << studentObj.getProjectGrade() << "%\n\t";
     cout << "Quiz\t" << studentObj.getQuizGrade() << "%\n\t";
     cout << "Midterm\t" << studentObj.getMidtermGrade() << "%\n\t";
@@ -185,11 +186,11 @@ void viewStats(Student studentObj) {
  */
 void instructOptionOne(Instructor instructObj) { // ******
     string username;
-    cout << "Enter student username to view grades:  ";
+    cout << "\nEnter student username to view grades:  ";
     cin >> username;
     Student studentView = instructObj.getStudent(username);
     if (studentView.getStudentName() == "default") {
-        cout << "Student username is not valid.\n\n";
+        cout << "\nStudent username is not valid.\n";
         instructOptionOne(instructObj);
     } else {
         viewStats(studentView); // prints student's grades
@@ -208,7 +209,7 @@ void instructOptionTwo(Instructor instructObj) {
     int op;
     cin >> op;
     if ((op > 5)||(op < 1)) {
-        cout << "Invalid option. Please enter a valid option.\n";
+        cout << "\nInvalid option. Please enter a valid option.\n";
         instructOptionTwo(instructObj); // returns to beginning of prompt
     } else {
         Student l = instructObj.getMinStudent(op);
@@ -216,35 +217,35 @@ void instructOptionTwo(Instructor instructObj) {
         double avg = instructObj.getAvg(op);
         switch(op) {
             case 1: // project grades
-                cout << "\tProject grade stats,\n" << "\tmin  " << l.getProjectGrade() << "%";
+                cout << "\nProject grade stats,\n" << "\tmin  " << l.getProjectGrade() << "%";
                 cout << "  (" << l.getStudentName() << ")\n";
                 cout << "\tmax  " << h.getProjectGrade() << "%";
                 cout << "  (" << h.getStudentName() << ")\n";
                 cout << "\tavg  " << avg << "%" << endl;
                 break;
             case 2: // quiz grades
-                cout << "\tQuiz grade stats,\n" << "\tmin  " << l.getQuizGrade() << "%";
+                cout << "\nQuiz grade stats,\n" << "\tmin  " << l.getQuizGrade() << "%";
                 cout << "  (" << l.getStudentName() << ")\n";
                 cout << "\tmax  " << h.getQuizGrade() << "%";
                 cout << "  (" << h.getStudentName() << ")\n";
                 cout << "\tavg  " << avg << "%" << endl;
                 break;
             case 3: // midterm grades
-                cout << "\tMidterm grade stats,\n" << "\tmin  " << l.getMidtermGrade() << "%";
+                cout << "\nMidterm grade stats,\n" << "\tmin  " << l.getMidtermGrade() << "%";
                 cout << "  (" << l.getStudentName() << ")\n";
                 cout << "\tmax  " << h.getMidtermGrade() << "%";
                 cout << "  (" << h.getStudentName() << ")\n";
                 cout << "\tavg  " << avg << "%" << endl;
                 break;
             case 4: // final grades
-                cout << "\tFinal grade stats,\n" << "\tmin  " << l.getFinalGrade() << "%";
+                cout << "\nFinal grade stats,\n" << "\tmin  " << l.getFinalGrade() << "%";
                 cout << "  (" << l.getStudentName() << ")\n";
                 cout << "\tmax  " << h.getFinalGrade() << "%";
                 cout << "  (" << h.getStudentName() << ")\n";
                 cout << "\tavg  " << avg << "%" << endl;
                 break;
             case 5: // overall grades
-                cout << "\tOverall grade stats,\n" << "\tmin  " << l.getOverallGrade() << "%";
+                cout << "\nOverall grade stats,\n" << "\tmin  " << l.getOverallGrade() << "%";
                 cout << "  (" << l.getStudentName() << ")\n";
                 cout << "\tmax  " << h.getOverallGrade() << "%";
                 cout << "  (" << h.getStudentName() << ")\n";
@@ -264,11 +265,11 @@ void instructOptionTwo(Instructor instructObj) {
  *
  */
 void viewGradeTypes() {
-    cout << "Grade Types," << endl;
-    cout << "\n\t1 - Project grade" << endl;
-    cout << "\n\t2 - Quiz grade" << endl;
-    cout << "\n\t3 - Midterm grade" << endl;
-    cout << "\n\t4 - Final grade" << endl;
-    cout << "\n\t5 - Overall grade" << endl;
-    cout << "\nSelect a grade type to view stats:  ";
+    cout << "\nGrade Types," << endl;
+    cout << "\t1 - Project grade" << endl;
+    cout << "\t2 - Quiz grade" << endl;
+    cout << "\t3 - Midterm grade" << endl;
+    cout << "\t4 - Final grade" << endl;
+    cout << "\t5 - Overall grade" << endl;
+    cout << "Select a grade type to view stats:  ";
 } // viewGradeTypes

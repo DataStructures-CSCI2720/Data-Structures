@@ -1,8 +1,25 @@
-Collins Rakowski (811261111)
-Matt Ely ()
+Collins Rakowski (811261111) ccr06550@uga.edu
+Matt Ely (811653312) mwe70005@uga.edu
 
-    Assignment 1
+Contributions:
 
-    Testing push to make sure I can push stuff.
+    Collins Rakowski-
+    - Skeleton aka getters and setters
+    - Responsible for setting up login flow functions
+    - Student.cpp and Student.h
+    - instructOptionOne()
+    - makefile
 
-    balls
+    Matt Ely
+    - Login confirmation
+    - Instructor.cpp and Instructor.h
+    - instructOptionTwo()
+    - verifyArgs()
+    - Comments
+
+Run the program using "make run" command
+Clean *.o using "make clean" command
+
+    This program is the a reintroduction to C++ Programming.
+    This was program taught us how to use classes in the form
+    of a program that has a login.
