@@ -7,6 +7,7 @@
 
 using namespace std;
 
+/* Declarations */
 void verifyArgs(int argc, char *argv[]);                // verifies the two files passed in the argument
 void selectLogin();                                     // select to login as student or instructor
 void instructorLogin();                                 // instructor login prompt
@@ -21,7 +22,7 @@ void viewGradeTypes();                                  // instructor prompt to 
 /**
  * @brief Main method initializes the database and allows the user to login as
  * a student or instructor and view individual or min,max,avg grades.
- * 
+ *
  * @param argc number of file args
  * @param argv file names
  * @return int status
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]) {
 
 /**
  * @brief Verifies the file arguments passed when executed.
- * 
+ *
  * @param argc number of args passed from main
  * @param argv file names passed from main
  */
@@ -58,7 +59,7 @@ void verifyArgs(int argc, char *argv[]) {
 
 /**
  * @brief Prompts the user to sign in as an instructor or student and verifies choice.
- * 
+ *
  */
 void selectLogin() {
     string keyboard = "";
@@ -81,7 +82,7 @@ void selectLogin() {
 /**
  * @brief Prompts user to sign in as an instructor and verifies username
  * and password.
- * 
+ *
  */
 void instructorLogin() {
     Instructor instructObject;
@@ -101,7 +102,7 @@ void instructorLogin() {
 
 /**
  * @brief Prompts user to sign in as a student and verifies username and password.
- * 
+ *
  */
 void studentLogin() {
     Student studentObject;
@@ -123,7 +124,7 @@ void studentLogin() {
  * @brief Prompts the signed in instructor to view either a single
  * student's grades or the min,max,avg grades of the group of
  * students.
- * 
+ *
  * @param instructObject instructor signed in
  */
 void instructorQuery(Instructor instructObject) {
@@ -144,7 +145,7 @@ void instructorQuery(Instructor instructObject) {
 
 /**
  * @brief Prompts signed in student to view their grades.
- * 
+ *
  * @param studentObj student signed in
  */
 void studentQuery(Student studentObj) {
@@ -164,7 +165,7 @@ void studentQuery(Student studentObj) {
 
 /**
  * @brief Prints student's information from the file.
- * 
+ *
  * @param studentObj student signed in
  */
 void viewStats(Student studentObj) {
@@ -179,14 +180,14 @@ void viewStats(Student studentObj) {
 /**
  * @brief Prompts signed in instructor to provide the name of the student
  * in which their grades they want to view.
- * 
+ *
  * @param instructObj signed in instructor
  */
 void instructOptionOne(Instructor instructObj) { // ******
     string username;
     cout << "Enter student username to view grades:  ";
     cin >> username;
-    Student studentView = instructObj.getStudent(username); // needs to go back to query if wrong name
+    Student studentView = instructObj.getStudent(username);
     if (studentView.getStudentName() == "default") {
         cout << "Student username is not valid.\n\n";
         instructOptionOne(instructObj);
@@ -199,7 +200,7 @@ void instructOptionOne(Instructor instructObj) { // ******
 /**
  * @brief Prompts signed in instructor to provide which students' grade
  * they want to view Minimum, Maximum, and Average scores of.
- * 
+ *
  * @param instructObj signed in instructor
  */
 void instructOptionTwo(Instructor instructObj) {
@@ -254,13 +255,13 @@ void instructOptionTwo(Instructor instructObj) {
         } // switch
         cout << "\n";
         selectLogin(); // return back to login screen
-    } // if  
+    } // if
 } // instructOptionTwo
 
 /**
- * @brief Prints the students' grade options that can be viewed by 
+ * @brief Prints the students' grade options that can be viewed by
  * the instructor as specified by 1-5.
- * 
+ *
  */
 void viewGradeTypes() {
     cout << "Grade Types," << endl;

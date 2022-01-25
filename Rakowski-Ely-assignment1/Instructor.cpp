@@ -13,7 +13,7 @@ using namespace std;
 /**
  * @brief Login to Instructor account with correct username and password as
  * specified in "instructors.txt" file.
- * 
+ *
  * @param username instructor's username
  * @param password instructor's password
  * @return true when successfully logged in
@@ -35,7 +35,7 @@ bool Instructor::login(string username, string password) {
 
 /**
  * @brief Gets the full name of the instructor object.
- * 
+ *
  * @return string of instructor's full name
  */
 string Instructor::getInstructorName() {
@@ -44,7 +44,7 @@ string Instructor::getInstructorName() {
 
 /**
  * @brief Gets string of instructor username.
- * 
+ *
  * @return string of instructor's username
  */
 string Instructor::getUsername() {
@@ -53,7 +53,7 @@ string Instructor::getUsername() {
 
 /**
  * @brief Gets string of instructor password
- * 
+ *
  * @return string of instructor's password
  */
 string Instructor::getPassword() {
@@ -63,7 +63,7 @@ string Instructor::getPassword() {
 /**
  * @brief Gets student from "students.txt" file as specified
  * from the username and attempts to login.
- * 
+ *
  * @param username of student
  * @return Student object as specified from file
  */
@@ -72,7 +72,7 @@ Student Instructor::getStudent(string username) {
     student.setStudentName("default");
     string user, pass, n, l;
     int p, q, m, f;
-    ifstream students("students.txt");;
+    ifstream students("students.txt"); //;
     while (students >> user >> pass >> n >> l >> p >> q >> m >> f) {
         if(user == username) {
             student.login(user, pass);
@@ -85,7 +85,7 @@ Student Instructor::getStudent(string username) {
 /**
  * @brief Gets the Student with the lowest score of the assignment
  * specified by gradeType.
- * 
+ *
  * @param gradeType (1-5) depending on which type of grade
  * @return Student object with lowest score of the assignment
  */
@@ -150,7 +150,7 @@ Student Instructor::getMinStudent(int gradeType) {
 /**
  * @brief Gets the Student with the highest score of the assignment
  * specified by gradeType.
- * 
+ *
  * @param gradeType (1-5) depending on which type of grade
  * @return Student object with highest score of the assignment
  */
@@ -215,7 +215,7 @@ Student Instructor::getMaxStudent(int gradeType) {
 /**
  * @brief Gets the average score of the assignment as specified
  * by gradeType.
- * 
+ *
  * @param gradeType (1-5) depending on which type of grade
  * @return double object with average score of the assignment
  */
@@ -274,7 +274,7 @@ double Instructor::getAvg(int gradeType) {
 
 /**
  * @brief Sets the full name of the Instructor.
- * 
+ *
  * @param fullName of the instructor
  */
 void Instructor::setInstructorName(string fullName) {
@@ -283,7 +283,7 @@ void Instructor::setInstructorName(string fullName) {
 
 /**
  * @brief Sets the username of the Instructor.
- * 
+ *
  * @param username of the instructor
  */
 void Instructor::setUsername(string username) {
@@ -292,7 +292,7 @@ void Instructor::setUsername(string username) {
 
 /**
  * @brief Sets the password of the Instructor.
- * 
+ *
  * @param password of the instructor
  */
 void Instructor::setPassword(string password) {
