@@ -187,8 +187,13 @@ void instructOptionOne(Instructor instructObj) { // ******
     cout << "Enter student username to view grades:  ";
     cin >> username;
     Student studentView = instructObj.getStudent(username); // needs to go back to query if wrong name
-    viewStats(studentView); // prints student's grades
-    selectLogin(); // returns back to login screen
+    if (studentView.getStudentName() == "default") {
+        cout << "Student username is not valid.\n\n";
+        instructOptionOne(instructObj);
+    } else {
+        viewStats(studentView); // prints student's grades
+        selectLogin(); // returns back to login screen
+    } // if
 } // instructOptionOne
 
 /**

@@ -68,16 +68,18 @@ string Instructor::getPassword() {
  * @return Student object as specified from file
  */
 Student Instructor::getStudent(string username) {
+    Student student;
+    student.setStudentName("default");
     string user, pass, n, l;
     int p, q, m, f;
     ifstream students("students.txt");;
     while (students >> user >> pass >> n >> l >> p >> q >> m >> f) {
         if(user == username) {
-            Student student;
             student.login(user, pass);
             return student;
         } // if
     } // while
+    return student;
 } // getStudent
 
 /**
