@@ -40,8 +40,7 @@ string Instructor :: getPassword() {
 Student Instructor :: getStudent(string username) { //student instructor
     string user, pass, n, l;
     int p, q, m, f;
-    ifstream students("students.txt");
-
+    ifstream students("students.txt");;
     while (students >> user >> pass >> n >> l >> p >> q >> m >> f) {
         if(user == username) {
             Student student;
@@ -166,10 +165,60 @@ Student Instructor :: getMaxStudent(int gradeType) {
     }
     return min;
 } //getMaxStudent
-/*
+
 double Instructor :: getAvg(int gradeType) {
-    // needs to add stuff
-} // getAvg*/
+    Student s[20];
+    string user, pass, n, l;
+    int p, q, m, f, i = 0;
+    ifstream students("students.txt");
+    while (students >> user >> pass >> n >> l >> p >> q >> m >> f) {
+            s[i].setUsername(user);
+            s[i].setPassword(pass);
+            s[i].setStudentName(n + " " + l);
+            s[i].setProjectGrade(p);
+            s[i].setQuizGrade(q);
+            s[i].setMidtermGrade(m);
+            s[i].setFinalGrade(f);
+            i++;
+    }
+    double average = 0;
+    switch(gradeType) {
+        case 1:
+            for (int i = 0; i < 20; i++) {
+                average += s[i].getProjectGrade();
+            }
+            average /= 20;
+            break;
+        case 2:
+            for (int i = 0; i < 20; i++) {
+                average += s[i].getQuizGrade();
+            }
+            average /= 20;
+            break;
+        case 3:
+            for (int i = 0; i < 20; i++) {
+                average += s[i].getMidtermGrade();
+            }
+            average /= 20;
+            break;
+        case 4:
+            for (int i = 0; i < 20; i++) {
+                average += s[i].getFinalGrade();
+            }
+            average /= 20;
+            break;
+        case 5:
+            for (int i = 0; i < 20; i++) {
+                average += s[i].getOverallGrade();
+            }
+            average /= 20;
+            break;
+        default:
+            
+            cout << "Invalid option. Please enter a valid option.";
+    }
+    return average;
+} // getAvg
 
 
 

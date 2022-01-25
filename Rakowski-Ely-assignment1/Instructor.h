@@ -23,7 +23,7 @@ public:
     Student getStudent(string username);
     Student getMinStudent(int gradeType);
     Student getMaxStudent(int gradeType);
-  //  double getAvg(int gradeType);
+    double getAvg(int gradeType);
 
     /* setters */
 

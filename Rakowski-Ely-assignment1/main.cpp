@@ -105,25 +105,6 @@ void instructorQuery(Instructor instructObject) {
         instructOptionOne(instructObject);
     } else if (option == '2') {
         instructOptionTwo(instructObject);
-        /*char gt;
-        cin >> gt;
-        if (gt == '1') { //project grade
-            // not done
-        } else if (gt == '2') { // quiz grade
-            // not done
-        } else if (gt == '3') { // midterm grade
-            // not done
-        } else if (gt == '4') { // final grade
-            // not done
-        } else if (gt == '5') { // overall grade
-            // not done
-        } else {
-            cout << "Invalid option!" << endl;
-            exit(0);
-        }*/
-         
-
-
     } else {
         cout << "\nInvalid option. Please enter a valid option." << endl;
         instructorQuery(instructObject);
@@ -137,6 +118,7 @@ void studentQuery(Student studentObj) {
     cin >> opt;
     if (opt == 'y') {
         viewStats(studentObj);
+        selectLogin();
     } else if (opt == 'n') {
         selectLogin(); // returns to start
     } else {
@@ -158,8 +140,9 @@ void instructOptionOne(Instructor instructObj) {
     string username;
     cout << "Enter student username to view grades: " << endl;
     cin >> username;
-    Student studentView = instructObj.getStudent(username);
+    Student studentView = instructObj.getStudent(username); // needs to go back to query if wrong name
     viewStats(studentView);
+    selectLogin();
 } // instructoptionone
 
 void instructOptionTwo(Instructor instructObj) {
@@ -168,42 +151,52 @@ void instructOptionTwo(Instructor instructObj) {
     cin >> op;
     if ((op > 5)||(op < 1)) {
         cout << "Invalid option. Please enter a valid option.\n";
-    }
-    Student l = instructObj.getMinStudent(op);
-    Student h = instructObj.getMaxStudent(op);
-    switch(op) {
-        case 1:
-            cout << "\tProject grade stats,\n" << "\tmin  " << l.getProjectGrade() << "%";
-            cout << "  (" << l.getStudentName() << ")\n";
-            cout << "\tmax  " << h.getProjectGrade() << "%";
-            cout << "  (" << h.getStudentName() << ")\n";
-            break;
-        case 2:
-            cout << "\tQuiz grade stats,\n" << "\tmin  " << l.getQuizGrade() << "%";
-            cout << "  (" << l.getStudentName() << ")\n";
-            cout << "\tmax  " << h.getQuizGrade() << "%";
-            cout << "  (" << h.getStudentName() << ")\n";
-            break;
-        case 3:
-            cout << "\tMidterm grade stats,\n" << "\tmin  " << l.getMidtermGrade() << "%";
-            cout << "  (" << l.getStudentName() << ")\n";
-            cout << "\tmax  " << h.getMidtermGrade() << "%";
-            cout << "  (" << h.getStudentName() << ")\n";
-            break;
-        case 4:
-            cout << "\tFinal grade stats,\n" << "\tmin  " << l.getFinalGrade() << "%";
-            cout << "  (" << l.getStudentName() << ")\n";
-            cout << "\tmax  " << h.getFinalGrade() << "%";
-            cout << "  (" << h.getStudentName() << ")\n";
-            break;
-        case 5:
-            cout << "\tOverall grade stats,\n" << "\tmin  " << l.getOverallGrade() << "%";
-            cout << "  (" << l.getStudentName() << ")\n";
-            cout << "\tmax  " << h.getOverallGrade() << "%";
-            cout << "  (" << h.getStudentName() << ")\n";
-            break;
-        default:
-            cout << "Invalid\n";
+        instructOptionTwo(instructObj);
+    } else {
+        Student l = instructObj.getMinStudent(op);
+        Student h = instructObj.getMaxStudent(op);
+        double avg = instructObj.getAvg(op);
+        switch(op) {
+            case 1:
+                cout << "\tProject grade stats,\n" << "\tmin  " << l.getProjectGrade() << "%";
+                cout << "  (" << l.getStudentName() << ")\n";
+                cout << "\tmax  " << h.getProjectGrade() << "%";
+                cout << "  (" << h.getStudentName() << ")\n";
+                cout << "\tavg  " << avg << "%" << endl;
+                break;
+            case 2:
+                cout << "\tQuiz grade stats,\n" << "\tmin  " << l.getQuizGrade() << "%";
+                cout << "  (" << l.getStudentName() << ")\n";
+                cout << "\tmax  " << h.getQuizGrade() << "%";
+                cout << "  (" << h.getStudentName() << ")\n";
+                cout << "\tavg  " << avg << "%" << endl;
+                break;
+            case 3:
+                cout << "\tMidterm grade stats,\n" << "\tmin  " << l.getMidtermGrade() << "%";
+                cout << "  (" << l.getStudentName() << ")\n";
+                cout << "\tmax  " << h.getMidtermGrade() << "%";
+                cout << "  (" << h.getStudentName() << ")\n";
+                cout << "\tavg  " << avg << "%" << endl;
+                break;
+            case 4:
+                cout << "\tFinal grade stats,\n" << "\tmin  " << l.getFinalGrade() << "%";
+                cout << "  (" << l.getStudentName() << ")\n";
+                cout << "\tmax  " << h.getFinalGrade() << "%";
+                cout << "  (" << h.getStudentName() << ")\n";
+                cout << "\tavg  " << avg << "%" << endl;
+                break;
+            case 5:
+                cout << "\tOverall grade stats,\n" << "\tmin  " << l.getOverallGrade() << "%";
+                cout << "  (" << l.getStudentName() << ")\n";
+                cout << "\tmax  " << h.getOverallGrade() << "%";
+                cout << "  (" << h.getStudentName() << ")\n";
+                cout << "\tavg  " << avg << "%" << endl;
+                break;
+            default:
+                cout << "Invalid\n";
+        }
+        cout << "\n";
+        selectLogin();
     }
     
 } // instructoptiontwo
