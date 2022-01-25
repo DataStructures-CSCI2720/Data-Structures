@@ -48,7 +48,7 @@ void verifyArgs(int argc, char *argv[]) {
 void selectLogin() {
     string keyboard = "";
     cout << "User types,\n    1 - Instructor\n    2 - Student" << endl;
-    cout << "Select a login user type or enter 3 to exit:" << endl;
+    cout << "Select a login user type or enter 3 to exit:  ";
     cin >> keyboard;
     if (keyboard == "1") {
         instructorLogin(); // go to instructor user interface
@@ -66,9 +66,9 @@ void selectLogin() {
 void instructorLogin() {
     Instructor instructObject;
     string username, password;
-    cout << "Enter credentials to login,\n\tEnter username:" << endl;
+    cout << "Enter credentials to login,\n\tEnter username:  ";
     cin >> username;
-    cout << "\tEnter password:" << endl;
+    cout << "\tEnter password:  ";
     cin >> password;
     if (instructObject.login(username, password)) {
         cout << "You are now logged in as instructor " << instructObject.getInstructorName() << "." << endl;
@@ -82,9 +82,9 @@ void instructorLogin() {
 void studentLogin() {
     Student studentObject;
     string username, password;
-    cout << "Enter credentials to login,\n\tEnter username:" << endl;
+    cout << "Enter credentials to login,\n\tEnter username:  ";
     cin >> username;
-    cout << "\tEnter password:" << endl;
+    cout << "\tEnter password:  ";
     cin >> password;
     if (studentObject.login(username, password)) {
         cout << "You are now logged in as student " << studentObject.getStudentName() << "." << endl;
@@ -98,7 +98,7 @@ void studentLogin() {
 void instructorQuery(Instructor instructObject) {
     cout << "\nQuery options,\n\t1 - view grades of a student"
          << "\n\t2 - view stats"
-         << "\nEnter option number: " << endl;
+         << "\nEnter option number:  ";
     char option;
     cin >> option;
     if (option == '1') {
@@ -113,7 +113,7 @@ void instructorQuery(Instructor instructObject) {
 } // instrctor query */
 
 void studentQuery(Student studentObj) {
-    cout << "\nDo you want to view grades (y/n)? " << endl;
+    cout << "\nDo you want to view grades (y/n)?  ";
     char opt;
     cin >> opt;
     if (opt == 'y') {
@@ -138,7 +138,7 @@ void viewStats(Student studentObj) {
 
 void instructOptionOne(Instructor instructObj) {
     string username;
-    cout << "Enter student username to view grades: " << endl;
+    cout << "Enter student username to view grades:  ";
     cin >> username;
     Student studentView = instructObj.getStudent(username); // needs to go back to query if wrong name
     viewStats(studentView);
