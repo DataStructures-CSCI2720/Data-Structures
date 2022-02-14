@@ -11,9 +11,13 @@ ItemType::ItemType() {
 }
 
 Comparison ItemType::compareTo(ItemType item) {
-    // if item.getValue() > this.getValue ...
-    // write later lol
-    return Comparison::LESS;
+    if (getValue() > item.getValue()) {
+        return Comparison::GREATER;
+    } else if (getValue() < item.getValue()) {
+        return Comparison::LESS;
+    } else {
+        return Comparison::EQUAL;
+    }
 }
 
 int ItemType::getValue() const {
