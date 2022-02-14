@@ -1,5 +1,5 @@
 #include "ItemType.h"
-//#include "SortedLinkedList.h"
+#include "SortedLinkedList.h"
 #include "ListNode.h"
 #include <iostream>
 #include <fstream>
@@ -8,17 +8,18 @@
 
 using namespace std;
 
-void createList(int argc, char* argv[]);
+void createList(int argc, char* argv[], SortedLinkedList s);
 void printCmd();
-void promptUser();
+void promptUser(SortedLinkedList s);
 
 int main(int argc, char *argv[]) {
-    createList(argc, argv);
+    SortedLinkedList s;
+    createList(argc, argv, s);
     printCmd();
-    promptUser();
+    promptUser(s);
 } // main
 
-void createList(int argc, char* argv[]) {
+void createList(int argc, char* argv[], SortedLinkedList s) {
     if (argc <= 1) {
         cout << "Invalid file argument! Exiting...\n";
         exit(0);
@@ -26,8 +27,9 @@ void createList(int argc, char* argv[]) {
     int num;
     ifstream input(argv[1]);
     while (input >> num) {
-        cout << num << "\n";
-        // add to linked list with node stuff
+        ItemType t;
+        t.initialize(num);
+        s.insertItem(t);
     } // while
     cout << "Successfully read file!\n"; // temp
 } // createList
@@ -39,7 +41,7 @@ void printCmd() {
     cout << "(m) - Merge two lists\n(t) - Intersection\n(p) - Print list\n(l) - Print length\n(q) - Quit program\n";
 } // printCmd
 
-void promptUser() {
+void promptUser(SortedLinkedList s) {
     while (1 > 0) {
         char cmd;
         cout << "Enter a command:  ";  
