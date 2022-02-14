@@ -1,5 +1,5 @@
 #ifndef ITEMTYPE_H
-#define ITEMPTYPE_H
+#define ITEMTYPE_H
 #include <string>
 
 using namespace std;

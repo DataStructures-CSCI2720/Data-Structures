@@ -1,5 +1,5 @@
 #include "ItemType.h"
-#include "SortedLinkedList.h"
+//#include "SortedLinkedList.h"
 #include "ListNode.h"
 #include <iostream>
 #include <fstream>
@@ -42,7 +42,7 @@ void printCmd() {
 void promptUser() {
     while (1 > 0) {
         char cmd;
-        cout << "Enter a command:\t";  
+        cout << "Enter a command:  ";  
         cin >> cmd;
         switch (cmd) {
             case 'i':
