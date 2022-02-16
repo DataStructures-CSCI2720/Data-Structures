@@ -7,19 +7,19 @@
 
 using namespace std;
 
-SortedLinkedList::SortedLinkedList() {
+SortedLinkedList::SortedLinkedList() { // done i think
     head -> next = NULL;
     len = 0;
     currentPos = head;
 }
 
-SortedLinkedList::~SortedLinkedList() {}
+SortedLinkedList::~SortedLinkedList() {} // unsure but needed to compile
 
-int SortedLinkedList::length() const {
+int SortedLinkedList::length() const { // done
     return len;
 }
 
-void SortedLinkedList::insertItem(ItemType item) {
+void SortedLinkedList::insertItem(ItemType item) { // Unfinished I think
     len++;
     ListNode *n; //
     ListNode *l = head; // location
@@ -36,15 +36,48 @@ void SortedLinkedList::insertItem(ItemType item) {
     l -> next = n;
 }
 
-// Collins understanding
-/*void SortedLinkedList::insertItem(ItemType item) {
-    ListNode *predLoc = NULL;
-    ListNode *location = head;
+void SortedLinkedList::deleteItem(ItemType item) { // not done
 
-    }*/
+}
+
+int SortedLinkedList::searchItem(ItemType item) {
+
+}
+
+// Collins understanding.check it out
+/*
+void SortedLinkedList::insertItem(ItemType item) {
+    ListNode* tempNode = new ListNode; // creates node
+    tempNode -> item = item; // sets item in node equal to param item
+    if (head == NULL) { // if empty
+        head = tempNode;
+    } else if (item < head -> item) { // first in the list
+        tempNode -> next = head;
+        head = tempNode;
+    } else {
+        ListNode* locTemp = head;
+        ListNode* previousTemp = NULL; // onlines says head here
+
+        while (locTemp != NULL) {
+            if (locTemp->item > item) { // I think we need to use get next time here
+                previousTemp -> next = tempNode;
+                tempNode -> next = locTemp;
+                break;
+            }
+            previousTemp = temp; // move prev forward
+            locTemp = locTemp -> next; // iterate to next node
+        } // while
+
+        if (locTemp == NULL) { // if at the end
+            previousTemp -> next = tempNode;
+            previousTemp = previousTemp -> next; // should be null
+        }
+    }
+}
+*/
 
 
-ItemType SortedLinkedList::GetNextItem() {
+ItemType SortedLinkedList::GetNextItem() { // I think the return types were wrong
     if (head == NULL) { // didnt have == only =
         cout << "List is empty\n";
         return head -> next -> item;
@@ -58,6 +91,18 @@ ItemType SortedLinkedList::GetNextItem() {
     }
 }
 
-void SortedLinkedList::ResetList() {
+void SortedLinkedList::ResetList() { // done but what about head?
     currentPos = NULL;
+}
+
+void SortedLinkedList::mergeList() {
+
+}
+
+void SortedLinkedList::deleteAltNodes() {
+
+}
+
+void SortedLinkedList::intersection() {
+
 }
