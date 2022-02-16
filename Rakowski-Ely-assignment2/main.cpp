@@ -44,7 +44,7 @@ void printCmd() {
 void promptUser(SortedLinkedList s) {
     while (1 > 0) {
         char cmd;
-        cout << "Enter a command:  ";  
+        cout << "Enter a command:  ";
         cin >> cmd;
         switch (cmd) {
             case 'i':
@@ -84,6 +84,7 @@ void promptUser(SortedLinkedList s) {
                 break;
             default:
                 cout << "Invalid command, try again!\n";
+                promptUser(s);
         } // switch
     } // while
 } // promptUser

@@ -13,18 +13,20 @@ SortedLinkedList::SortedLinkedList() {
     currentPos = head;
 }
 
+SortedLinkedList::~SortedLinkedList() {}
+
 int SortedLinkedList::length() const {
     return len;
 }
 
 void SortedLinkedList::insertItem(ItemType item) {
     len++;
-    ListNode *n;
-    ListNode *l = head;
+    ListNode *n; //
+    ListNode *l = head; // location
     n -> item = item;
     n -> next = NULL;
 
-    if (head == NULL) {
+    if (head == NULL) { // inserts into empty list
         head = n;
         return;
     }
@@ -34,16 +36,25 @@ void SortedLinkedList::insertItem(ItemType item) {
     l -> next = n;
 }
 
+// Collins understanding
+/*void SortedLinkedList::insertItem(ItemType item) {
+    ListNode *predLoc = NULL;
+    ListNode *location = head;
+
+    }*/
+
+
 ItemType SortedLinkedList::GetNextItem() {
-    if (head = NULL) {
+    if (head == NULL) { // didnt have == only =
         cout << "List is empty\n";
-        return;
+        return head -> next -> item;
     }
     if (currentPos -> next != NULL) {
         return currentPos -> next -> item;
     } else {
         cout << "The end of the list has reached\n";
-        return;
+        currentPos = head; // shouldnt this reset to the top like it says
+        return currentPos -> item; // added current pos to return
     }
 }
 

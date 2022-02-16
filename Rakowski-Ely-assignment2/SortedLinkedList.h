@@ -7,8 +7,8 @@ class SortedLinkedList {
     private:
         ListNode *head;
         ListNode *currentPos;
-        int len;
-    
+    int len; // length wasnt specified
+
     public:
         SortedLinkedList();
 
@@ -30,7 +30,7 @@ class SortedLinkedList {
 
         void deleteAltNodes();
 
-        void intersection();
+    void intersection(); // find command elements func
 };
 
 #endif
