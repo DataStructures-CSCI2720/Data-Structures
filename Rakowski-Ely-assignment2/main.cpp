@@ -14,9 +14,24 @@ void promptUser(SortedLinkedList s);
 
 int main(int argc, char *argv[]) {
     SortedLinkedList s;
-    createList(argc, argv, s);
-    printCmd();
-    promptUser(s);
+    //createList(argc, argv, s);
+    //printCmd();
+    //promptUser(s);
+    ItemType t;
+    ItemType u;
+    ItemType v;
+    t.initialize(4);
+    u.initialize(5);
+    v.initialize(8);
+    s.insertItem(t);
+    //s.insertItem(u);
+    //s.insertItem(v);
+    cout << "Length: " << s.length() << endl;
+    for (int i = 0; i < 2; i++) {
+        ItemType t = s.GetNextItem();
+        cout << t.getValue() << ", ";
+    }
+    cout << "\n";
 } // main
 
 void createList(int argc, char* argv[], SortedLinkedList s) {

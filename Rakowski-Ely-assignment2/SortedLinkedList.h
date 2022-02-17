@@ -7,7 +7,6 @@ class SortedLinkedList {
     private:
         ListNode *head;
         ListNode *currentPos;
-    int len; // length wasnt specified
 
     public:
         SortedLinkedList();

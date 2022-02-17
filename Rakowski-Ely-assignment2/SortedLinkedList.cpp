@@ -6,22 +6,26 @@
 #include <stdio.h>
 
 using namespace std;
-
+// did not delete your code but for some reason it wasnt adding anything to a list at all.
 SortedLinkedList::SortedLinkedList() { // done i think
     head -> next = NULL;
-    len = 0;
     currentPos = head;
 }
 
 SortedLinkedList::~SortedLinkedList() {} // unsure but needed to compile
 
 int SortedLinkedList::length() const { // done
+    int len = 0;
+    ListNode *leng = head;
+    while (leng -> next != NULL) {
+        leng = leng -> next;
+        len++;
+    }
     return len;
 }
 
 void SortedLinkedList::insertItem(ItemType item) { // Unfinished I think
-    len++;
-    ListNode *n; //
+    /*ListNode *n; // bro this does not work
     ListNode *l = head; // location
     n -> item = item;
     n -> next = NULL;
@@ -33,7 +37,20 @@ void SortedLinkedList::insertItem(ItemType item) { // Unfinished I think
     while (l -> next != NULL) {
         l = l -> next;
     }
-    l -> next = n;
+    l -> next = n;*/
+    ListNode *newNode = new ListNode();
+    ListNode *end = head;
+    newNode -> item = item;
+    newNode -> next = NULL;
+
+    if (head == NULL) {
+        head = newNode;
+        return;
+    }
+    while (end -> next != NULL) {
+        end = end -> next;
+    }
+    end -> next = newNode;
 }
 
 void SortedLinkedList::deleteItem(ItemType item) { // not done
@@ -78,16 +95,18 @@ void SortedLinkedList::insertItem(ItemType item) {
 
 
 ItemType SortedLinkedList::GetNextItem() { // I think the return types were wrong
-    if (head == NULL) { // didnt have == only =
+    if (head -> next == NULL) { // didnt have == only =
         cout << "List is empty\n";
-        return head -> next -> item;
+        return head -> item;
     }
     if (currentPos -> next != NULL) {
         return currentPos -> next -> item;
+        currentPos -> next = currentPos; // not sure about this
     } else {
         cout << "The end of the list has reached\n";
         currentPos = head; // shouldnt this reset to the top like it says
-        return currentPos -> item; // added current pos to return
+        //return currentPos -> item; // added current pos to return
+        return head -> item;
     }
 }
 
