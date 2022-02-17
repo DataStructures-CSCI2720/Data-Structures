@@ -11,13 +11,10 @@ using namespace std;
 void createList(int argc, char* argv[], SortedLinkedList s);
 void printCmd();
 void promptUser(SortedLinkedList s);
+void printList(SortedLinkedList s);
 
 int main(int argc, char *argv[]) {
-    SortedLinkedList s;
-    //createList(argc, argv, s);
-    //printCmd();
-    //promptUser(s);
-    ItemType t;
+/*
     ItemType u;
     ItemType v;
     t.initialize(4);
@@ -26,13 +23,20 @@ int main(int argc, char *argv[]) {
     s.insertItem(t);
     //s.insertItem(u);
     //s.insertItem(v);
-    cout << "Length: " << s.length() << endl;
-    for (int i = 0; i < 2; i++) {
-        ItemType t = s.GetNextItem();
-        cout << t.getValue() << ", ";
-    }
-    cout << "\n";
+    */
+    SortedLinkedList s;
+    createList(argc, argv, s);
+    printList(s);
 } // main
+
+void printList(SortedLinkedList s) {
+    ItemType temp;
+    int j = 0;
+    while(j < 9) {
+        cout << temp.getValue() << endl;
+        j++;
+    }
+} // printList
 
 void createList(int argc, char* argv[], SortedLinkedList s) {
     if (argc <= 1) {
@@ -45,6 +49,7 @@ void createList(int argc, char* argv[], SortedLinkedList s) {
         ItemType t;
         t.initialize(num);
         s.insertItem(t);
+        cout << "inserted" << endl;
     } // while
     cout << "Successfully read file!\n"; // temp
 } // createList
