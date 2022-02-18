@@ -29,7 +29,10 @@ class SortedLinkedList {
 
         void deleteAltNodes();
 
-    void intersection(); // find command elements func
+        void printLink();
+
+        void intersection(); // find command elements func
+
 };
 
 #endif

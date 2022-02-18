@@ -11,7 +11,6 @@ using namespace std;
 void createList(int argc, char* argv[], SortedLinkedList s);
 void printCmd();
 void promptUser(SortedLinkedList s);
-void printList(SortedLinkedList s);
 
 int main(int argc, char *argv[]) {
 /*
@@ -26,17 +25,9 @@ int main(int argc, char *argv[]) {
     */
     SortedLinkedList s;
     createList(argc, argv, s);
-    printList(s);
+//    s.GetNextItem();
+    s.printLink();
 } // main
-
-void printList(SortedLinkedList s) {
-    ItemType temp;
-    int j = 0;
-    while(j < 9) {
-        cout << temp.getValue() << endl;
-        j++;
-    }
-} // printList
 
 void createList(int argc, char* argv[], SortedLinkedList s) {
     if (argc <= 1) {
@@ -49,7 +40,6 @@ void createList(int argc, char* argv[], SortedLinkedList s) {
         ItemType t;
         t.initialize(num);
         s.insertItem(t);
-        cout << "inserted" << endl;
     } // while
     cout << "Successfully read file!\n"; // temp
 } // createList

@@ -8,8 +8,9 @@
 using namespace std;
 // did not delete your code but for some reason it wasnt adding anything to a list at all.
 SortedLinkedList::SortedLinkedList() { // done i think
-    head -> next = NULL;
-    currentPos = head;
+//    head -> next = NULL;
+    head = NULL;
+    currentPos = NULL;
 }
 
 SortedLinkedList::~SortedLinkedList() {} // unsure but needed to compile
@@ -62,35 +63,63 @@ int SortedLinkedList::searchItem(ItemType item) {
     return 0;
 }
 
-// Collins understanding.check it out
 
-void SortedLinkedList::insertItem(ItemType item) {
+void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
     ListNode* tempNode = new ListNode; // creates node
     tempNode -> item = item; // sets item in node equal to param item
-    if (head == NULL) { // if empty
+
+    if (head == NULL) { // IF EMPTY
         head = tempNode; // pointing head toward out new node
-    } else if (item.compareTo(head -> item) == Comparison::LESS) { // item < head then item is less
+        currentPos = tempNode; // forgot
+        cout << "inserted in empty" << endl;
+        return;
+    }
+
+    if (item.compareTo(head -> item) == Comparison::LESS) { // ITEM FIRST IN LIST
         tempNode -> next = head; // pointing temp node to head
         head = tempNode; // then make head point to tempNode
-    } else {
-        ListNode* locTemp = head; // pointing to head
-        ListNode* previousTemp = NULL; // onlines says head here
+        currentPos = head; // forgot
+        cout << "inserted before first node" << endl;
+        return;
+    }
 
-        while ((locTemp -> next) != NULL) { //was locTemp != NULL // need to use get next item maybe
-            if (item.compareTo(locTemp->item) == Comparison::GREATER) { // or equal
-                previousTemp -> next = tempNode;
-                tempNode -> next = locTemp;
-                break;
-            }
-            previousTemp = locTemp; // move prev forward
-            locTemp = locTemp -> next; // iterate to next node
-        } // while
 
-        if (locTemp == NULL) { // if at the end
+//    ListNode* locTemp = head; // pointing to head
+//    ListNode* previousTemp = head; // onlines says head here
+
+    ListNode* locTemp = new ListNode;
+    ListNode* previousTemp;
+    locTemp = head;
+    previousTemp = locTemp;
+    locTemp = locTemp -> next;
+
+//    previousTemp = NULL;
+
+    while (locTemp != NULL) { //was locTemp != NULL // need to use get next item maybe
+        cout << "Inside While" << endl;
+
+        if (item.compareTo(locTemp->item) == Comparison::GREATER) { // or equal
             previousTemp -> next = tempNode;
-            previousTemp = previousTemp -> next; // should be null
-        } // if
-    } // else
+            tempNode -> next = locTemp;
+            cout << "Insert in middle" << endl;
+            break;
+        }
+        previousTemp = locTemp; // move prev forward
+        locTemp = locTemp -> next; // iterate to next node
+        cout << "Moved on" << endl;
+    } // while
+
+    previousTemp -> next = tempNode;
+    previousTemp = previousTemp -> next;
+    cout << "Inserted at end" << endl;
+
+    /*
+    if (locTemp == NULL) { // if at the end
+        previousTemp -> next = tempNode;
+        previousTemp = previousTemp -> next; // should be null
+        cout << "Inserted at end" << endl;
+        } // if */
+
 } // insert item
 
 
@@ -103,8 +132,9 @@ ItemType SortedLinkedList::GetNextItem() { // I think the return types were wron
     }
     if (currentPos -> next != NULL) {
         currentPos = currentPos -> next;
-        // localItem = currentPos -> item;
+        localItem = currentPos -> item;
         // return localItem; // I think this could also work
+        cout << localItem.getValue() << endl;
         return currentPos -> item;
     } else {
         cout << "The end of the list has reached\n";
@@ -127,4 +157,19 @@ void SortedLinkedList::deleteAltNodes() {
 
 void SortedLinkedList::intersection() {
 
+}
+
+void SortedLinkedList::printLink() {
+    ListNode *temp = head;
+//    temp = head; // head is point to null and i dont know why
+    cout << "PRINT" << endl;
+    ItemType printer;
+    printer = temp -> item;
+    while(printer.getValue() != 100) {
+        cout << "inside" << endl;
+        printer = temp -> item;
+        cout << printer.getValue() << " ";
+        temp = temp -> next;
+    } // while
+    cout << "end" << endl;
 }
