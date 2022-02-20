@@ -7,10 +7,8 @@
 
 using namespace std;
 // did not delete your code but for some reason it wasnt adding anything to a list at all.
-SortedLinkedList::SortedLinkedList() { // done i think
-//    head -> next = NULL;
+SortedLinkedList::SortedLinkedList() {
     head = NULL;
-    currentPos = NULL;
 }
 
 SortedLinkedList::~SortedLinkedList() {} // unsure but needed to compile
@@ -18,76 +16,70 @@ SortedLinkedList::~SortedLinkedList() {} // unsure but needed to compile
 int SortedLinkedList::length() const { // done
     int len = 0;
     ListNode *leng = head;
-    while (leng -> next != NULL) {
+    while (leng != NULL) {
         leng = leng -> next;
         len++;
     }
     return len;
 }
 
-/*
-void SortedLinkedList::insertItem(ItemType item) { // Unfinished I think
-    ListNode *n; // bro this does not work
-    ListNode *l = head; // location
-    n -> item = item;
-    n -> next = NULL;
-
-    if (head == NULL) { // inserts into empty list
-        head = n;
-        return;
-    }
-    while (l -> next != NULL) {
-        l = l -> next;
-    }
-    l -> next = n;
-    ListNode *newNode = new ListNode();
-    ListNode *end = head;
-    newNode -> item = item;
-    newNode -> next = NULL;
-
-    if (head == NULL) {
-        head = newNode;
-        return;
-    }
-    while (end -> next != NULL) {
-        end = end -> next;
-    }
-    end -> next = newNode;
-}
-*/
 void SortedLinkedList::deleteItem(ItemType item) { // not done
 
 }
 
 int SortedLinkedList::searchItem(ItemType item) {
-    return 0;
+    ListNode *curr = head;
+    bool keepSearch = true;
+    int index = -1;
+    int len = length() - 2;
+    while (keepSearch) {
+        if (index > len) {
+            index = -1;
+            keepSearch = false;
+        } else {
+            index++;
+            if (item.compareTo(curr -> item) == Comparison::EQUAL) {
+                keepSearch = false;
+            } else {
+                curr = curr -> next;
+            }
+        }
+    }
+    return index;
 }
 
-
 void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
-    ListNode* tempNode = new ListNode; // creates node
-    tempNode -> item = item; // sets item in node equal to param item
-
+    ListNode* newNode = new ListNode; // creates node
+    newNode -> item = item; // sets item in node equal to param item
+    newNode -> next = NULL;
+    ListNode *last = head;
     if (head == NULL) { // IF EMPTY
-        head = tempNode; // pointing head toward out new node
-        currentPos = tempNode; // forgot
-        cout << "inserted in empty" << endl;
+        head = newNode; // pointing head toward out new node
+        currentPos = head;
+        cout << "head created" << endl;
         return;
     }
+    /*while (last -> next != NULL) {  //UNSORTED for testing
+        last = last -> next;
+    }
+    last -> next = newNode;
+    cout << "added node to end\n";*/
 
-    if (item.compareTo(head -> item) == Comparison::LESS) { // ITEM FIRST IN LIST
-        tempNode -> next = head; // pointing temp node to head
-        head = tempNode; // then make head point to tempNode
-        currentPos = head; // forgot
+    /*if (item.compareTo(head -> item) == Comparison::LESS) { // ITEM FIRST IN LIST
+        newNode -> next = head; // pointing temp node to head
+        head = newNode; // then make head point to tempNode
+        //currentPos = head; // forgot
         cout << "inserted before first node" << endl;
         return;
     }
+    
 
 
-//    ListNode* locTemp = head; // pointing to head
+
+    ListNode* locTemp = head; // pointing to head
 //    ListNode* previousTemp = head; // onlines says head here
 
-    ListNode* locTemp = new ListNode;
+    //ListNode* locTemp = new ListNode;
     ListNode* previousTemp;
     locTemp = head;
     previousTemp = locTemp;
@@ -99,8 +91,8 @@ void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
         cout << "Inside While" << endl;
 
         if (item.compareTo(locTemp->item) == Comparison::GREATER) { // or equal
-            previousTemp -> next = tempNode;
-            tempNode -> next = locTemp;
+            previousTemp -> next = newNode;
+            newNode -> next = locTemp;
             cout << "Insert in middle" << endl;
             break;
         }
@@ -109,38 +101,55 @@ void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
         cout << "Moved on" << endl;
     } // while
 
-    previousTemp -> next = tempNode;
+    previousTemp -> next = newNode;
     previousTemp = previousTemp -> next;
     cout << "Inserted at end" << endl;
 
-    /*
+    
     if (locTemp == NULL) { // if at the end
-        previousTemp -> next = tempNode;
+        previousTemp -> next = newNode;
         previousTemp = previousTemp -> next; // should be null
         cout << "Inserted at end" << endl;
-        } // if */
-
+        } // if*/
+    // this works and I hope isnt aids to read
+    bool keepSearching = true;
+    ListNode *curr = head;
+    while (keepSearching) {
+        if (newNode -> item.compareTo(curr -> item) == Comparison::LESS) {
+            if (curr == head) {
+                newNode -> next = head;
+                head = newNode;
+                currentPos = head;
+                keepSearching = false;
+            } else {
+                newNode -> next = curr;
+                keepSearching = false;
+            }
+        } else {
+            if (curr -> next == NULL) {
+                curr -> next = newNode;
+                keepSearching = false;
+            } else {
+                curr = curr -> next;
+            }
+        }
+    }  
 } // insert item
 
-
-
-ItemType SortedLinkedList::GetNextItem() { // I think the return types were wrong
-    ItemType localItem;
-    if (head -> next == NULL) { // works I think
-        cout << "List is empty\n";
+ItemType SortedLinkedList::GetNextItem() { // works
+    if (length() == 0) {
+        cout << "List is empty!" << endl;
         return head -> item;
     }
-    if (currentPos -> next != NULL) {
-        currentPos = currentPos -> next;
-        localItem = currentPos -> item;
-        // return localItem; // I think this could also work
-        cout << localItem.getValue() << endl;
-        return currentPos -> item;
-    } else {
-        cout << "The end of the list has reached\n";
-        currentPos = head; // verified Correct
-        return head -> item; // Unsure if this is the correct way to do this
+    if (currentPos == NULL) {
+        cout << "End of the list has been reached!" << endl;
+        currentPos = head;
     }
+    ItemType local;
+    local = currentPos -> item;
+    currentPos = currentPos -> next;
+    
+    return local;
 }
 
 void SortedLinkedList::ResetList() { // done but what about head?

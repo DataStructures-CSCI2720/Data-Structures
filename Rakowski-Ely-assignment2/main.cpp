@@ -8,28 +8,16 @@
 
 using namespace std;
 
-void createList(int argc, char* argv[], SortedLinkedList s);
+void createList(int argc, char* argv[]);
 void printCmd();
 void promptUser(SortedLinkedList s);
 
 int main(int argc, char *argv[]) {
-/*
-    ItemType u;
-    ItemType v;
-    t.initialize(4);
-    u.initialize(5);
-    v.initialize(8);
-    s.insertItem(t);
-    //s.insertItem(u);
-    //s.insertItem(v);
-    */
-    SortedLinkedList s;
-    createList(argc, argv, s);
-//    s.GetNextItem();
-    s.printLink();
+    createList(argc, argv);
 } // main
 
-void createList(int argc, char* argv[], SortedLinkedList s) {
+void createList(int argc, char* argv[]) {
+    SortedLinkedList s;
     if (argc <= 1) {
         cout << "Invalid file argument! Exiting...\n";
         exit(0);
@@ -42,6 +30,8 @@ void createList(int argc, char* argv[], SortedLinkedList s) {
         s.insertItem(t);
     } // while
     cout << "Successfully read file!\n"; // temp
+    printCmd();
+    promptUser(s);
 } // createList
 
 void printCmd() {
@@ -53,6 +43,9 @@ void printCmd() {
 
 void promptUser(SortedLinkedList s) {
     while (1 > 0) {
+        ItemType search;
+        int val;
+        int index;
         char cmd;
         cout << "Enter a command:  ";
         cin >> cmd;
@@ -64,11 +57,19 @@ void promptUser(SortedLinkedList s) {
             case 'd':
                 cout << "nothing yet\n";
                 break;
-            case 's':
-                cout << "nothing yet\n";
+            case 's': // probably gonna write a 'search()' func to clean it up
+                cout << "Enter a value to search:  ";
+                cin >> val;
+                search.initialize(val);
+                index = s.searchItem(search);
+                if (index != -1) {
+                    cout << "Index " << index << endl;
+                } else {
+                    cout << "Item not found.\n";
+                }
                 break;
             case 'n':
-                cout << "nothing yet\n";
+                cout << "\n"<< s.GetNextItem().getValue() << "\n\n";                
                 break;
             case 'r':
                 cout << "nothing yet\n";
@@ -86,7 +87,7 @@ void promptUser(SortedLinkedList s) {
                 cout << "nothing yet\n";
                 break;
             case 'l':
-                cout << "nothing yet\n";
+                cout << "Length: " << s.length() << endl;
                 break;
             case 'q':
                 cout << "Quitting program...\n";
