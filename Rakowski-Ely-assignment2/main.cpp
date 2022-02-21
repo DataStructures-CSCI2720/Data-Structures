@@ -10,9 +10,10 @@ using namespace std;
 
 void createList(int argc, char* argv[]);
 void printCmd();
-void promptUser(SortedLinkedList s);
-void doSearch(SortedLinkedList s);
-void doInsert(SortedLinkedList s);
+void promptUser(SortedLinkedList &s);
+void doSearch(SortedLinkedList &s);
+void doInsert(SortedLinkedList &s);
+void doDelete(SortedLinkedList &s);
 
 int main(int argc, char *argv[]) {
     createList(argc, argv);
@@ -31,7 +32,6 @@ void createList(int argc, char* argv[]) {
         t.initialize(num);
         s.insertItem(t);
     } // while
-    //cout << "Successfully read file!\n"; // temp
     printCmd();
     promptUser(s);
 } // createList
@@ -43,17 +43,17 @@ void printCmd() {
     cout << "(m) - Merge two lists\n(t) - Intersection\n(p) - Print list\n(l) - Print length\n(q) - Quit program\n";
 } // printCmd
 
-void promptUser(SortedLinkedList s) {
+void promptUser(SortedLinkedList &s) {
     while (1 > 0) {
         char cmd;
         cout << "Enter a command:  ";
         cin >> cmd;
         switch (cmd) {
-        case 'i': // gonna move this to its own local func for readability
+        case 'i':
             doInsert(s);
             break;
         case 'd':
-            cout << "nothing yet\n";
+            doDelete(s);
             break;
         case 's':
             doSearch(s);
@@ -62,15 +62,15 @@ void promptUser(SortedLinkedList s) {
             cout << "\n"<< s.GetNextItem().getValue() << "\n\n";
             break;
         case 'r':
-            cout << "nothing yet\n";
+            s.ResetList();
             break;
         case 'a':
+            s.deleteAltNodes();
+            break;
+        case 'm': // merge two lists
             cout << "nothing yet\n";
             break;
-        case 'm':
-            cout << "nothing yet\n";
-            break;
-        case 't':
+        case 't': // intersection
             cout << "nothing yet\n";
             break;
         case 'p': // DONE
@@ -85,12 +85,11 @@ void promptUser(SortedLinkedList s) {
             break;
         default: // DONE
             cout << "Invalid command, try again!\n";
-            promptUser(s);
         } // switch
     } // while
 } // promptUser
 
-void doSearch(SortedLinkedList s) {
+void doSearch(SortedLinkedList &s) {
     ItemType search;
     int val;
     int index;
@@ -105,7 +104,7 @@ void doSearch(SortedLinkedList s) {
     }
 } // doSearch
 
-void doInsert(SortedLinkedList s) {
+void doInsert(SortedLinkedList &s) {
     s.printLink();
     cout << "Enter a number: ";
     int ans;
@@ -115,3 +114,14 @@ void doInsert(SortedLinkedList s) {
     s.insertItem(localNum);
     s.printLink();
 } // doInsert
+
+void doDelete(SortedLinkedList &s) {
+    s.printLink();
+    cout << "Enter value to delete:  ";
+    int ans;
+    cin >> ans;
+    ItemType temp;
+    temp.initialize(ans);
+    s.deleteItem(temp);
+    s.printLink();  
+}
