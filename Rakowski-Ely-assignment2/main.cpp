@@ -16,6 +16,7 @@ void doSearch(SortedLinkedList &s);
 void doInsert(SortedLinkedList &s);
 void doDelete(SortedLinkedList &s);
 void doMerge(SortedLinkedList &s);
+void newMerge(SortedLinkedList &s);
 
 int main(int argc, char *argv[]) {
     createList(argc, argv);
@@ -70,7 +71,8 @@ void promptUser(SortedLinkedList &s) {
             s.deleteAltNodes();
             break;
         case 'm':
-            doMerge(s);
+            newMerge(s);
+            //           doMerge(s);
             cout << "here2 " << endl; // doesnt get back here ???
             break;
         case 't': // intersection
@@ -126,9 +128,30 @@ void doDelete(SortedLinkedList &s) {
     ItemType temp;
     temp.initialize(ans);
     s.deleteItem(temp);
-    s.printLink();  
+    s.printLink();
 }
 
+void newMerge(SortedLinkedList &s) {
+    SortedLinkedList compList;
+    cout << "Length of list to merge: ";
+    int length;
+    cin >> length;
+    cout << "" << endl;
+    cout << "List elements separated by spaces in order: ";
+    int values;
+    ItemType item;
+    for(int i = 0; i < length; i++) {
+        cin >> values;
+        item.initialize(values);
+        compList.insertItem(item);
+        cin.clear();
+    } // while
+    cout << "List 1: ";
+    s.printLink();
+    cout << "List 2: ";
+    compList.printLink();
+} // new Merge
+/*
 void doMerge(SortedLinkedList &s) {
     SortedLinkedList p;
     //ItemType temp;
@@ -161,3 +184,4 @@ void doMerge(SortedLinkedList &s) {
    // s.mergeList(p);
    // s.printLink();
 }
+*/

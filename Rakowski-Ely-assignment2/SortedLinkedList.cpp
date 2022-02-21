@@ -7,17 +7,20 @@
 
 using namespace std;
 // did not delete your code but for some reason it wasnt adding anything to a list at all.
-SortedLinkedList::SortedLinkedList() {
+SortedLinkedList::SortedLinkedList() { // DONE
     head = NULL;
 }
 
-SortedLinkedList::~SortedLinkedList() {
+SortedLinkedList::~SortedLinkedList() { // I think this works
+    ListNode *curr;
     while (head != NULL) {
-        delete head;
+        curr = head;
+        head = head -> next;
+        delete curr;
     }
 }
 
-int SortedLinkedList::length() const { // done
+int SortedLinkedList::length() const { // DONE
     int len = 0;
     ListNode *leng = head;
     while (leng != NULL) {
@@ -32,7 +35,7 @@ void SortedLinkedList::deleteItem(ItemType item) {
         cout << "You cannot delete from an empty list.\n";
         return;
     }
-    
+
     bool keepSearching = true;
     ListNode *curr = head;
     ListNode *beh = head;
@@ -56,7 +59,7 @@ void SortedLinkedList::deleteItem(ItemType item) {
                 curr = curr -> next;
             }
         }
-    }   
+    }
 }
 
 int SortedLinkedList::searchItem(ItemType item) {
@@ -143,6 +146,17 @@ void SortedLinkedList::ResetList() {
     cout << "Iterator reset.\n";
 }
 
+SortedLinkedList SortedLinkedList::mergeList(SortedLinkedList s1, SortedLinkedList s2) { // DOES NOT HANDLE WHETHER THE VALUES ARE THE SAME
+    ListNode *curr = s1.head; // might have to be s1.head
+    while(s2.head != NULL) {
+        s1.insertItem(curr -> item);
+        curr = curr -> next;
+    } // while
+    return s1;
+} // merge List
+
+
+/*
 void SortedLinkedList::mergeList(SortedLinkedList s) {
     ListNode *l1 = head;
     ListNode *l2 = s.head;
@@ -161,6 +175,7 @@ void SortedLinkedList::mergeList(SortedLinkedList s) {
         insertItem(s.GetNextItem());
     }
 }
+*/
 
 void SortedLinkedList::deleteAltNodes() {
     if (head == NULL) {
@@ -169,7 +184,7 @@ void SortedLinkedList::deleteAltNodes() {
     }
     cout << "List before alternate delete: ";
     printLink();
-    
+
     ListNode *del = head -> next;
     while (del != NULL) {
         ItemType t = del -> item;

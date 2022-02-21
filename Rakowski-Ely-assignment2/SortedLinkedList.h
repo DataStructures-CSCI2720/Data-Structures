@@ -27,6 +27,8 @@ class SortedLinkedList {
 
         void mergeList(SortedLinkedList s);
 
+        SortedLinkedList mergeList(SortedLinkedList s1, SortedLinkedList s2);
+
         void deleteAltNodes();
 
         void printLink();
