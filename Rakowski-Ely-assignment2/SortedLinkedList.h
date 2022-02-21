@@ -25,7 +25,7 @@ class SortedLinkedList {
 
         void ResetList();
 
-        void mergeList();
+        void mergeList(SortedLinkedList s);
 
         void deleteAltNodes();
 

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <stdio.h>
 #include <string.h>
+#include <sstream>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ void promptUser(SortedLinkedList &s);
 void doSearch(SortedLinkedList &s);
 void doInsert(SortedLinkedList &s);
 void doDelete(SortedLinkedList &s);
+void doMerge(SortedLinkedList &s);
 
 int main(int argc, char *argv[]) {
     createList(argc, argv);
@@ -67,8 +69,9 @@ void promptUser(SortedLinkedList &s) {
         case 'a':
             s.deleteAltNodes();
             break;
-        case 'm': // merge two lists
-            cout << "nothing yet\n";
+        case 'm':
+            doMerge(s);
+            cout << "here2 " << endl; // doesnt get back here ???
             break;
         case 't': // intersection
             cout << "nothing yet\n";
@@ -124,4 +127,37 @@ void doDelete(SortedLinkedList &s) {
     temp.initialize(ans);
     s.deleteItem(temp);
     s.printLink();  
+}
+
+void doMerge(SortedLinkedList &s) {
+    SortedLinkedList p;
+    //ItemType temp;
+    //temp.initialize(2);
+    //p.insertItem(temp);
+    string input;
+    int num;
+    string temp;
+    cout << "List elements separated by spaces:  ";
+    cin.clear();
+    cin.sync();
+    getline(cin, input);
+    cout << "Input: " << input << endl;
+    stringstream parse;
+    parse << input;
+    while (!parse.eof()) {
+        parse >> temp;
+        if (stringstream(temp) >> num) {
+            cout << "number to add: " << num << endl;
+        }
+        ItemType t;
+        t.initialize(num);
+        p.insertItem(t);
+    } // while
+    cout << "List 1: ";
+    s.printLink();
+    cout << "List 2: ";
+    p.printLink();
+    cout << "here" << endl;
+   // s.mergeList(p);
+   // s.printLink();
 }

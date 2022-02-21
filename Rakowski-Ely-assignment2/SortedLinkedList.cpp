@@ -143,8 +143,23 @@ void SortedLinkedList::ResetList() {
     cout << "Iterator reset.\n";
 }
 
-void SortedLinkedList::mergeList() {
+void SortedLinkedList::mergeList(SortedLinkedList s) {
+    ListNode *l1 = head;
+    ListNode *l2 = s.head;
 
+    while (l1 -> next != NULL) {
+        for (int i = 0; i < s.length(); i++) {
+            if (l1 -> item.compareTo(s.GetNextItem()) == Comparison::EQUAL) {
+                cout << "Sorry. You cannot insert the duplicate item.\n";
+                return;
+            }
+        }
+        s.ResetList();
+        l1 = l1 -> next;
+    }
+    for (int i = 0; i < s.length(); i++) {
+        insertItem(s.GetNextItem());
+    }
 }
 
 void SortedLinkedList::deleteAltNodes() {
