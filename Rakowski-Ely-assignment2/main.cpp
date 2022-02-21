@@ -11,6 +11,8 @@ using namespace std;
 void createList(int argc, char* argv[]);
 void printCmd();
 void promptUser(SortedLinkedList s);
+void doSearch(SortedLinkedList s);
+void doInsert(SortedLinkedList s);
 
 int main(int argc, char *argv[]) {
     createList(argc, argv);
@@ -29,7 +31,7 @@ void createList(int argc, char* argv[]) {
         t.initialize(num);
         s.insertItem(t);
     } // while
-    cout << "Successfully read file!\n"; // temp
+    //cout << "Successfully read file!\n"; // temp
     printCmd();
     promptUser(s);
 } // createList
@@ -43,39 +45,18 @@ void printCmd() {
 
 void promptUser(SortedLinkedList s) {
     while (1 > 0) {
-        ItemType search;
-        int val;
-        int index;
         char cmd;
         cout << "Enter a command:  ";
         cin >> cmd;
-        s.printLink();
         switch (cmd) {
-        case 'i':
-        {
-            cout << "Enter a number: ";
-            int ans;
-            ItemType localNum;
-            cin >> ans;
-            localNum.initialize(ans);
-            s.insertItem(localNum); // WE NEED TO BE CERTAIN THIS WONT DO DUPLICATES AT ALL
-
-            s.printLink();
+        case 'i': // gonna move this to its own local func for readability
+            doInsert(s);
             break;
-        }
         case 'd':
             cout << "nothing yet\n";
             break;
-        case 's': // probably gonna write a 'search()' func to clean it up
-            cout << "Enter a value to search:  ";
-            cin >> val;
-            search.initialize(val);
-            index = s.searchItem(search);
-            if (index != -1) {
-                cout << "Index " << index << endl;
-            } else {
-                cout << "Item not found.\n";
-            }
+        case 's':
+            doSearch(s);
             break;
         case 'n':
             cout << "\n"<< s.GetNextItem().getValue() << "\n\n";
@@ -108,3 +89,29 @@ void promptUser(SortedLinkedList s) {
         } // switch
     } // while
 } // promptUser
+
+void doSearch(SortedLinkedList s) {
+    ItemType search;
+    int val;
+    int index;
+    cout << "Enter a value to search:  ";
+    cin >> val;
+    search.initialize(val);
+    index = s.searchItem(search);
+    if (index != -1) {
+        cout << "Index " << index << endl;
+    } else {
+        cout << "Item not found.\n";
+    }
+} // doSearch
+
+void doInsert(SortedLinkedList s) {
+    s.printLink();
+    cout << "Enter a number: ";
+    int ans;
+    ItemType localNum;
+    cin >> ans;
+    localNum.initialize(ans);
+    s.insertItem(localNum);
+    s.printLink();
+} // doInsert

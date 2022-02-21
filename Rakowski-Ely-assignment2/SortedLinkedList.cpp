@@ -48,7 +48,7 @@ int SortedLinkedList::searchItem(ItemType item) {
     return index;
 }
 
-void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
+void SortedLinkedList::insertItem(ItemType item) { // i know inserting in the middle doesnt work for some reason rn
     ListNode* newNode = new ListNode; // creates node
     newNode -> item = item; // sets item in node equal to param item
     newNode -> next = NULL;
@@ -56,7 +56,7 @@ void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
     if (head == NULL) { // IF EMPTY
         head = newNode; // pointing head toward out new node
         currentPos = head;
-        cout << "head created" << endl;
+        //cout << "head created" << endl;
         return;
     }
     /*while (last -> next != NULL) {  //UNSORTED for testing
@@ -121,9 +121,12 @@ void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
                 currentPos = head;
                 keepSearching = false;
             } else {
-                newNode -> next = curr;
+                newNode -> next = curr; // right here i need to link behind
                 keepSearching = false;
             }
+        } else if (newNode -> item.compareTo(curr -> item) == Comparison::EQUAL) {
+            cout << "Sorry. You cannot insert the duplicate item.\n";
+            keepSearching = false;
         } else {
             if (curr -> next == NULL) {
                 curr -> next = newNode;
@@ -132,7 +135,7 @@ void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
                 curr = curr -> next;
             }
         }
-        } // while
+    } // while
 } // insert item
 
 ItemType SortedLinkedList::GetNextItem() { // works
@@ -151,7 +154,7 @@ ItemType SortedLinkedList::GetNextItem() { // works
     return local;
 }
 
-void SortedLinkedList::ResetList() { // done but what about head?
+void SortedLinkedList::ResetList() { // dont we need to deallocate nodes?
     currentPos = NULL;
 }
 
@@ -169,7 +172,7 @@ void SortedLinkedList::intersection() {
 
 void SortedLinkedList::printLink() { // DONE
     ListNode *temp = head;
-    cout << "Sort Linked List: \n" << endl;
+    //cout << "Sort Linked List: \n" << endl;
     while (temp) {
         cout << temp -> item.getValue() << " ";
         temp = temp -> next;
