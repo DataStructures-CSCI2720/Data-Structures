@@ -64,17 +64,14 @@ void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
     }
     last -> next = newNode;
     cout << "added node to end\n";*/
-
-    /*if (item.compareTo(head -> item) == Comparison::LESS) { // ITEM FIRST IN LIST
+/*
+    if (item.compareTo(head -> item) == Comparison::LESS) { // ITEM FIRST IN LIST
         newNode -> next = head; // pointing temp node to head
         head = newNode; // then make head point to tempNode
         //currentPos = head; // forgot
         cout << "inserted before first node" << endl;
         return;
     }
-    
-
-
 
     ListNode* locTemp = head; // pointing to head
 //    ListNode* previousTemp = head; // onlines says head here
@@ -105,13 +102,15 @@ void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
     previousTemp = previousTemp -> next;
     cout << "Inserted at end" << endl;
 
-    
+
     if (locTemp == NULL) { // if at the end
         previousTemp -> next = newNode;
         previousTemp = previousTemp -> next; // should be null
         cout << "Inserted at end" << endl;
-        } // if*/
+        } // if
     // this works and I hope isnt aids to read
+    */
+
     bool keepSearching = true;
     ListNode *curr = head;
     while (keepSearching) {
@@ -133,7 +132,7 @@ void SortedLinkedList::insertItem(ItemType item) { // COLLINS TEST
                 curr = curr -> next;
             }
         }
-    }  
+        } // while
 } // insert item
 
 ItemType SortedLinkedList::GetNextItem() { // works
@@ -148,7 +147,7 @@ ItemType SortedLinkedList::GetNextItem() { // works
     ItemType local;
     local = currentPos -> item;
     currentPos = currentPos -> next;
-    
+
     return local;
 }
 
@@ -168,17 +167,12 @@ void SortedLinkedList::intersection() {
 
 }
 
-void SortedLinkedList::printLink() {
+void SortedLinkedList::printLink() { // DONE
     ListNode *temp = head;
-//    temp = head; // head is point to null and i dont know why
-    cout << "PRINT" << endl;
-    ItemType printer;
-    printer = temp -> item;
-    while(printer.getValue() != 100) {
-        cout << "inside" << endl;
-        printer = temp -> item;
-        cout << printer.getValue() << " ";
+    cout << "Sort Linked List: \n" << endl;
+    while (temp) {
+        cout << temp -> item.getValue() << " ";
         temp = temp -> next;
     } // while
-    cout << "end" << endl;
+    cout << "" << endl;
 }

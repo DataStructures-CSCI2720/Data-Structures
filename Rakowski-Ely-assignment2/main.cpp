@@ -49,53 +49,62 @@ void promptUser(SortedLinkedList s) {
         char cmd;
         cout << "Enter a command:  ";
         cin >> cmd;
+        s.printLink();
         switch (cmd) {
-            case 'i':
-                cout << "nothing yet\n";
-                // call SortedLinkedList item.func()
-                break;
-            case 'd':
-                cout << "nothing yet\n";
-                break;
-            case 's': // probably gonna write a 'search()' func to clean it up
-                cout << "Enter a value to search:  ";
-                cin >> val;
-                search.initialize(val);
-                index = s.searchItem(search);
-                if (index != -1) {
-                    cout << "Index " << index << endl;
-                } else {
-                    cout << "Item not found.\n";
-                }
-                break;
-            case 'n':
-                cout << "\n"<< s.GetNextItem().getValue() << "\n\n";                
-                break;
-            case 'r':
-                cout << "nothing yet\n";
-                break;
-            case 'a':
-                cout << "nothing yet\n";
-                break;
-            case 'm':
-                cout << "nothing yet\n";
-                break;
-            case 't':
-                cout << "nothing yet\n";
-                break;
-            case 'p':
-                cout << "nothing yet\n";
-                break;
-            case 'l':
-                cout << "Length: " << s.length() << endl;
-                break;
-            case 'q':
-                cout << "Quitting program...\n";
-                exit(0);
-                break;
-            default:
-                cout << "Invalid command, try again!\n";
-                promptUser(s);
+        case 'i':
+        {
+            cout << "Enter a number: ";
+            int ans;
+            ItemType localNum;
+            cin >> ans;
+            localNum.initialize(ans);
+            s.insertItem(localNum); // WE NEED TO BE CERTAIN THIS WONT DO DUPLICATES AT ALL
+
+            s.printLink();
+            break;
+        }
+        case 'd':
+            cout << "nothing yet\n";
+            break;
+        case 's': // probably gonna write a 'search()' func to clean it up
+            cout << "Enter a value to search:  ";
+            cin >> val;
+            search.initialize(val);
+            index = s.searchItem(search);
+            if (index != -1) {
+                cout << "Index " << index << endl;
+            } else {
+                cout << "Item not found.\n";
+            }
+            break;
+        case 'n':
+            cout << "\n"<< s.GetNextItem().getValue() << "\n\n";
+            break;
+        case 'r':
+            cout << "nothing yet\n";
+            break;
+        case 'a':
+            cout << "nothing yet\n";
+            break;
+        case 'm':
+            cout << "nothing yet\n";
+            break;
+        case 't':
+            cout << "nothing yet\n";
+            break;
+        case 'p': // DONE
+            s.printLink();
+            break;
+        case 'l':
+            cout << "Length: " << s.length() << endl;
+            break;
+        case 'q': // DONE
+            cout << "Quitting program...\n";
+            exit(0);
+            break;
+        default: // DONE
+            cout << "Invalid command, try again!\n";
+            promptUser(s);
         } // switch
     } // while
 } // promptUser
