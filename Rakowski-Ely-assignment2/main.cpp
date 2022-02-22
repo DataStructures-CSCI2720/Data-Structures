@@ -153,37 +153,3 @@ void newMerge(SortedLinkedList &s) {
     s.printLink();
     //compList.~SortedLinkedList(); //?? i think it deallocates maybe
 } // new Merge
-/*
-void doMerge(SortedLinkedList &s) {
-    SortedLinkedList p;
-    //ItemType temp;
-    //temp.initialize(2);
-    //p.insertItem(temp);
-    string input;
-    int num;
-    string temp;
-    cout << "List elements separated by spaces:  ";
-    cin.clear();
-    cin.sync();
-    getline(cin, input);
-    cout << "Input: " << input << endl;
-    stringstream parse;
-    parse << input;
-    while (!parse.eof()) {
-        parse >> temp;
-        if (stringstream(temp) >> num) {
-            cout << "number to add: " << num << endl;
-        }
-        ItemType t;
-        t.initialize(num);
-        p.insertItem(t);
-    } // while
-    cout << "List 1: ";
-    s.printLink();
-    cout << "List 2: ";
-    p.printLink();
-    cout << "here" << endl;
-   // s.mergeList(p);
-   // s.printLink();
-}
-*/
