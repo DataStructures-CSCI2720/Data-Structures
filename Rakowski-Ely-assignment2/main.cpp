@@ -5,19 +5,17 @@
 #include <fstream>
 #include <stdio.h>
 #include <string.h>
-#include <sstream>
 
 using namespace std;
 
-void createList(int argc, char* argv[]);
-void printCmd();
-void promptUser(SortedLinkedList &s);
-void doSearch(SortedLinkedList &s);
-void doInsert(SortedLinkedList &s);
-void doDelete(SortedLinkedList &s);
-void doMerge(SortedLinkedList &s);
-void newMerge(SortedLinkedList &s);
-void doInter(SortedLinkedList &s);
+void createList(int argc, char* argv[]);    // creates list using file input and starts program
+void printCmd();                            // prints list of commands
+void promptUser(SortedLinkedList &s);       // prompts user for command input
+void doSearch(SortedLinkedList &s);         // performs searching a list
+void doInsert(SortedLinkedList &s);         // perfroms inserting item
+void doDelete(SortedLinkedList &s);         // performs deleting item
+void newMerge(SortedLinkedList &s);         // performs merging two lists
+void doInter(SortedLinkedList &s);          // performs finding common items
 
 int main(int argc, char *argv[]) {
     createList(argc, argv);
@@ -88,6 +86,9 @@ void promptUser(SortedLinkedList &s) {
             cout << "Quitting program...\n";
             exit(0);
             break;
+        case 'c': // reprints commands // we can delete this later just kind of a tool for now
+            printCmd();
+            break;
         default: // bad input
             cout << "Invalid command, try again!\n";
         } // switch
@@ -106,7 +107,7 @@ void doSearch(SortedLinkedList &s) {
         cout << "Index " << index << endl;
     } else {
         cout << "Item not found.\n";
-    }
+    } // if
 } // doSearch
 
 void doInsert(SortedLinkedList &s) {
@@ -129,7 +130,7 @@ void doDelete(SortedLinkedList &s) {
     temp.initialize(ans);
     s.deleteItem(temp);
     s.printLink();
-}
+} // doDelete
 
 void newMerge(SortedLinkedList &s) {
     SortedLinkedList compList = SortedLinkedList();
@@ -152,8 +153,7 @@ void newMerge(SortedLinkedList &s) {
     compList.printLink();
     s.mergeList(compList);
     s.printLink();
-    
-} // new Merge
+} // newMerge
 
 void doInter(SortedLinkedList &s) {
     SortedLinkedList t = SortedLinkedList();
@@ -168,10 +168,10 @@ void doInter(SortedLinkedList &s) {
         item.initialize(values);
         t.insertItem(item);
         cin.clear();
-    }
+    } // for
     cout << "List 1: ";
     s.printLink();
     cout << "List 2: ";
     t.printLink();
     s.intersection(t);
-}
+} // doInter

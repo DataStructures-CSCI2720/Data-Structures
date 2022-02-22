@@ -9,16 +9,16 @@ enum class Comparison {GREATER, LESS, EQUAL};   // Comparison values
 class ItemType {
 
     private:
-        int value;                              // value
+        int value;                              // value of item
 
     public:
-        ItemType();                             // default constructor
+        ItemType();                             // ItemType constructor
 
-        Comparison compareTo(ItemType item);    // compares two ItemType items
+        Comparison compareTo(ItemType item);    // compares two items and returns a Comparison value
 
-        int getValue() const;                   // gets private value
+        int getValue() const;                   // gets value of item
 
-        void initialize(int num);               // initializes the private value
+        void initialize(int num);               // initializes the value of the item
 };
 
 #endif

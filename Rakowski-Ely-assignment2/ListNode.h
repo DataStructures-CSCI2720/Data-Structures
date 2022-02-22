@@ -4,8 +4,8 @@
 
 struct ListNode {
     public:
-        ItemType item;
-        ListNode *next;
-};
+        ItemType item;      // item associated with pointer
+        ListNode *next;     // pointer to next item in list
+}; // ListNode
 
 #endif
