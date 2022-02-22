@@ -6,6 +6,10 @@ using namespace std;
 
 enum class Comparison {GREATER, LESS, EQUAL};   // Comparison values
 
+/*
+ * ItemType class that has 4 public methods, and one private variable to store the values of the
+ * items values.
+ */
 class ItemType {
 
     private:

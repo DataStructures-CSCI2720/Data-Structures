@@ -39,10 +39,10 @@ void createList(int argc, char* argv[]) {
 } // createList
 
 void printCmd() {
-    cout << "Commands:\n";
-    cout << "(i) - Insert value\n(d) - Delete value\n(s) - Search value\n";
-    cout << "(n) - Print next iterator value\n(r) - Reset iterator\n(a) - Delete alternate nodes\n";
-    cout << "(m) - Merge two lists\n(t) - Intersection\n(p) - Print list\n(l) - Print length\n(q) - Quit program\n";
+    cout << "\nCommands:\n";
+    cout << "\n(i) - Insert value\n\n(d) - Delete value\n\n(s) - Search value\n";
+    cout << "\n(n) - Print next iterator value\n\n(r) - Reset iterator\n\n(a) - Delete alternate nodes\n";
+    cout << "\n(m) - Merge two lists\n\n(t) - Intersection\n\n(p) - Print list\n\n(l) - Print length\n\n(q) - Quit program\n\n";
 } // printCmd
 
 void promptUser(SortedLinkedList &s) {
@@ -137,7 +137,6 @@ void newMerge(SortedLinkedList &s) {
     cout << "Length of list to merge: ";
     int length;
     cin >> length;
-    cout << "" << endl; // ?
     cout << "List elements separated by spaces in order: ";
     int values;
     ItemType item;

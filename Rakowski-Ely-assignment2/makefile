@@ -24,6 +24,9 @@ SortedLinkedList.o: SortedLinkedList.cpp SortedLinkedList.h
 run: compile2
 	./main input.txt
 
+runempty: compile2
+	./main empty.txt
+
 clean:
 	rm -f main
 	rm -f *.o

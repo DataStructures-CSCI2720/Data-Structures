@@ -49,7 +49,7 @@ int SortedLinkedList::length() const {
 */
 void SortedLinkedList::deleteItem(ItemType item) {
     if (head == NULL) { // Special case: Empty List
-        cout << "You cannot delete from an empty list.\n";
+        cout << "You cannot delete from an empty list.";
         return;
     } // if
 
@@ -237,6 +237,10 @@ void SortedLinkedList::deleteAltNodes() {
     printLink();
 }
 
+/*
+ * intersection prints any nodes in which the values are the same.
+ * @param t a new list is passed by reference to check if there are equal nodes.
+ */
 void SortedLinkedList::intersection(SortedLinkedList &t) {
     cout << "Intersection: ";
     ListNode *l1 = head;
