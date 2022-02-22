@@ -66,14 +66,13 @@ void promptUser(SortedLinkedList &s) {
             break;
         case 'r':
             s.ResetList();
+            cout << "Iterator reset.\n";
             break;
         case 'a':
             s.deleteAltNodes();
             break;
         case 'm':
             newMerge(s);
-            //           doMerge(s);
-            cout << "here2 " << endl; // doesnt get back here ???
             break;
         case 't': // intersection
             cout << "nothing yet\n";
@@ -132,15 +131,15 @@ void doDelete(SortedLinkedList &s) {
 }
 
 void newMerge(SortedLinkedList &s) {
-    SortedLinkedList compList;
+    SortedLinkedList compList = SortedLinkedList();
     cout << "Length of list to merge: ";
     int length;
     cin >> length;
-    cout << "" << endl;
+    cout << "" << endl; // ?
     cout << "List elements separated by spaces in order: ";
     int values;
     ItemType item;
-    for(int i = 0; i < length; i++) {
+    for(int i = 0; i < length; i++) { // i see how length helps. but do we handle if you enter wrong amt of #s?
         cin >> values;
         item.initialize(values);
         compList.insertItem(item);
@@ -150,6 +149,9 @@ void newMerge(SortedLinkedList &s) {
     s.printLink();
     cout << "List 2: ";
     compList.printLink();
+    s.mergeList(compList);
+    s.printLink();
+    //compList.~SortedLinkedList(); //?? i think it deallocates maybe
 } // new Merge
 /*
 void doMerge(SortedLinkedList &s) {

@@ -143,39 +143,30 @@ ItemType SortedLinkedList::GetNextItem() { // works
 
 void SortedLinkedList::ResetList() {
     currentPos = head;
-    cout << "Iterator reset.\n";
 }
 
-SortedLinkedList SortedLinkedList::mergeList(SortedLinkedList s1, SortedLinkedList s2) { // DOES NOT HANDLE WHETHER THE VALUES ARE THE SAME
-    ListNode *curr = s1.head; // might have to be s1.head
-    while(s2.head != NULL) {
-        s1.insertItem(curr -> item);
-        curr = curr -> next;
-    } // while
-    return s1;
-} // merge List
-
-
-/*
-void SortedLinkedList::mergeList(SortedLinkedList s) {
+void SortedLinkedList::mergeList(SortedLinkedList &s2) { // doesnt crash now that we pass by ref!
     ListNode *l1 = head;
-    ListNode *l2 = s.head;
-
-    while (l1 -> next != NULL) {
-        for (int i = 0; i < s.length(); i++) {
-            if (l1 -> item.compareTo(s.GetNextItem()) == Comparison::EQUAL) {
+    
+    while (l1 != NULL) { // supposed to check for matching first // does check for matching tho!
+        ListNode *l2 = s2.head;
+        while (l2 != NULL) {
+            if (l1 -> item.compareTo(s2.GetNextItem()) == Comparison::EQUAL) {
                 cout << "Sorry. You cannot insert the duplicate item.\n";
                 return;
             }
+            l2 = l2 -> next;
         }
-        s.ResetList();
+        s2.ResetList();
         l1 = l1 -> next;
     }
-    for (int i = 0; i < s.length(); i++) {
-        insertItem(s.GetNextItem());
-    }
-}
-*/
+
+    ListNode *curr = s2.head;
+    while(curr != NULL) { // this needed to be curr not s2.head but now works
+        insertItem(curr -> item);
+        curr = curr -> next;
+    } // while
+} // merge List
 
 void SortedLinkedList::deleteAltNodes() {
     if (head == NULL) {

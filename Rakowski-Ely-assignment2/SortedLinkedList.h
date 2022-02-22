@@ -25,9 +25,7 @@ class SortedLinkedList {
 
         void ResetList();
 
-        void mergeList(SortedLinkedList s);
-
-        SortedLinkedList mergeList(SortedLinkedList s1, SortedLinkedList s2);
+        void mergeList(SortedLinkedList &s2); // pass by ref works!
 
         void deleteAltNodes();
 
