@@ -31,7 +31,7 @@ class SortedLinkedList {
 
         void printLink();
 
-        void intersection(); // find command elements func
+        void intersection(SortedLinkedList &t); // find command elements func
 
 };
 

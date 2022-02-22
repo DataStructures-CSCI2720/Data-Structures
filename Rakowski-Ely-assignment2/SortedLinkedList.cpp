@@ -85,7 +85,7 @@ void SortedLinkedList::deleteItem(ItemType item) {
  * @param item contains the value that is being searched for
  * @return int index contains the position of the item that is being searched for
 */
-int SortedLinkedList::searchItem(ItemType item) { // ARE WE ASSUMNING THE ITEM IS ALWAYS IN THE LIST
+int SortedLinkedList::searchItem(ItemType item) { // ARE WE ASSUMNING THE ITEM IS ALWAYS IN THE LIST -> no
     ListNode *curr = head;
     bool keepSearch = true;
     int index = -1;
@@ -237,8 +237,22 @@ void SortedLinkedList::deleteAltNodes() { // DONE
     printLink();
 }
 
-void SortedLinkedList::intersection() {
+void SortedLinkedList::intersection(SortedLinkedList &t) {
+    cout << "Intersection: ";
+    ListNode *l1 = head;
 
+    while (l1 != NULL) { // supposed to check for matching first // does check for matching tho!
+        ListNode *l2 = t.head;
+        while (l2 != NULL) { // checks to the that the list is not empty or to the end of the list
+            if (l1 -> item.compareTo(t.GetNextItem()) == Comparison::EQUAL) { // Checks for duplicate items  in the array
+                cout << l1 -> item.getValue() << " ";
+            }
+            l2 = l2 -> next; // Iterates through the list until the end
+        }
+        t.ResetList();
+        l1 = l1 -> next;
+    }
+    cout << "\n";
 }
 
 /*

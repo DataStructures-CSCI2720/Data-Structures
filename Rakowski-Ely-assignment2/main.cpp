@@ -17,6 +17,7 @@ void doInsert(SortedLinkedList &s);
 void doDelete(SortedLinkedList &s);
 void doMerge(SortedLinkedList &s);
 void newMerge(SortedLinkedList &s);
+void doInter(SortedLinkedList &s);
 
 int main(int argc, char *argv[]) {
     createList(argc, argv);
@@ -52,42 +53,42 @@ void promptUser(SortedLinkedList &s) {
         cout << "Enter a command:  ";
         cin >> cmd;
         switch (cmd) {
-        case 'i':
+        case 'i': // insert item
             doInsert(s);
             break;
-        case 'd':
+        case 'd': // delete item
             doDelete(s);
             break;
-        case 's':
+        case 's': // search for item
             doSearch(s);
             break;
-        case 'n':
+        case 'n': // iterate to next item
             cout << "\n"<< s.GetNextItem().getValue() << "\n\n";
             break;
-        case 'r':
+        case 'r': // reset iterator to beginning
             s.ResetList();
             cout << "Iterator reset.\n";
             break;
-        case 'a':
+        case 'a': // delete alternate nodes
             s.deleteAltNodes();
             break;
-        case 'm':
+        case 'm': // merge two lists
             newMerge(s);
             break;
-        case 't': // intersection
-            cout << "nothing yet\n";
+        case 't': // intersection of two lists
+            doInter(s);
             break;
-        case 'p': // DONE
+        case 'p': // print list
             s.printLink();
             break;
-        case 'l':
+        case 'l': // length of list
             cout << "Length: " << s.length() << endl;
             break;
-        case 'q': // DONE
+        case 'q': // quit
             cout << "Quitting program...\n";
             exit(0);
             break;
-        default: // DONE
+        default: // bad input
             cout << "Invalid command, try again!\n";
         } // switch
     } // while
@@ -139,17 +140,38 @@ void newMerge(SortedLinkedList &s) {
     cout << "List elements separated by spaces in order: ";
     int values;
     ItemType item;
-    for(int i = 0; i < length; i++) { // i see how length helps. but do we handle if you enter wrong amt of #s?
+    for (int i = 0; i < length; i++) { // i see how length helps. but do we handle if you enter wrong amt of #s?
         cin >> values;
         item.initialize(values);
         compList.insertItem(item);
         cin.clear();
-    } // while
+    } // for
     cout << "List 1: ";
     s.printLink();
     cout << "List 2: ";
     compList.printLink();
     s.mergeList(compList);
     s.printLink();
-    //compList.~SortedLinkedList(); //?? i think it deallocates maybe
+    
 } // new Merge
+
+void doInter(SortedLinkedList &s) {
+    SortedLinkedList t = SortedLinkedList();
+    cout << "Length of list to find intersection:  ";
+    int length;
+    cin >> length;
+    cout << "List elements separated by spaces in order:  ";
+    int values;
+    ItemType item;
+    for (int i = 0; i < length; i++) {
+        cin >> values;
+        item.initialize(values);
+        t.insertItem(item);
+        cin.clear();
+    }
+    cout << "List 1: ";
+    s.printLink();
+    cout << "List 2: ";
+    t.printLink();
+    s.intersection(t);
+}
