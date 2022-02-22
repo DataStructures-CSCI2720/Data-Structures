@@ -159,10 +159,6 @@ void SortedLinkedList::insertItem(ItemType item) {
  * @return ItemType local contains the item value
 */
 ItemType SortedLinkedList::GetNextItem() {
-    if (length() == 0) { // Special Case: Checks for empty list
-        cout << "List is empty!" << endl;
-        return head -> item;
-    } // if
     if (currentPos == NULL) { // Special Case: Checks for the end of the list
         cout << "End of the list has been reached!" << endl;
         currentPos = head;

@@ -17,27 +17,45 @@ void doDelete(SortedLinkedList &s);         // performs deleting item
 void newMerge(SortedLinkedList &s);         // performs merging two lists
 void doInter(SortedLinkedList &s);          // performs finding common items
 
+/**
+ * @brief Main method to execute the SortedLinkedList interface.
+ * 
+ * @param argc number of file arguments
+ * @param argv file argument
+ * @return int 
+ */
 int main(int argc, char *argv[]) {
-    createList(argc, argv);
+    createList(argc, argv); // creates list and starts interface
 } // main
 
+/**
+ * @brief Creates the SortedLinkedList from file input. Then prints available
+ * commands and then beings the promptUser loop.
+ * 
+ * @param argc number of args from main
+ * @param argv file argument from main
+ */
 void createList(int argc, char* argv[]) {
-    SortedLinkedList s;
-    if (argc <= 1) {
+    SortedLinkedList s; // new SortedLinkedList
+    if (argc <= 1) { // must be valid file argument
         cout << "Invalid file argument! Exiting...\n";
         exit(0);
     } // if
     int num;
     ifstream input(argv[1]);
-    while (input >> num) {
+    while (input >> num) { // reads input and creates new ItemType to add to list
         ItemType t;
         t.initialize(num);
-        s.insertItem(t);
+        s.insertItem(t); // adds item to list
     } // while
-    printCmd();
-    promptUser(s);
+    printCmd(); // prints commands
+    promptUser(s); // starts promptUser loop
 } // createList
 
+/**
+ * @brief Prints available commands to interact with SortedLinkedList.
+ * 
+ */
 void printCmd() {
     cout << "\nCommands:\n";
     cout << "\n(i) - Insert value\n\n(d) - Delete value\n\n(s) - Search value\n";
@@ -45,12 +63,17 @@ void printCmd() {
     cout << "\n(m) - Merge two lists\n\n(t) - Intersection\n\n(p) - Print list\n\n(l) - Print length\n\n(q) - Quit program\n\n";
 } // printCmd
 
+/**
+ * @brief Loop that gets user input and modifies or views items in the SortedLinkedList.
+ * 
+ * @param s reference to SortedLinkedList created in createList.
+ */
 void promptUser(SortedLinkedList &s) {
-    while (1 > 0) {
+    while (1 > 0) { // keeps loop running
         char cmd;
-        cout << "Enter a command:  ";
+        cout << "Enter a command:  "; // user prompt
         cin >> cmd;
-        switch (cmd) {
+        switch (cmd) { // available commands
         case 'i': // insert item
             doInsert(s);
             break;
@@ -61,7 +84,11 @@ void promptUser(SortedLinkedList &s) {
             doSearch(s);
             break;
         case 'n': // iterate to next item
-            cout << "\n"<< s.GetNextItem().getValue() << "\n\n";
+            if (s.length() != 0) { // only returns next if length is > 0
+                cout << "\n"<< s.GetNextItem().getValue() << "\n\n";
+            } else {
+                cout << "List is empty!" << endl;
+            } // if
             break;
         case 'r': // reset iterator to beginning
             s.ResetList();
@@ -86,7 +113,7 @@ void promptUser(SortedLinkedList &s) {
             cout << "Quitting program...\n";
             exit(0);
             break;
-        case 'c': // reprints commands // we can delete this later just kind of a tool for now
+        case 'c': // reprints commands
             printCmd();
             break;
         default: // bad input
@@ -95,14 +122,19 @@ void promptUser(SortedLinkedList &s) {
     } // while
 } // promptUser
 
+/**
+ * @brief Performs the search function and includes user interface prompts.
+ * 
+ * @param s reference to SortedLinkedList from promptUser
+ */
 void doSearch(SortedLinkedList &s) {
     ItemType search;
     int val;
     int index;
-    cout << "Enter a value to search:  ";
+    cout << "Enter a value to search:  "; // prompt
     cin >> val;
     search.initialize(val);
-    index = s.searchItem(search);
+    index = s.searchItem(search); // searches for item
     if (index != -1) {
         cout << "Index " << index << endl;
     } else {
@@ -110,67 +142,89 @@ void doSearch(SortedLinkedList &s) {
     } // if
 } // doSearch
 
+/**
+ * @brief Performs inserting an item into the list and includes interface prompts.
+ * 
+ * @param s reference to SortedLinkedList from promptUser
+ */
 void doInsert(SortedLinkedList &s) {
     s.printLink();
-    cout << "Enter a number: ";
+    cout << "Enter a number: "; // prompt
     int ans;
     ItemType localNum;
     cin >> ans;
     localNum.initialize(ans);
-    s.insertItem(localNum);
-    s.printLink();
+    s.insertItem(localNum); // inserts item into list
+    s.printLink(); // reprints list
 } // doInsert
 
+/**
+ * @brief Performs deleting item from SortedLinkedList and includes interface prompts.
+ * 
+ * @param s reference to SortedLinkedList from promptUser
+ */
 void doDelete(SortedLinkedList &s) {
     s.printLink();
-    cout << "Enter value to delete:  ";
+    cout << "Enter value to delete:  "; // prompt
     int ans;
     cin >> ans;
     ItemType temp;
     temp.initialize(ans);
-    s.deleteItem(temp);
-    s.printLink();
+    s.deleteItem(temp); // deletes item from list
+    s.printLink(); // reprints list
 } // doDelete
 
+/**
+ * @brief Performs merging two SortedLinkedLists, the second one being created in this method.
+ * Includes the user interface prompt as well.
+ * 
+ * @param s reference to SortedLinkedList from promptUser
+ */
 void newMerge(SortedLinkedList &s) {
-    SortedLinkedList compList = SortedLinkedList();
-    cout << "Length of list to merge: ";
+    SortedLinkedList compList = SortedLinkedList(); // create new list
+    cout << "Length of list to merge: "; // prompt
     int length;
     cin >> length;
     cout << "List elements separated by spaces in order: ";
     int values;
     ItemType item;
-    for (int i = 0; i < length; i++) { // i see how length helps. but do we handle if you enter wrong amt of #s?
+    for (int i = 0; i < length; i++) { // add items to new list
         cin >> values;
         item.initialize(values);
         compList.insertItem(item);
         cin.clear();
     } // for
     cout << "List 1: ";
-    s.printLink();
+    s.printLink(); // print old list
     cout << "List 2: ";
-    compList.printLink();
+    compList.printLink(); // print new list
     s.mergeList(compList);
-    s.printLink();
+    s.printLink(); // print merged list
 } // newMerge
 
+/**
+ * @brief Performs printing the common items between two SortedLinkedLists, the second
+ * one being created in this method. Includes the user prompt as well.
+ * 
+ * @param s reference to SortedLinkedList from promptUser
+ */
 void doInter(SortedLinkedList &s) {
-    SortedLinkedList t = SortedLinkedList();
-    cout << "Length of list to find intersection:  ";
+    SortedLinkedList t = SortedLinkedList(); // new list created
+    cout << "Length of list to find intersection:  "; // prompt
     int length;
     cin >> length;
     cout << "List elements separated by spaces in order:  ";
     int values;
     ItemType item;
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < length; i++) { // insert items into list
         cin >> values;
         item.initialize(values);
         t.insertItem(item);
         cin.clear();
     } // for
     cout << "List 1: ";
-    s.printLink();
+    s.printLink(); // print old list
     cout << "List 2: ";
-    t.printLink();
-    s.intersection(t);
+    t.printLink(); // print new list
+    s.intersection(t); // prints common items
 } // doInter
