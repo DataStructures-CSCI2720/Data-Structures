@@ -160,7 +160,6 @@ void SortedLinkedList::insertItem(ItemType item) {
 */
 ItemType SortedLinkedList::GetNextItem() {
     if (currentPos == NULL) { // Special Case: Checks for the end of the list
-        cout << "End of the list has been reached!" << endl;
         currentPos = head;
     } // if
     ItemType local;
