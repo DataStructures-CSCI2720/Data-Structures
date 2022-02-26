@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
-#include <string.h>
+#include <string>
 
 using namespace std;
 
@@ -13,15 +13,13 @@ void options(DoublyLinkedList<T> &t);                       // prompts with opti
 template<class T>
 void createList(DoublyLinkedList<T> &t, char argv[]);      // creates list, should be generically
 
-// tbh have not even tried to compile but stuff seems okay so far
 int main(int argc, char *argv[]) { // pass 3 arg files
-    cout << "main lol\n";
     startUp(argc, argv);
     return 0;
 } // main
 
 void startUp(int argc, char *argv[]) {
-    if (argc < 2) { // later will be less than 4
+    if (argc < 4) {
         cout << "Invalid file input! Exiting...\n";
         exit(0);
     } // if
@@ -35,7 +33,7 @@ void startUp(int argc, char *argv[]) {
         DoublyLinkedList<float> d;
         createList(d, argv[2]);
     } else if (op == 's') {
-        DoublyLinkedList<string> d;
+        DoublyLinkedList<std::string> d;
         createList(d, argv[3]);
     } else { // bad list type should probably reprompt user but 2 lazy for now
         cout << "Invalid list type!\n";
@@ -51,15 +49,50 @@ void printCmd() {
 template<class T>
 void options(DoublyLinkedList<T> &t) {
     printCmd();
-    cout << "here. this is where options should go.\n";
+    while (1 > 0) {
+        char cmd;
+        cout << "Enter a command:  ";
+        cin >> cmd;
+        switch (cmd) {
+        case 'i': // insert item
+            // insert written but not implemented yet
+            break;
+        case 'd': // delete item
+
+            break;
+        case 'l': // length of list
+            cout << "The length is: " << t.lengthIs() << endl;
+            break;
+        case 'p': // print list
+            t.print();
+            break;
+        case 'b': // deleteSubsection of list
+
+            break;
+        case 'm': // mode of list
+
+            break;
+        case 'r': // print reverse of list
+            t.printReverse();
+            break;
+        case 's': // swapAlternate items
+
+            break;
+        case 'q': // quit
+            cout << "Quitting...\n";
+            exit(0);
+            break;
+        default:
+            cout << "Invalid command, try again!\n";
+            break;
+        } // switch
+    } // while
     // case switcher 
 } // options
 
 template<class T>
-void createList(DoublyLinkedList<T> &t, char argv[]) {
-    // adds items to list
-    // ZERO clue if this works yet, but right idea
-    int num; // also probably needs to be generic or overloaded
+void createList(DoublyLinkedList<T> &t, char argv[]) { // works for ints
+    T num;
     ifstream input(argv);
     while (input >> num) {
         t.insertItem(num);

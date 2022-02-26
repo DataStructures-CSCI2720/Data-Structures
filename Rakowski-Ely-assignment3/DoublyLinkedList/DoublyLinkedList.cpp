@@ -17,19 +17,19 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
 
 template<class T>
 void DoublyLinkedList<T>::insertItem(T &item) {
-    NodeType<T> newNode = new NodeType();
+    NodeType<T> *newNode = new NodeType<T>;
     newNode -> data = item;
 
     if (head == NULL) { // if empty
+        head = newNode;
         newNode -> next = head;
         newNode -> last = head;
-        head = newNode;
         return;
     } // if
     bool keepSeaching = true;
     NodeType<T> *curr = head -> next;
-    while (keepSeaching) {
-        if (newNode -> data =< curr -> data) { // not generic for strings yet
+    while (keepSeaching) {        
+        if ((newNode -> data) <= (curr -> data)) { // not generic for strings yet
             newNode -> next = curr;
             newNode -> last = curr -> last;
             curr -> last -> next = newNode;
@@ -39,6 +39,7 @@ void DoublyLinkedList<T>::insertItem(T &item) {
             if (curr == head) { // greatest item in group
                 newNode -> next = curr -> next;
                 newNode -> last = curr;
+                curr -> next -> last = newNode;
                 curr -> next = newNode;
                 head = newNode;
                 keepSeaching = false;
@@ -90,11 +91,13 @@ void DoublyLinkedList<T>::printReverse() {
         return;
     } // if
     NodeType<T> *end = head;
-    while (end -> last != head) {
+    cout << end -> data << " ";
+    end = end -> last;
+    while (end != head) {
         cout << end -> data << " ";
         end = end -> last;
     } // while
-    cout << end -> data << "\n";
+    cout << "\n";
 } // printReverse
 
 template<class T>
@@ -104,7 +107,7 @@ void DoublyLinkedList<T>::deleteSubsection(T upper, T lower) {
 
 template<class T>
 int DoublyLinkedList<T>::mode() {
-
+    return 100;
 } // mode
 
 template<class T>
@@ -114,4 +117,4 @@ void DoublyLinkedList<T>::swapAlternate() {
 
 template class DoublyLinkedList<int>;
 template class DoublyLinkedList<float>;
-template class DoublyLinkedList<string>;
+template class DoublyLinkedList<std::string>;
