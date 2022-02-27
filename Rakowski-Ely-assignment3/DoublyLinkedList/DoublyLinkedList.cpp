@@ -12,7 +12,12 @@ DoublyLinkedList<T>::DoublyLinkedList() {
 
 template<class T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
-    
+    NodeType<T> *curr;
+    while (lengthIs() > 0) {
+        curr = head;
+        head = head -> next;
+        delete curr;
+    } // while
 } // DoublyLinkedList destructor
 
 template<class T>
@@ -53,7 +58,39 @@ void DoublyLinkedList<T>::insertItem(T &item) {
 
 template<class T>
 void DoublyLinkedList<T>::deleteItem(T &item) {
+    NodeType<T> *temp = head -> next;
+    bool keepSeaching = true;
+    int counter = 0;
 
+    if (head == NULL) {
+        cout << "You cannot delete from an empty list.\n";
+        return;
+    } // if
+
+    while (keepSeaching) {
+        counter++;
+        if (temp -> data == item) {
+            if (temp == head) { // if item is last in list
+                head = head -> last;
+            } // if
+            if (lengthIs() == 1) { // works but prints 'list is empty' which might be okay
+                delete temp;
+                head = NULL;
+                return;
+            } // if
+            temp -> last -> next = temp -> next;
+            temp -> next -> last = temp -> last;
+            delete temp;
+            keepSeaching = false;
+        } else {
+            if (counter > lengthIs()) {
+                cout << "Item not in list!\n";
+                keepSeaching = false;
+            } else {
+                temp = temp -> next; // keep iterating
+            } // if
+        } // if
+    } // while 
 } // deleteItem
 
 template<class T>
@@ -106,8 +143,29 @@ void DoublyLinkedList<T>::deleteSubsection(T upper, T lower) {
 } // deleteSubsection
 
 template<class T>
-int DoublyLinkedList<T>::mode() {
-    return 100;
+T DoublyLinkedList<T>::mode() {
+    NodeType<T> *curr = head -> next -> next; // assumes first value is mode so skips to second
+    T value = head -> next -> data;
+    T mode = value;
+    int count = 1;
+    int modeCount = 1;
+    int counter = 0;
+
+    while (lengthIs() > counter) {
+        if (curr -> data == value) {
+            count++;
+        } else {
+            if (count > modeCount) {
+                modeCount = count;
+                mode = value;
+            } // if
+            count = 1;
+            value = curr -> data;
+        } // if
+        curr = curr -> next;
+        counter++;
+    } // while  
+    return mode;  
 } // mode
 
 template<class T>

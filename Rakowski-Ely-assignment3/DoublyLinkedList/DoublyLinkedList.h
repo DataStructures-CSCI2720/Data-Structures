@@ -31,7 +31,7 @@ class DoublyLinkedList {
 
         void deleteSubsection(T upper, T lower);
 
-        int mode();
+        T mode();
 
         void swapAlternate();
 
