@@ -139,7 +139,19 @@ void DoublyLinkedList<T>::printReverse() {
 
 template<class T>
 void DoublyLinkedList<T>::deleteSubsection(T upper, T lower) {
-
+    if (head == NULL) { // if empty list
+        return;
+    } // if
+    NodeType<T> *curr = head;
+    int counter = 0;
+    int length = lengthIs();
+    while (counter < length) {
+        counter++;
+        curr = curr -> next;
+        if ((curr -> last -> data <= upper)&&(curr -> last -> data >= lower)) {
+            deleteItem(curr -> last -> data);
+        } // if
+    } // while
 } // deleteSubsection
 
 template<class T>
@@ -170,7 +182,10 @@ T DoublyLinkedList<T>::mode() {
 
 template<class T>
 void DoublyLinkedList<T>::swapAlternate() {
-
+    if (head == NULL) {
+        return;
+    } // if
+    // swap alternate nodes
 } // swapAlternate
 
 template class DoublyLinkedList<int>;

@@ -15,25 +15,25 @@ class DoublyLinkedList {
         NodeType<T> *head;
 
     public:
-        DoublyLinkedList();                 // constructor
+        DoublyLinkedList();                             // constructor
 
-        ~DoublyLinkedList();                // destructor
+        ~DoublyLinkedList();                            // destructor
 
-        void insertItem(T &item);           // inserts item into list
+        void insertItem(T &item);                       // inserts item into list
 
-        void deleteItem(T &item);           // deletes item from list
+        void deleteItem(T &item);                       // deletes item from list
 
-        int lengthIs() const;               // returns length of list
+        int lengthIs() const;                           // returns length of list
 
-        void print();                       // prints list
+        void print();                                   // prints list
 
-        void printReverse();               // prints list in reverse order
+        void printReverse();                            // prints list in reverse order
 
-        void deleteSubsection(T upper, T lower);
+        void deleteSubsection(T upper, T lower);        // deletes a subsection defined by the upper/lower bounds
 
-        T mode();
+        T mode();                                       // returns object of most occuring item
 
-        void swapAlternate();
+        void swapAlternate();                           // swaps alternate items in a list
 
 }; // DoublyLinkedList
 #endif

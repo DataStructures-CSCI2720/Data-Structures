@@ -16,8 +16,9 @@ template<class T>
 void doInsert(DoublyLinkedList<T> &t);                      // performs inserting into the list
 template<class T>
 void doDelete(DoublyLinkedList<T> &t);                      // performs deleting from list
+template<class T>
+void doDeleteSub(DoublyLinkedList<T> &t);                   // performs deleting a subsection of a list
 
-// TO DO: add swap alt and delete subsection
 // write Makefile that calls input files from a separate files folder ./main /path/to/input.txt /path/to/input2.txt ...
 // TEST TEST TEST TEST TEST
 // comments
@@ -76,7 +77,7 @@ void options(DoublyLinkedList<T> &t) {
             t.print();
             break;
         case 'b': // deleteSubsection of list
-            cout << "nothing yet chief:):):):):):)\n";
+            doDeleteSub(t);
             break;
         case 'm': // mode of list
             t.print();
@@ -86,7 +87,11 @@ void options(DoublyLinkedList<T> &t) {
             t.printReverse();
             break;
         case 's': // swapAlternate items
-            cout << "nothing yet chief:):):):):):)\n";
+            cout << "original list: ";
+            t.print();
+            t.swapAlternate();
+            cout << "Swapped list: ";
+            t.print();
             break;
         case 'q': // quit
             cout << "Quitting...\n";
@@ -127,3 +132,18 @@ void doDelete(DoublyLinkedList<T> &t) {
     t.deleteItem(input);
     t.print();
 } // doDelete
+
+template<class T>
+void doDeleteSub(DoublyLinkedList<T> &t) {
+    T upper;
+    T lower;
+    cout << "Enter lower bound: ";
+    cin >> lower;
+    cout << "Enter upper bound: ";
+    cin >> upper;
+    cout << "Original list: ";
+    t.print();
+    t.deleteSubsection(upper, lower);
+    cout << "Modified list: ";
+    t.print();
+} // doDeleteSub
