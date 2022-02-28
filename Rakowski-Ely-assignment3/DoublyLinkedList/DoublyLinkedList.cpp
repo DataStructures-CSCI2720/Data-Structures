@@ -33,7 +33,7 @@ void DoublyLinkedList<T>::insertItem(T &item) {
     } // if
     bool keepSeaching = true;
     NodeType<T> *curr = head -> next;
-    while (keepSeaching) {        
+    while (keepSeaching) {
         if ((newNode -> data) <= (curr -> data)) { // not generic for strings yet
             newNode -> next = curr;
             newNode -> last = curr -> last;
@@ -90,7 +90,7 @@ void DoublyLinkedList<T>::deleteItem(T &item) {
                 temp = temp -> next; // keep iterating
             } // if
         } // if
-    } // while 
+    } // while
 } // deleteItem
 
 template<class T>
@@ -176,15 +176,46 @@ T DoublyLinkedList<T>::mode() {
         } // if
         curr = curr -> next;
         counter++;
-    } // while  
-    return mode;  
+    } // while
+    return mode;
 } // mode
 
 template<class T>
 void DoublyLinkedList<T>::swapAlternate() {
+    NodeType<T> *curr = head -> next;
+    int interate = 0;
+    bool keepSearching = true;
+    bool isOdd = false;
     if (head == NULL) {
         return;
     } // if
+    if ((lengthIs() % 2) > 0) {
+        isOdd == true;
+    }
+    // swapping beginning case
+    // swapping last case
+    while (keepSearching) {
+/*
+        if ((curr -> next -> next == NULL)&&(isOdd == true)) {
+            // this is where we put the odd case stuff, aka do nothing
+            keepSearching = false;
+        }
+
+        if (curr -> next = NULL) {
+            // reached the end of the list done
+            keepSearching = false;
+        }
+*/
+        curr -> last -> next = curr -> next;
+        curr -> next = curr -> next -> next;
+        curr -> next -> last -> next = curr;
+        curr -> next -> last -> last = curr -> last;
+        curr -> next -> last = curr;
+        curr -> last = curr -> last -> next;
+        // keep iterating and switch them
+
+        keepSearching = false;
+    }
     // swap alternate nodes
 } // swapAlternate
 

@@ -28,7 +28,8 @@ int main(int argc, char *argv[]) { // pass 3 arg files
 } // main
 
 void startUp(int argc, char *argv[]) {
-    if (argc < 4) {
+//    if (argc < 4) {
+    if (argc < 1) {
         cout << "Invalid file input! Exiting...\n";
         exit(0);
     } // if
@@ -102,7 +103,7 @@ void options(DoublyLinkedList<T> &t) {
             break;
         } // switch
     } // while
-    // case switcher 
+    // case switcher
 } // options
 
 template<class T>
