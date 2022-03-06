@@ -2,5 +2,70 @@ Collins Rakowski (811261111) ccr06550@uga.edu
 Matt Ely (811653312) mwe70005@uga.edu
 
 How to run the file:
-    "make run" runs the ./main input.txt
-    "make runempty" runs the ./main empty.txt
+    "make runint" runs the ./main int-input.txt
+    "make runint2" runs the ./main int-input2.txt
+    "make runfloat" runs the ./main float-input.txt
+    "make runstring" runs the ./main string-input.txt
+    "make clean" cleans the executable files
+
+Pseudocode for deleteSubsection:
+1. Check if list is empty
+2. Initialize a curr pointer
+3. Check every item in the list to see if the data is greater than the upper boundary
+or lower than the lower boundary.
+4. Delete items not in the subsection
+5 In main, print the new list.
+
+Complexity for deleteSubsection:
+The complexity to find the subsection is O(n).
+This is because that every action is constant. However, we must check if every item in
+the list is in the subsection. Therefore, O(n).
+
+Pseudocode for Mode:
+1. Initilizes pointer, T value, and T mode. (These contain the current mode and value)
+2. Checks every value to see if there is more than one number of a number.
+2.1 If the next node contains the same value the count is incremented.
+2.2 Else if the count is greater than the old mode, then a new mode is set.
+
+Complexity for Mode:
+The complexity to find the subsection is O(n).
+Every value is checked to see if the next value is the same. If the value is the same
+the mode is incremented for the value. However, there is no double counting in this method.
+Therefore, we are only iterating through the list once or 'n' times.
+
+Pseudocode for swapAlternate:
+1. Initialize a current and behind pointer.
+2. Check to see if the list is empty or has only one item.
+3. Calculate whether the length is odd or even.
+4. Calculate how many time we need to swap nodes.
+5. Swap nodes
+
+Complexity for swapAlernate:
+The complexity to find the subsection is O(n)).
+Every function is constant except for how many times we swap nodes.
+Swapping nodes is determined by the length divided by two. However big O
+notation does not care about constants like 1/2. Therefore, the O(n) still stands.
+
+Contributions:
+    Matt Ely -
+    constructor
+    destructor
+    insertItem
+    deleteItem
+    deleteSubsection
+    mode
+    options
+    printCmd
+    startUp
+
+    Collins Rakowski-
+    Comments
+    SwapAlt
+    SwitchStatements/flow control
+    lengthIs
+    print
+    printReverse
+    doInsert
+    doDelete
+    doDeleteSub
+    createList
