@@ -22,11 +22,24 @@ void doDeleteSub(DoublyLinkedList<T> &t);                   // performs deleting
 // write Makefile that calls input files from a separate files folder ./main /path/to/input.txt /path/to/input2.txt ...
 // TEST TEST TEST TEST TEST
 // comments
+
+/*
+ * main passes in three seperate arguments, and starts the startUp function.
+ * @param argc contains the amount of text files
+ * @param argv[] passes in the text files
+ * @return 0 exits program successfully
+ */
 int main(int argc, char *argv[]) { // pass 3 arg files
     startUp(argc, argv);
     return 0;
 } // main
 
+/*
+ * startUp asks the user what type of list they are using. Then creates the list with the
+ * corresponding type.
+ * @param argc contains the amount of text files
+ * @param argv passes in the text files
+ */
 void startUp(int argc, char *argv[]) {
 //    if (argc < 4) {
     if (argc < 1) {
@@ -37,26 +50,34 @@ void startUp(int argc, char *argv[]) {
         char op;
         cout << "Enter list type (i - int, f - float, s - std::string):  ";
         cin >> op;
-        if (op == 'i') {
+        if (op == 'i') { // sets a list of type int
             DoublyLinkedList<int> d;
             createList(d, argv[1]);
-        } else if (op == 'f') {
+        } else if (op == 'f') { // sets a list of type float
             DoublyLinkedList<float> d;
-            createList(d, argv[2]);
-        } else if (op == 's') {
+            createList(d, argv[1]);
+        } else if (op == 's') { // sets a list of type string
             DoublyLinkedList<std::string> d;
-            createList(d, argv[3]);
+            createList(d, argv[1]);
         } else {
             cout << "Invalid list type, try again!\n\n";
         } // if
     } // while
 } // startUp
 
+/*
+ * printCmd prints to the user the commands the user can use on the list.
+ */
 void printCmd() {
     cout << "insert (i), delete (d), length (l), print (p), deleteSub (b), mode (m),\n";
     cout << "printReverse (r), swapAlt (s), quit (q)\n";
 } // printCmd
 
+/*
+ * options is responsible for flow control of the commands. The user is prompted to enter a command.
+ * Each command entered correpsonds to a function that alters the list in some way.
+ * @param the doubly linked list is t is passed by reference
+ */
 template<class T>
 void options(DoublyLinkedList<T> &t) {
     printCmd();
@@ -106,6 +127,11 @@ void options(DoublyLinkedList<T> &t) {
     // case switcher
 } // options
 
+/*
+ * createList this takes the numbers from the file and puts them into a list.
+ * @param the doubly linked list t is passed by reference to be changed
+ * @argv the text files that are created into a list
+ */
 template<class T>
 void createList(DoublyLinkedList<T> &t, char argv[]) { // works for ints
     T num;
@@ -116,6 +142,10 @@ void createList(DoublyLinkedList<T> &t, char argv[]) { // works for ints
     options(t);
 } // createList
 
+/*
+ * doInsert inserts a single item specified by the user.
+ * @param the list t is passed by reference into the function
+ */
 template<class T>
 void doInsert(DoublyLinkedList<T> &t) {
     T input;
@@ -125,15 +155,28 @@ void doInsert(DoublyLinkedList<T> &t) {
     t.print();
 } // doInsert
 
+/*
+ * doDelete deletes a single item in the list as specified by the user.
+ * @param the list t is passed by reference into the function
+ */
 template<class T>
 void doDelete(DoublyLinkedList<T> &t) {
     T input;
     cout << "Item to delete:  ";
     cin >> input;
-    t.deleteItem(input);
-    t.print();
+    if (t.lengthIs() > 0) {
+        t.deleteItem(input);
+        t.print();
+    } else {
+        cout << "You cannot delete from an empty list." << endl;
+    } // else
 } // doDelete
 
+/*
+ * doDeleteSubsitution deletes every item not in the subsection of the user specified
+ * bounds.
+ * @param the list t is passed by reference into the function
+ */
 template<class T>
 void doDeleteSub(DoublyLinkedList<T> &t) {
     T upper;
