@@ -12,6 +12,8 @@ template<class T>
 void options(BinaryTree<T> &b);
 template<class T>
 void createList(BinaryTree<T> &b, char argv[]);
+template<class T>
+void doInsert(BinaryTree<T> &b);
 
 int main(int argc, char *argv[]) {
     startUp(argc, argv);
@@ -57,37 +59,40 @@ void options(BinaryTree<T> &b) {
         cin >> cmd;
         switch (cmd) {
         case 'i': // insert item
-
+            doInsert(b);
             break;
         case 'd': // delete item
-
+            cout << "nothing\n";
             break;
         case 'r': // retrieve item
-
+            cout << "nothing\n";
             break;
         case 'l': // get length
-
+            cout << "Tree Length: " << b.getLength() << "\n";
             break;
         case 'n': // in-order
-
+            cout << "In-Order: ";
+            b.inOrder();
             break;
         case 'p': // pre-order
-
+            cout << "Pre-Order: ";
+            b.preOrder();
             break;
         case 'o': // post-order
-
+            cout << "Post-Order: ";
+            b.postOrder();
             break;
         case 's': // single parent
-
+            cout << "nothing\n";
             break;
         case 'f': // leaf nodes
-
+            cout << "nothing\n";
             break;
         case 't': // sub trees
-
+            cout << "nothing\n";
             break;
         case 'q': // quit
-            cout << "Quitting...\n";
+            cout << "Quitting program...\n";
             exit(0);
             break;
         default:
@@ -101,8 +106,19 @@ template<class T>
 void createList(BinaryTree<T> &b, char argv[]) {
     T num;
     ifstream input(argv);
-    while (input >> num) {
+    while (input >> num) { // hangs here
         b.insert(num);
     } // while
+    cout << "here2";
     options(b);
 } // createList
+
+template<class T>
+void doInsert(BinaryTree<T> &b) {
+    T item;
+    cout << "Item to insert: ";
+    cin >> item;
+    b.insert(item);
+    cout << "In-Order: ";
+    b.inOrder();
+} // doInsert
