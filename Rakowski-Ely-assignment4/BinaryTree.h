@@ -15,23 +15,23 @@ class BinaryTree {
         NodeType<T> *root;
 
     public:
-        BinaryTree();
+        BinaryTree(); // done
 
         ~BinaryTree();
 
-        void insert(T &key);
+        void insert(T &key); // done
 
-        void deleteItem(T &key);
+        void deleteItem(T &key); // hard not even close to being done
 
-        void retrieve(T &item, bool &found) const;
+        void retrieve(T &item, bool &found) const; // done
 
-        void preOrder() const;
+        void preOrder() const; // done
 
-        void inOrder() const;
+        void inOrder() const; // done
 
-        void postOrder() const;
+        void postOrder() const; // done
 
-        int getLength() const;
+        int getLength() const; // done
 
         int getNumSingleParent() const;
 

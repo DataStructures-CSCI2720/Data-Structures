@@ -14,6 +14,10 @@ template<class T>
 void createList(BinaryTree<T> &b, char argv[]);
 template<class T>
 void doInsert(BinaryTree<T> &b);
+template<class T>
+void doRetrieve(BinaryTree<T> &b);
+template<class T>
+void doDelete(BinaryTree<T> &b);
 
 int main(int argc, char *argv[]) {
     startUp(argc, argv);
@@ -45,8 +49,8 @@ void startUp(int argc, char *argv[]) {
 } // startUp
 
 void printCmd() {
-    cout << "Commands:\ninsert (i), delete (d), retrieve (r), length (l), ";
-    cout << "in-order (n), pre-order (p), post-order (o), getNumberSingleParent (s), ";
+    cout << "\nCommands:\ninsert (i), delete (d), retrieve (r), length (l), ";
+    cout << "in-order (n), pre-order (p), post-order (o),\ngetNumberSingleParent (s), ";
     cout << "getNumLeafNodes (f), getSumOfSubtrees (t), quit (q)\n";
 } // prindCmd
 
@@ -62,10 +66,10 @@ void options(BinaryTree<T> &b) {
             doInsert(b);
             break;
         case 'd': // delete item
-            cout << "nothing\n";
+            doDelete(b);
             break;
         case 'r': // retrieve item
-            cout << "nothing\n";
+            doRetrieve(b);
             break;
         case 'l': // get length
             cout << "Tree Length: " << b.getLength() << "\n";
@@ -73,14 +77,17 @@ void options(BinaryTree<T> &b) {
         case 'n': // in-order
             cout << "In-Order: ";
             b.inOrder();
+            cout << "\n";
             break;
         case 'p': // pre-order
             cout << "Pre-Order: ";
             b.preOrder();
+            cout << "\n";
             break;
         case 'o': // post-order
             cout << "Post-Order: ";
             b.postOrder();
+            cout << "\n";
             break;
         case 's': // single parent
             cout << "nothing\n";
@@ -106,10 +113,9 @@ template<class T>
 void createList(BinaryTree<T> &b, char argv[]) {
     T num;
     ifstream input(argv);
-    while (input >> num) { // hangs here
+    while (input >> num) {
         b.insert(num);
     } // while
-    cout << "here2";
     options(b);
 } // createList
 
@@ -122,3 +128,22 @@ void doInsert(BinaryTree<T> &b) {
     cout << "In-Order: ";
     b.inOrder();
 } // doInsert
+
+template<class T>
+void doRetrieve(BinaryTree<T> &b) {
+    T item;
+    bool found = false;
+    cout << "Item to be retrieved: ";
+    cin >> item;
+    b.retrieve(item, found);
+} // doRetrieve
+
+template<class T>
+void doDelete(BinaryTree<T> &b) {
+    T item;
+    cout << "Item to delete: ";
+    cin >> item;
+    b.deleteItem(item);
+    cout << "In-Order: ";
+    b.inOrder();
+} // doDelete

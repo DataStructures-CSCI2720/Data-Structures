@@ -11,7 +11,7 @@ BinaryTree<T>::BinaryTree() {
 } // Binary Tree constructor
 
 template<class T>
-BinaryTree<T>::~BinaryTree() {
+BinaryTree<T>::~BinaryTree() { // not done
 
 } // Binary Tree destructor
 
@@ -23,11 +23,11 @@ void BinaryTree<T>::insert(T &key) {
 template<class T>
 void insertItem(NodeType<T>*& root, T &key) {
     if (root == NULL) {
-        NodeType<T> *node;
+        NodeType<T> *node = new NodeType<T>;
+        node -> right = NULL;
+        node -> left = NULL;
+        node -> key = key;
         root = node;
-        root -> right = NULL;
-        root -> left = NULL;
-        root -> key = key;
     } else if (key == root -> key) {
         cout << "Item already in tree.\n";
     } else if (key < root -> key) {
@@ -39,13 +39,63 @@ void insertItem(NodeType<T>*& root, T &key) {
 
 template<class T>
 void BinaryTree<T>::deleteItem(T &key) {
-
+    doDelete(root, key);
 } // deleteItem
 
 template<class T>
-void BinaryTree<T>::retrieve(T &item, bool &found) const {
+void doDelete(NodeType<T> *root, T &key) { // DOES NOT WORK LOL
+    if (key < root -> key) {
+        doDelete(root -> left, key);
+    } else if (key > root -> key) {
+        doDelete(root -> right, key);
+    } else {
+        deleteNode(root);
+    } // if
+} // doDelete
 
+template<class T>
+void deleteNode(NodeType<T> *root) { // DOES NOT WORK LOL
+    T key;
+    NodeType<T> *temp = new NodeType<T>;
+    temp = root;
+    if (root -> left == NULL) {
+        root = root -> right;
+        delete temp;
+    } else if (root -> right == NULL) {
+        root = root -> left;
+        delete temp;
+    } else {
+        getLast(root -> left, key);
+        root -> key = key;
+        doDelete(root -> left, key);
+    } // if
+} // deleteNode
+
+template<class T>
+void getLast(NodeType<T> *root, T &key) { // HELPER FOR DELETE ALSO DOES NOT WORK LOL
+    while (root -> right != NULL) {
+        root = root -> right;
+    } // while
+    key = root -> key;
+} // getLast
+
+template<class T>
+void BinaryTree<T>::retrieve(T &item, bool &found) const {
+    doRetrieve(root, item, found);
 } // retrieve
+
+template<class T>
+void doRetrieve(NodeType<T> *root, T &item, bool &found) {
+    if (root == NULL) {
+        cout << "Item not in tree.\n";
+    } else if (item < root -> key) {
+        doRetrieve(root -> left, item, found);
+    } else if (item > root -> key) {
+        doRetrieve(root -> right, item, found);
+    } else {
+        cout << "Item found in tree.\n";
+    } // if
+} // doRetrieve
 
 template<class T>
 void BinaryTree<T>::preOrder() const {
@@ -54,7 +104,11 @@ void BinaryTree<T>::preOrder() const {
 
 template<class T>
 void doPreOrder(NodeType<T> *root) {
-    cout << "nothing yet...\n\n";
+    if (root != NULL) {
+        cout << root -> key << " ";
+        doPreOrder(root -> left);
+        doPreOrder(root -> right);
+    } // if
 } // doPreOrder
 
 template<class T>
@@ -78,7 +132,11 @@ void BinaryTree<T>::postOrder() const {
 
 template<class T>
 void doPostOrder(NodeType<T> *root) {
-    cout << "nothing yet...\n\n";
+    if (root != NULL) {
+        doPostOrder(root -> left);
+        doPostOrder(root -> right);
+        cout << root -> key << " ";
+    } // if
 } // doPostOrder
 
 template<class T>
@@ -96,17 +154,17 @@ int length(NodeType<T> *root) {
 } // length
 
 template<class T>
-int BinaryTree<T>::getNumSingleParent() const {
+int BinaryTree<T>::getNumSingleParent() const { // not done
     return 0;
 } // getNumSingleParent
 
 template<class T>
-int BinaryTree<T>::getNumLeafNodes() const {
+int BinaryTree<T>::getNumLeafNodes() const { // not done
     return 0;
 } // getNumLeafNodes
 
 template<class T>
-int BinaryTree<T>::getSumOfSubtrees(NodeType<T> &node) const {
+int BinaryTree<T>::getSumOfSubtrees(NodeType<T> &node) const { // not done
     return 0;
 } // getSumOfSubtrees
 
