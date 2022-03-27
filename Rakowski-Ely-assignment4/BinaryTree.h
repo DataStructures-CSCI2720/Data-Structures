@@ -17,7 +17,7 @@ class BinaryTree {
     public:
         BinaryTree(); // done
 
-        ~BinaryTree();
+        ~BinaryTree(); // done
 
         void insert(T &key); // done
 
@@ -33,11 +33,11 @@ class BinaryTree {
 
         int getLength() const; // done
 
-        int getNumSingleParent() const;
+        int getNumSingleParent() const; // done
 
-        int getNumLeafNodes() const;
+        int getNumLeafNodes() const; // done
 
-        int getSumOfSubtrees(NodeType<T> &node) const;
+        int getSumOfSubtrees(NodeType<T> *&node) const; // done
 }; // Binary Tree
 
 #endif

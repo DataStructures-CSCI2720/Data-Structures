@@ -11,13 +11,28 @@ BinaryTree<T>::BinaryTree() {
 } // Binary Tree constructor
 
 template<class T>
-BinaryTree<T>::~BinaryTree() { // not done
-
+BinaryTree<T>::~BinaryTree() {
+    destroy(root);
 } // Binary Tree destructor
 
 template<class T>
+void destroy(NodeType<T> *root) {
+    if (root != NULL) {
+        destroy(root -> left);
+        destroy(root -> right);
+        delete root;
+    } // if
+} // destroy
+
+template<class T>
 void BinaryTree<T>::insert(T &key) {
-    insertItem(root, key);
+    bool f = false;
+    doRetrieve(root, key, f);
+    if (f) {
+        cout << "Item already in tree.\n";
+    } else {
+        insertItem(root, key);
+    } // if
 } // insert
 
 template<class T>
@@ -81,19 +96,25 @@ void getLast(NodeType<T> *root, T &key) { // HELPER FOR DELETE ALSO DOES NOT WOR
 
 template<class T>
 void BinaryTree<T>::retrieve(T &item, bool &found) const {
-    doRetrieve(root, item, found);
+    bool f = found;
+    doRetrieve(root, item, f);
+    if (f) {
+        cout << "Item found in tree.\n";
+    } else {
+        cout << "Item not in tree.\n";
+    } // if
 } // retrieve
 
 template<class T>
 void doRetrieve(NodeType<T> *root, T &item, bool &found) {
     if (root == NULL) {
-        cout << "Item not in tree.\n";
+        found = false;
     } else if (item < root -> key) {
         doRetrieve(root -> left, item, found);
     } else if (item > root -> key) {
         doRetrieve(root -> right, item, found);
     } else {
-        cout << "Item found in tree.\n";
+        found = true;
     } // if
 } // doRetrieve
 
@@ -154,20 +175,78 @@ int length(NodeType<T> *root) {
 } // length
 
 template<class T>
-int BinaryTree<T>::getNumSingleParent() const { // not done
-    return 0;
+int BinaryTree<T>::getNumSingleParent() const {
+    return doSingle(root);
 } // getNumSingleParent
 
 template<class T>
-int BinaryTree<T>::getNumLeafNodes() const { // not done
-    return 0;
+int doSingle(NodeType<T> *root) {
+    int count = 0;
+    if (root != NULL) {
+        count += doSingle(root -> left);
+        count += doSingle(root -> right);
+        if (!(root -> left == NULL) != !(root -> right == NULL)) {
+            count += 1;
+        } // if
+    } // if
+    return count;
+} // doSingle
+
+template<class T>
+int BinaryTree<T>::getNumLeafNodes() const {
+    if (root == NULL) {
+        return 1;
+    } else {
+        return doLeaf(root);
+    } // if
 } // getNumLeafNodes
 
 template<class T>
-int BinaryTree<T>::getSumOfSubtrees(NodeType<T> &node) const { // not done
-    return 0;
+int doLeaf(NodeType<T> *root) {
+    int count = 0;
+    if (root != NULL) {
+        count += doLeaf(root -> left);
+        count += doLeaf(root -> right);
+        if ((root -> left == NULL) && (root -> right == NULL)) {
+            count += 1;
+        } // if
+    } // if
+    return count;
+} // doLeaf
+
+template<class T>
+int BinaryTree<T>::getSumOfSubtrees(NodeType<T> *&node) const { // not done
+    bool f = false;
+    doRetrieve(root, node -> key, f);
+    if (f) {
+        return doSub(root, node, false);
+    } else {
+        cout << "Item not in tree.\n";
+        return -1;
+    } // if
 } // getSumOfSubtrees
+
+template<class T>
+int doSub(NodeType<T> *root, NodeType<T> *&node, bool b) {
+    int count = 0;
+    if (root != NULL) {
+        if ((root -> key == node -> key) || (b)) {
+            count += doSub(root -> left, node, true);
+            count += doSub(root -> right, node, true);
+            if (root -> left != NULL) {
+                count += root -> left -> key;
+            } // if
+            if (root -> right != NULL) {
+                count += root -> right -> key;
+            } // if
+        } else {
+            count += doSub(root -> left, node, false);
+            count += doSub(root -> right, node, false);
+        } // if
+    } // if
+    return count;
+} // doSub
 
 template class BinaryTree<int>;
 template class BinaryTree<float>;
-template class BinaryTree<std::string>;
+//template class BinaryTree<std::string>;

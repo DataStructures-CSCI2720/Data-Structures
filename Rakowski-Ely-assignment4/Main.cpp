@@ -18,7 +18,10 @@ template<class T>
 void doRetrieve(BinaryTree<T> &b);
 template<class T>
 void doDelete(BinaryTree<T> &b);
+template<class T>
+void doSubtree(BinaryTree<T> &b);
 
+// THINGS TO DO: add delete command, not allow strings for getsubtrees, test for edge cases, test test test
 int main(int argc, char *argv[]) {
     startUp(argc, argv);
     return 0;
@@ -40,8 +43,9 @@ void startUp(int argc, char *argv[]) {
             BinaryTree<float> b;
             createList(b, argv[1]);
         } else if (op == 's') {
-            BinaryTree<std::string> b;
-            createList(b, argv[1]);
+            //BinaryTree<std::string> b;
+            //createList(b, argv[1]);
+            exit(0);
         } else {
             cout << "Invalid list type, try again!\n\n";
         } // if
@@ -90,20 +94,20 @@ void options(BinaryTree<T> &b) {
             cout << "\n";
             break;
         case 's': // single parent
-            cout << "nothing\n";
+            cout << "Number of Single Parents: " << b.getNumSingleParent() << endl;
             break;
         case 'f': // leaf nodes
-            cout << "nothing\n";
+            cout << "Number of lead nodes: " << b.getNumLeafNodes() << endl;
             break;
         case 't': // sub trees
-            cout << "nothing\n";
+            doSubtree(b);
             break;
         case 'q': // quit
             cout << "Quitting program...\n";
             exit(0);
             break;
         default:
-            cout << "Invalid command, try again!\n";
+            cout << "Command not recognized. Try again\n";
             break;
         } // switch
     } // while
@@ -127,6 +131,7 @@ void doInsert(BinaryTree<T> &b) {
     b.insert(item);
     cout << "In-Order: ";
     b.inOrder();
+    cout << "\n";
 } // doInsert
 
 template<class T>
@@ -147,3 +152,16 @@ void doDelete(BinaryTree<T> &b) {
     cout << "In-Order: ";
     b.inOrder();
 } // doDelete
+
+template<class T>
+void doSubtree(BinaryTree<T> &b) { // doesnt work with strings gotta limit types
+    T item;
+    cout << "Item to get sum of subtrees: ";
+    cin >> item;
+    NodeType<T> *node = new NodeType<T>;
+    node -> key = item;
+    int sum = b.getSumOfSubtrees(node);
+    if (sum != -1) {
+        cout << "Sum of Subtrees: " << sum << endl;
+    } // if
+} // doSubtree
