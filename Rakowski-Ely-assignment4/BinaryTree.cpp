@@ -58,7 +58,7 @@ void BinaryTree<T>::deleteItem(T &key) {
 } // deleteItem
 
 template<class T>
-void doDelete(NodeType<T> *root, T &key) { // DOES NOT WORK LOL
+void doDelete(NodeType<T> *&root, T &key) { // changed from * to *&
     if (key < root -> key) {
         doDelete(root -> left, key);
     } else if (key > root -> key) {
@@ -69,7 +69,7 @@ void doDelete(NodeType<T> *root, T &key) { // DOES NOT WORK LOL
 } // doDelete
 
 template<class T>
-void deleteNode(NodeType<T> *root) { // DOES NOT WORK LOL
+void deleteNode(NodeType<T> *&root) { // changed from * to *&
     T key;
     NodeType<T> *temp = new NodeType<T>;
     temp = root;
