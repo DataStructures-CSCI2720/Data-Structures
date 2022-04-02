@@ -21,7 +21,7 @@ void doDelete(BinaryTree<T> &b);
 template<class T>
 void doSubtree(BinaryTree<T> &b);
 
-// THINGS TO DO: add delete command, not allow strings for getsubtrees, test for edge cases, test test test
+// THINGS TO DO: not allow strings for getsubtrees, test for edge cases, test test test
 int main(int argc, char *argv[]) {
     startUp(argc, argv);
     return 0;
@@ -97,7 +97,7 @@ void options(BinaryTree<T> &b) {
             cout << "Number of Single Parents: " << b.getNumSingleParent() << endl;
             break;
         case 'f': // leaf nodes
-            cout << "Number of lead nodes: " << b.getNumLeafNodes() << endl;
+            cout << "Number of leaf nodes: " << b.getNumLeafNodes() << endl;
             break;
         case 't': // sub trees
             doSubtree(b);
@@ -146,9 +146,14 @@ void doRetrieve(BinaryTree<T> &b) {
 template<class T>
 void doDelete(BinaryTree<T> &b) {
     T item;
+    bool test = false;
     cout << "Item to delete: ";
     cin >> item;
-    b.deleteItem(item);
+    if (b.helpRetrieve(item, test) == false) {
+
+    } else {
+        b.deleteItem(item);
+    }
     cout << "In-Order: ";
     b.inOrder();
 } // doDelete

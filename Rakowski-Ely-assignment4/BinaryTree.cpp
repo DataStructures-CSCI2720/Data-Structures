@@ -106,6 +106,18 @@ void BinaryTree<T>::retrieve(T &item, bool &found) const {
 } // retrieve
 
 template<class T>
+bool BinaryTree<T>::helpRetrieve(T &item, bool &found) {
+    bool f = found;
+    doRetrieve(root,item, f);
+    if (f) {
+        return true;
+    } else {
+        cout << "Item not in tree.\n";
+        return false;
+    }
+}
+
+template<class T>
 void doRetrieve(NodeType<T> *root, T &item, bool &found) {
     if (root == NULL) {
         found = false;

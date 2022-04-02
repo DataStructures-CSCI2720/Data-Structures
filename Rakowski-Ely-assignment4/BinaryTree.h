@@ -23,6 +23,8 @@ class BinaryTree {
 
         void deleteItem(T &key); // hard not even close to being done
 
+        bool helpRetrieve(T &item, bool &found);
+
         void retrieve(T &item, bool &found) const; // done
 
         void preOrder() const; // done
