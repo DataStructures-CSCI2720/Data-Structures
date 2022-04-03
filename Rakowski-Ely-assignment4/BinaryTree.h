@@ -1,5 +1,6 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
+#include <string>
 
 /**
  * @brief NodeType pointer object that stores the item, a left child pointer, and right child pointer.
@@ -51,6 +52,7 @@ class BinaryTree {
         int getNumLeafNodes() const;                    // returns number of items without any child pointers
 
         T getSumOfSubtrees(NodeType<T> *&node) const;   // returns the sum of child pointers from reference pointer
+        
 }; // Binary Tree
 
 #endif

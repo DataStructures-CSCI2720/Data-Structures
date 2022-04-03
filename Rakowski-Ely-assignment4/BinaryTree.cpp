@@ -390,7 +390,7 @@ int doLeaf(NodeType<T> *root) {
  * @param node pointer to node in list
  * @return T summation of subtrees
  */
-template<class T>
+template <class T>
 T BinaryTree<T>::getSumOfSubtrees(NodeType<T> *&node) const { // not done
     bool f = false;
     doRetrieve(root, node -> key, f);
@@ -414,7 +414,7 @@ T BinaryTree<T>::getSumOfSubtrees(NodeType<T> *&node) const { // not done
  */
 template<class T>
 T doSub(NodeType<T> *root, NodeType<T> *&node, bool b) {
-    T count;
+    T count = 0;
     if (root != NULL) {
         if ((root -> key == node -> key) || (b)) {
             count += doSub(root -> left, node, true);

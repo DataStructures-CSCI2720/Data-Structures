@@ -62,7 +62,6 @@ void startUp(int argc, char *argv[]) {
         } else if (op == 's') { // string list
             //BinaryTree<std::string> b;
             //createList(b, argv[1]);
-            exit(0);
         } else { // invalid option
             cout << "Invalid list type, try again!\n\n";
         } // if
@@ -230,7 +229,7 @@ void doSubtree(BinaryTree<T> &b) {
     cin >> item;
     NodeType<T> *node = new NodeType<T>;
     node -> key = item;
-    int sum = b.getSumOfSubtrees(node);
+    T sum = b.getSumOfSubtrees(node);
     if (sum != -1) {
         cout << "Sum of Subtrees: " << sum << endl;
     } // if
