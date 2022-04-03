@@ -1,6 +1,11 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
 
+/**
+ * @brief NodeType pointer object that stores the item, a left child pointer, and right child pointer.
+ * 
+ * @tparam T 
+ */
 template<class T>
 struct NodeType {
     T key;
@@ -8,6 +13,12 @@ struct NodeType {
     NodeType<T> *right;
 }; // NodeType
 
+/**
+ * @brief Binary Tree contains a root pointer to the first value in the tree. Also contained are user
+ * interactions to insert items, delete items, retrieving items, various prints, etc.
+ * 
+ * @tparam T 
+ */
 template<class T>
 class BinaryTree {
 
@@ -15,31 +26,31 @@ class BinaryTree {
         NodeType<T> *root;
 
     public:
-        BinaryTree(); // done
+        BinaryTree();                                   // Binary Tree object constructor
 
-        ~BinaryTree(); // done
+        ~BinaryTree();                                  // Binary Tree object destructor
 
-        void insert(T &key); // done
+        void insert(T &key);                            // insert item into the tree
 
-        void deleteItem(T &key); // hard not even close to being done
+        void deleteItem(T &key);                        // delete item from the tree
 
-        bool helpRetrieve(T &item, bool &found);
+        bool helpRetrieve(T &item, bool &found);        // verifies whether an item is in the list
 
-        void retrieve(T &item, bool &found) const; // done
+        void retrieve(T &item, bool &found) const;      // retrieves an item from a list
 
-        void preOrder() const; // done
+        void preOrder() const;                          // prints items in list in pre-order style
 
-        void inOrder() const; // done
+        void inOrder() const;                           // prints items in list in in-order style
 
-        void postOrder() const; // done
+        void postOrder() const;                         // prints items in list in post-order style
 
-        int getLength() const; // done
+        int getLength() const;                          // returns the length of the list
 
-        int getNumSingleParent() const; // done
+        int getNumSingleParent() const;                 // returns number of items with only one child pointer
 
-        int getNumLeafNodes() const; // done
+        int getNumLeafNodes() const;                    // returns number of items without any child pointers
 
-        int getSumOfSubtrees(NodeType<T> *&node) const; // done
+        T getSumOfSubtrees(NodeType<T> *&node) const;   // returns the sum of child pointers from reference pointer
 }; // Binary Tree
 
 #endif

@@ -1,8 +1,27 @@
 Collins Rakowski (811261111) ccr06550@uga.edu
 Matt Ely (811653312) mwe70005@uga.edu
 
-How to run the file:
-    "make run" runs the ./main input.txt
-    "make runempty" runs the ./main empty.txt
+How to run the file: 
+    "make runint" runs the ./main int-input1.txt
+    "make runfloat" runs the ./main float-input1.txt
+    "make runstring" runs the ./main string-input1.txt
 
-    EDIT THIS
+Explanation of additional methods:
+
+    getNumSingleParent():
+    Using a pointer to the root node, the method recursively
+    iterates through the list and finds nodes with only one child
+    pointer using a XOR gate. Returns a final count.
+
+    getNumLeafNodes():
+    Using a pointer to the root node, the method recursively
+    iterates through the list and finds nodes with no child pointers
+    and returns the final count.
+
+    getSumOfSubtrees():
+    Using a pointer to the root node, the method recursively
+    iterates through the list and adds the values together. Returns
+    a T object containing the summation of subtree items.
+
+Contributions:
+    do this
