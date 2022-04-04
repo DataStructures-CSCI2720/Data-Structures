@@ -1,7 +1,7 @@
 Collins Rakowski (811261111) ccr06550@uga.edu
 Matt Ely (811653312) mwe70005@uga.edu
 
-How to run the file: 
+How to run the file:
     "make runint" runs the ./main int-input1.txt
     "make runfloat" runs the ./main float-input1.txt
     "make runstring" runs the ./main string-input1.txt
@@ -12,16 +12,38 @@ Explanation of additional methods:
     Using a pointer to the root node, the method recursively
     iterates through the list and finds nodes with only one child
     pointer using a XOR gate. Returns a final count.
+    Recurrence relation: T(n) = T(n-1) + T(n-1) + 1
+    Based on the master theorem, O(n) = n
 
     getNumLeafNodes():
     Using a pointer to the root node, the method recursively
     iterates through the list and finds nodes with no child pointers
     and returns the final count.
+    Recurrence relation: T(n) = T(n-1) + T(n-1) + 1
+    Based on the master theorem, O(n) = n
 
     getSumOfSubtrees():
     Using a pointer to the root node, the method recursively
     iterates through the list and adds the values together. Returns
     a T object containing the summation of subtree items.
+    Recurrence relation: T(n) = T(n-1) + T(n-1) + 1
+    Based on the master theorem, O(n) = n
+
 
 Contributions:
-    do this
+    Matt Ely:
+    Insert
+    Pre-Order
+    Post-Order
+    In-Order
+    Get Num Single Parents
+    Get Nun of Leaf Nodes
+    80% of Comments
+
+    Collins Rakowski:
+    Retrieve
+    Delete
+    Get Length
+    Get Sum of Subtrees
+    Templates
+    ReadMe

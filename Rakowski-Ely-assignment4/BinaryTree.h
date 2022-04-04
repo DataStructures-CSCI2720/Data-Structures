@@ -4,8 +4,8 @@
 
 /**
  * @brief NodeType pointer object that stores the item, a left child pointer, and right child pointer.
- * 
- * @tparam T 
+ *
+ * @tparam T
  */
 template<class T>
 struct NodeType {
@@ -17,8 +17,8 @@ struct NodeType {
 /**
  * @brief Binary Tree contains a root pointer to the first value in the tree. Also contained are user
  * interactions to insert items, delete items, retrieving items, various prints, etc.
- * 
- * @tparam T 
+ *
+ * @tparam T
  */
 template<class T>
 class BinaryTree {
@@ -51,8 +51,8 @@ class BinaryTree {
 
         int getNumLeafNodes() const;                    // returns number of items without any child pointers
 
-        T getSumOfSubtrees(NodeType<T> *&node) const;   // returns the sum of child pointers from reference pointer
-        
+        void getSumOfSubtrees(NodeType<T> *&node) const;   // returns the sum of child pointers from reference pointer
+
 }; // Binary Tree
 
 #endif

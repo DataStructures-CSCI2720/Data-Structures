@@ -7,8 +7,8 @@ using namespace std;
 
 /**
  * @brief Binary Tree constructor sets the root value to NULL
- * 
- * @tparam T 
+ *
+ * @tparam T
  */
 template<class T>
 BinaryTree<T>::BinaryTree() {
@@ -17,8 +17,8 @@ BinaryTree<T>::BinaryTree() {
 
 /**
  * @brief Binary Tree destructor deletes all of the items from the list
- * 
- * @tparam T 
+ *
+ * @tparam T
  */
 template<class T>
 BinaryTree<T>::~BinaryTree() {
@@ -28,8 +28,8 @@ BinaryTree<T>::~BinaryTree() {
 /**
  * @brief Performs deleting items from the list by deleting the left side
  * items, then the right side items, then the root node.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  */
 template<class T>
@@ -44,8 +44,8 @@ void destroy(NodeType<T> *root) {
 /**
  * @brief Determines if item is already in the list and calls to insert
  * if item is unique.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param key item to insert into the list
  */
 template<class T>
@@ -61,8 +61,8 @@ void BinaryTree<T>::insert(T &key) {
 
 /**
  * @brief Performs inserting the item into the list.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  * @param key item to insert into the list
  */
@@ -84,9 +84,9 @@ void insertItem(NodeType<T>*& root, T &key) {
 } // insertItem
 
 /**
- * @brief add this
- * 
- * @tparam T 
+ * @brief starts delete item path
+ *
+ * @tparam T
  * @param key item to delete from list
  */
 template<class T>
@@ -95,9 +95,9 @@ void BinaryTree<T>::deleteItem(T &key) {
 } // deleteItem
 
 /**
- * @brief add this
- * 
- * @tparam T 
+ * @brief deletes left and right of nodes of the root nodes or calls the delete node class
+ *
+ * @tparam T
  * @param root pointer to root node
  * @param key item to delete from list
  */
@@ -113,13 +113,13 @@ void doDelete(NodeType<T> *&root, T &key) { // changed from * to *&
 } // doDelete
 
 /**
- * @brief add this
- * 
- * @tparam T 
+ * @brief determines if the node is a leaf node other wise recursion continues
+ *
+ * @tparam T
  * @param root pointer to root node
  */
 template<class T>
-void deleteNode(NodeType<T> *&root) { // changed from * to *&
+void deleteNode(NodeType<T> *&root) {
     T key;
     NodeType<T> *temp = new NodeType<T>;
     temp = root;
@@ -137,14 +137,14 @@ void deleteNode(NodeType<T> *&root) { // changed from * to *&
 } // deleteNode
 
 /**
- * @brief add this
- * 
- * @tparam T 
+ * @brief Gets the predecessor or the root of the node its on
+ *
+ * @tparam T
  * @param root pointer to root node
  * @param key item to delete from list
  */
 template<class T>
-void getLast(NodeType<T> *root, T &key) { // HELPER FOR DELETE ALSO DOES NOT WORK LOL
+void getLast(NodeType<T> *root, T &key) {
     while (root -> right != NULL) {
         root = root -> right;
     } // while
@@ -153,8 +153,8 @@ void getLast(NodeType<T> *root, T &key) { // HELPER FOR DELETE ALSO DOES NOT WOR
 
 /**
  * @brief Calls method to verify if an item is already in the list.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param item item to retrieve from list
  * @param found bool value to determine if item has been found
  */
@@ -170,9 +170,9 @@ void BinaryTree<T>::retrieve(T &item, bool &found) const {
 } // retrieve
 
 /**
- * @brief add this
- * 
- * @tparam T 
+ * @brief functions the same as retrieve but specifies if the item is in the list or not
+ *
+ * @tparam T
  * @param item item to retrieve from list
  * @param found bool value to determine if item has been found
  * @return true if item is in list
@@ -191,10 +191,10 @@ bool BinaryTree<T>::helpRetrieve(T &item, bool &found) {
 } // helpRetrieve
 
 /**
- * @brief Searches through the list to determine if the item 
+ * @brief Searches through the list to determine if the item
  * already exists in the list.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  * @param item item to be retrieved
  * @param found bool value to determine if item has been found
@@ -214,8 +214,8 @@ void doRetrieve(NodeType<T> *root, T &item, bool &found) {
 
 /**
  * @brief Calls method to print in pre-order style.
- * 
- * @tparam T 
+ *
+ * @tparam T
  */
 template<class T>
 void BinaryTree<T>::preOrder() const {
@@ -225,8 +225,8 @@ void BinaryTree<T>::preOrder() const {
 /**
  * @brief Prints list in pre-order style with root node
  * first, then left items, then right items.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  */
 template<class T>
@@ -240,8 +240,8 @@ void doPreOrder(NodeType<T> *root) {
 
 /**
  * @brief Calls method to print in in-order style.
- * 
- * @tparam T 
+ *
+ * @tparam T
  */
 template<class T>
 void BinaryTree<T>::inOrder() const {
@@ -250,8 +250,8 @@ void BinaryTree<T>::inOrder() const {
 
 /**
  * @brief Prints list in in-order style with items in ascending order.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  */
 template<class T>
@@ -265,8 +265,8 @@ void doInOrder(NodeType<T> *root) {
 
 /**
  * @brief Calls method to print list in post-order style.
- * 
- * @tparam T 
+ *
+ * @tparam T
  */
 template<class T>
 void BinaryTree<T>::postOrder() const {
@@ -276,8 +276,8 @@ void BinaryTree<T>::postOrder() const {
 /**
  * @brief Prints list in post-order style with left items first,
  * then right side items, then root node.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  */
 template<class T>
@@ -291,8 +291,8 @@ void doPostOrder(NodeType<T> *root) {
 
 /**
  * @brief Calls method to get length of list.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @return int length of list
  */
 template<class T>
@@ -302,8 +302,8 @@ int BinaryTree<T>::getLength() const {
 
 /**
  * @brief Returns the number of items currently in the list.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to the root node
  * @return int length of list
  */
@@ -318,8 +318,8 @@ int length(NodeType<T> *root) {
 
 /**
  * @brief Calls a method to return number of nodes with one child.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @return int number of nodes with one child
  */
 template<class T>
@@ -329,8 +329,8 @@ int BinaryTree<T>::getNumSingleParent() const {
 
 /**
  * @brief Performs iteration to determine how many nodes have only one child.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  * @return int number of nodes with one child
  */
@@ -349,8 +349,8 @@ int doSingle(NodeType<T> *root) {
 
 /**
  * @brief Calls method to determine the number of leaf nodes.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @return int number of leaf nodes
  */
 template<class T>
@@ -365,8 +365,8 @@ int BinaryTree<T>::getNumLeafNodes() const {
 /**
  * @brief Performs iteration to determine how many leaf nodes are in the list
  * or nodes with zero children.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  * @return int number of leaf nodes
  */
@@ -385,31 +385,35 @@ int doLeaf(NodeType<T> *root) {
 
 /**
  * @brief Calls method to get the sum of all subtrees of the node.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param node pointer to node in list
  * @return T summation of subtrees
  */
 template <class T>
-T BinaryTree<T>::getSumOfSubtrees(NodeType<T> *&node) const { // not done
-    bool f = false;
-    doRetrieve(root, node -> key, f);
-    if (f) {
-        return doSub(root, node, false);
+void BinaryTree<T>::getSumOfSubtrees(NodeType<T> *&node) const { // not done
+    if (typeid(T) == typeid(std::string)) {
+        return;
     } else {
-        cout << "Item not in tree.\n";
-        return -1;
+        bool b = false;
+        doRetrieve(root, node -> key, b);
+        if (b) {
+            T sum = doSub(root, node, false);
+            cout << "Sum of Subtrees: " << sum;
+        } else {
+            cout << "Item not in tree.\n";
+        } // else
     } // if
 } // getSumOfSubtrees
 
 /**
  * @brief Performs the iteration to sum all of the subtrees below the desired
  * node.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param root pointer to root node
  * @param node pointer to node in list
- * @param b 
+ * @param b
  * @return T summation of subtrees
  */
 template<class T>
@@ -435,4 +439,4 @@ T doSub(NodeType<T> *root, NodeType<T> *&node, bool b) {
 
 template class BinaryTree<int>;
 template class BinaryTree<float>;
-//template class BinaryTree<std::string>;
+template class BinaryTree<std::string>;

@@ -8,7 +8,7 @@ using namespace std;
 
 /**
  * @brief Initialization of class methods listed below main method.
- * 
+ *
  */
 void startUp(int argc, char *argv[]);
 void printCmd();
@@ -26,12 +26,12 @@ template<class T>
 void doSubtree(BinaryTree<T> &b);
 
 /**
- * @brief Main method that starts program, creates the binary tree, 
+ * @brief Main method that starts program, creates the binary tree,
  * and allows the user to interface with the tree.
- * 
+ *
  * @param argc number of command line arguments
  * @param argv list of command line arguments
- * @return int 
+ * @return int
  */
 int main(int argc, char *argv[]) {
     startUp(argc, argv); // starts program
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 
 /**
  * @brief Verifies the file input and creates a list depending on file type.
- * 
+ *
  * @param argc number of command line arguments
  * @param argv list of command line arguments
  */
@@ -60,8 +60,8 @@ void startUp(int argc, char *argv[]) {
             BinaryTree<float> b;
             createList(b, argv[1]);
         } else if (op == 's') { // string list
-            //BinaryTree<std::string> b;
-            //createList(b, argv[1]);
+            BinaryTree<std::string> b;
+            createList(b, argv[1]);
         } else { // invalid option
             cout << "Invalid list type, try again!\n\n";
         } // if
@@ -70,7 +70,7 @@ void startUp(int argc, char *argv[]) {
 
 /**
  * @brief Prints the available user commands.
- * 
+ *
  */
 void printCmd() {
     cout << "\nCommands:\ninsert (i), delete (d), retrieve (r), length (l), ";
@@ -81,8 +81,8 @@ void printCmd() {
 /**
  * @brief Prints user commands and prompts the user to enter a command to interact
  * with the list.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param b Binary Tree reference
  */
 template<class T>
@@ -143,8 +143,8 @@ void options(BinaryTree<T> &b) {
 /**
  * @brief Creates a BinaryTree object and inserts items from file
  * into the list.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param b Binary Tree reference
  * @param argv file input
  */
@@ -161,8 +161,8 @@ void createList(BinaryTree<T> &b, char argv[]) {
 /**
  * @brief Prompts the user for a value to insert and inserts it into the
  * list as long as it is not a duplicate. Then prints list in-order style.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param b Binary Tree reference
  */
 template<class T>
@@ -177,10 +177,10 @@ void doInsert(BinaryTree<T> &b) {
 } // doInsert
 
 /**
- * @brief Prompts the user for a value to retrieve and verifies if the item is 
+ * @brief Prompts the user for a value to retrieve and verifies if the item is
  * in the list or not.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param b Binary Tree reference
  */
 template<class T>
@@ -196,8 +196,8 @@ void doRetrieve(BinaryTree<T> &b) {
  * @brief Prompts the user for a value to delete from the list and deletes
  * it as long the item already existed in the list. Then prints the list
  * in-order style.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param b Binary Tree reference
  */
 template<class T>
@@ -218,8 +218,8 @@ void doDelete(BinaryTree<T> &b) {
 /**
  * @brief Prompts the user for a value in the list and returns the summation of
  * all children below the value.
- * 
- * @tparam T 
+ *
+ * @tparam T
  * @param b Binary Tree reference
  */
 template<class T>
@@ -229,8 +229,5 @@ void doSubtree(BinaryTree<T> &b) {
     cin >> item;
     NodeType<T> *node = new NodeType<T>;
     node -> key = item;
-    T sum = b.getSumOfSubtrees(node);
-    if (sum != -1) {
-        cout << "Sum of Subtrees: " << sum << endl;
-    } // if
+    b.getSumOfSubtrees(node);
 } // doSubtree
