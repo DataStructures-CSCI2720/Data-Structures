@@ -1,0 +1,10 @@
+Collins Rakowski (811261111) ccr06550@uga.edu
+Matt Ely (811653312) mwe70005@uga.edu
+
+How to run the file: 
+    "make runint" runs the ./main int-input1.txt
+    "make runfloat" runs the ./main float-input1.txt
+    "make runstring" runs the ./main string-input1.txt
+
+add readme
+bro what is this assignment
