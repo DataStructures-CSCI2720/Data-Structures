@@ -1,17 +1,16 @@
-compile2:
-	g++ -c Main.cpp
-	g++ -c BinaryTree.cpp
-	g++ -o Main Main.o BinaryTree.o
+compile:
+	g++ -c main.cpp
+	g++ -c Sorting.cpp
+	g++ -o Main main.o Sorting.o
 
-runfloat: compile2
-	./Main float-input1.txt
+runordered: compile
+	./Main ordered.txt
 
-runint: compile2
-	./Main int-input1.txt
+runreverse: compile
+	./Main reverse.txt
 
-runstring: compile2
-	./Main string-input1.txt
-
+runrandom: compile
+	./Main random.txt
 
 clean:
 	rm -f Main
