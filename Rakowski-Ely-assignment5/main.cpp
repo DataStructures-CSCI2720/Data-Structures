@@ -10,7 +10,6 @@ void printCmd();
 void startUp(int argc, char *argv[]);
 void options(Sorting &s);
 
-// needs comments but probably pretty close to done lol
 int main (int argc, char *argv[]) {
     startUp(argc, argv);
     return 0;
@@ -21,12 +20,14 @@ void printCmd() {
     cout << "quick-sort-fp (q)  quick-sort-rp (r)\n";
 } // printCmd
 
+
 void startUp(int argc, char *argv[]) {
     if (argc < 2) {
         cout << "Invalid file input! Exiting...\n";
         exit(0);
     } // if
-    Sorting s; //constructor yet to be done
+    Sorting s;
+    s.createList(argv[1]);
     printCmd();
     options(s);
 } // startUp
@@ -36,11 +37,12 @@ void options(Sorting &s) {
     cout << "Enter the algorithm: ";
     cin >> op;
     switch (op) {
-    case 's':
+    case 's': // works I believe
         s.sSort();
         break;
-    case 'm':
-        s.mSort();
+    case 'm': // works i believe
+        s.mSort(s.values, 0, 9999);
+        s.printList();
         break;
     case 'h':
         s.hSort();

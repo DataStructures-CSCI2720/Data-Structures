@@ -3,18 +3,24 @@
 #include <string>
 
 class Sorting {
-    // literally nothing done here
+    
     private:
-        int val; // temporary
+        //int values[10000];
     
     public:
-        Sorting();
-        
-        ~Sorting();
+        int values[10000];
+
+        void printList();
+
+        void createList(char argv[]);
+
+        int minIndex(int arr[], int start, int end);
 
         void sSort();
 
-        void mSort();
+        void Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int rightLast);
+
+        void mSort(int arr[], int first, int last);
 
         void hSort();
 
