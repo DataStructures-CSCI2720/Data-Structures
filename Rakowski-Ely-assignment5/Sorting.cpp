@@ -80,7 +80,7 @@ void Sorting::mSort(int arr[], int first, int last) {
     }
 } // mSort
 
-void Sorting::ReheapDown(int arr[], int root, int bottom) { // Does not work
+void Sorting::ReheapDown(int arr[], int root, int bottom) {
     int maxChild;
     int rightChild;
     int leftChild;
@@ -88,20 +88,19 @@ void Sorting::ReheapDown(int arr[], int root, int bottom) { // Does not work
     leftChild = root * 2 + 1;
     rightChild = root * 2 + 2;
 
-    if (leftChild <= bottom) {  
-        if (leftChild == bottom) {
-                maxChild = leftChild;
-        } else {
-            if(values[leftChild <= values[rightChild]]) {
-                maxChild = rightChild;
-            } else {
-                maxChild = leftChild;
-            }
+    if (leftChild  <=  bottom) {
+        if  (leftChild  ==  bottom)
+	        maxChild  = leftChild;
+        else {
+	        if (values[leftChild] <=  values [rightChild])
+	            maxChild  =  rightChild ;
+	        else
+                maxChild  =  leftChild ;
         }
-        if (arr[root] < arr[maxChild]) {
-                std::swap(arr[root], arr[maxChild]);
-                ReheapDown(arr, maxChild, bottom);
-        } // if
+        if  (values[ root ] < values[maxChild]) {
+	        swap(values[root], values[maxChild]);
+	        ReheapDown(arr, maxChild, bottom);
+        }
     }
 } // reheapdown
 
@@ -117,10 +116,44 @@ void Sorting::hSort(int arr[], int numValues) {
     } // for
 } // hSort
 
-void Sorting::qSortf() {
+int Sorting::Split(int arr[], int first, int last) { // worried the pivot is not done correctly
+    
+}
+
+void Sorting::qSortf(int arr[], int first, int last) { // this method works but not the sub method
+    if (first < last) {
+        int splitPoint = Split(arr, first, last);
+        qSortf(arr, first, splitPoint - 1);
+        qSortf(arr, splitPoint + 1, last);    
+    }
 
 } // qSortf
 
-void Sorting::qSortr() {
+int Sorting::randomSplit(int arr[], int first, int last) { // does not work correctly
+    int pivot = arr[4269]; // pivot is this number that i picked
+    int splitPoint = first;
+    int i;
+    int t;
 
+    for(i = first; i < last; i++) {
+        if(arr[i] <= pivot) {
+            t = arr[i];
+            arr[i] = arr[splitPoint];
+            arr[splitPoint] = t;
+            splitPoint++;
+        }
+    }
+    t = arr[last];
+    arr[last] = arr[splitPoint];
+    arr[splitPoint] = t;
+    
+    return splitPoint;
+}
+
+void Sorting::qSortr(int arr[], int first, int last) { // works correctly
+    if (first < last) {
+        int splitPoint = Split(arr, first, last);
+        qSortf(arr, first, splitPoint - 1);
+        qSortf(arr, splitPoint + 1, last);    
+    }
 } // qSortr

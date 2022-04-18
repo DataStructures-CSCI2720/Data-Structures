@@ -26,9 +26,13 @@ class Sorting {
 
         void hSort(int arr[], int numValues);
 
-        void qSortf();
+        int Split(int arr[], int first, int last);
+        
+        void qSortf(int arr[], int first, int last);
 
-        void qSortr();
+        int randomSplit(int arr[], int first, int last);
+
+        void qSortr(int arr[], int first, int last);
 };
 
 #endif

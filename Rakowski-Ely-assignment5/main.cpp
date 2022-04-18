@@ -49,10 +49,12 @@ void options(Sorting &s) {
         s.printList();
         break;
     case 'q':
-        s.qSortf();
+        s.qSortf(s.values, 0, 9999);
+        s.printList();
         break;
     case 'r':
-        s.qSortr();
+        s.qSortr(s.values, 0, 9999);
+        s.printList();
         break;
     default:
         cout << "Command not recognized. Exiting...\n";
