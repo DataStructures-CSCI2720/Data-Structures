@@ -22,7 +22,9 @@ class Sorting {
 
         void mSort(int arr[], int first, int last);
 
-        void hSort();
+        void ReheapDown(int arr[], int root, int bottom);
+
+        void hSort(int arr[], int numValues);
 
         void qSortf();
 

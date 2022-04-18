@@ -45,7 +45,8 @@ void options(Sorting &s) {
         s.printList();
         break;
     case 'h':
-        s.hSort();
+        s.hSort(s.values, 10000);
+        s.printList();
         break;
     case 'q':
         s.qSortf();
