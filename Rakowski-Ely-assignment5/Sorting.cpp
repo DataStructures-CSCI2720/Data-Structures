@@ -80,8 +80,41 @@ void Sorting::mSort(int arr[], int first, int last) {
     }
 } // mSort
 
-void Sorting::hSort() {
+void Sorting::ReheapDown(int arr[], int root, int bottom) { // Does not work
+    int maxChild;
+    int rightChild;
+    int leftChild;
 
+    leftChild = root * 2 + 1;
+    rightChild = root * 2 + 2;
+
+    if (leftChild <= bottom) {  
+        if (leftChild == bottom) {
+                maxChild = leftChild;
+        } else {
+            if(values[leftChild <= values[rightChild]]) {
+                maxChild = rightChild;
+            } else {
+                maxChild = leftChild;
+            }
+        }
+        if (arr[root] < arr[maxChild]) {
+                std::swap(arr[root], arr[maxChild]);
+                ReheapDown(arr, maxChild, bottom);
+        } // if
+    }
+} // reheapdown
+
+void Sorting::hSort(int arr[], int numValues) {
+    int i;
+    for(i = numValues/2-1; i >= 0; i--) {
+        ReheapDown(arr, i, numValues - 1);
+    } // for
+
+    for(i = numValues - 1; i >= 1; i--) {
+        std::swap(arr[0], arr[i]);
+        ReheapDown(arr, 0, i - 1);
+    } // for
 } // hSort
 
 void Sorting::qSortf() {
