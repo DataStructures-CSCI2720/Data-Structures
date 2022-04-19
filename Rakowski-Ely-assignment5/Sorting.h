@@ -6,6 +6,7 @@ class Sorting {
     
     private:
         //int values[10000];
+        long comparisons = 0;
     
     public:
         int values[10000];
@@ -33,6 +34,8 @@ class Sorting {
         int randomSplit(int arr[], int first, int last);
 
         void qSortr(int arr[], int first, int last);
+
+        long getCom() const;
 };
 
 #endif

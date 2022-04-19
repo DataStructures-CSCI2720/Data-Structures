@@ -27,17 +27,20 @@ int Sorting::minIndex(int arr[], int start, int end) { // used in selection sort
     for(int i = start + 1; i <= end; i++) {
         if (values[i] < values[indexOfMin]) {
             indexOfMin = i;
+            
         }
+        comparisons++;
     }
     return indexOfMin;
 }
 
-void Sorting::sSort() { // STILL NEEDS COMPARISONS but works
+void Sorting::sSort() { 
     int endIndex = 10000 - 1;
     for (int current = 0; current < endIndex; current++) {
        std::swap(values[current] , values[minIndex(values, current, endIndex)]);
     } // for
-    printList(); // THIS CAN PROBABLY BE MOVED SOMEWHERE ELSE FOR MORE EFFICIENCY
+    printList(); // print is fine right here
+    cout << "\t#Selection-sort comparisons: " << comparisons << endl; // class var comparisons
 } // sSort
 
 void Sorting::Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int rightLast) {
@@ -54,6 +57,7 @@ void Sorting::Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int 
             rightFirst++;
         } // else
         i++;
+        comparisons++; // comparisons made
     } // while
     while (leftFirst <= leftLast) {
         temp[i] = arr[leftFirst];
@@ -87,24 +91,27 @@ void Sorting::ReheapDown(int arr[], int root, int bottom) {
 
     leftChild = root * 2 + 1;
     rightChild = root * 2 + 2;
-
     if (leftChild  <=  bottom) {
-        if  (leftChild  ==  bottom)
-	        maxChild  = leftChild;
-        else {
-	        if (values[leftChild] <=  values [rightChild])
+        if  (leftChild  ==  bottom) {
+	        maxChild  = leftChild; 
+        } else {
+	        if (values[leftChild] <=  values [rightChild]) {
 	            maxChild  =  rightChild ;
-	        else
+            } else {
                 maxChild  =  leftChild ;
+            }
         }
+        comparisons++;
         if  (values[ root ] < values[maxChild]) {
-	        swap(values[root], values[maxChild]);
+	        comparisons++;
+            swap(values[root], values[maxChild]);
 	        ReheapDown(arr, maxChild, bottom);
+            
         }
     }
 } // reheapdown
 
-void Sorting::hSort(int arr[], int numValues) {
+void Sorting::hSort(int arr[], int numValues) { // i think comparison value is right or close.
     int i;
     for(i = numValues/2-1; i >= 0; i--) {
         ReheapDown(arr, i, numValues - 1);
@@ -157,3 +164,7 @@ void Sorting::qSortr(int arr[], int first, int last) { // works correctly
         qSortf(arr, splitPoint + 1, last);    
     }
 } // qSortr
+
+long Sorting::getCom() const {
+    return comparisons;
+} // getCom

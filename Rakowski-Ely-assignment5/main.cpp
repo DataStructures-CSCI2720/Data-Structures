@@ -43,10 +43,12 @@ void options(Sorting &s) {
     case 'm': // works i believe
         s.mSort(s.values, 0, 9999);
         s.printList();
+        cout << "\t#Merge-sort comparisons: " << s.getCom() << endl;
         break;
     case 'h':
         s.hSort(s.values, 10000);
         s.printList();
+        cout << "\t#Heap-sort comparisons: " << s.getCom() << endl;
         break;
     case 'q':
         s.qSortf(s.values, 0, 9999);
