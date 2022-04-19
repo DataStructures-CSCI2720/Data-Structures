@@ -32,7 +32,7 @@ void Sorting::createList(char argv[]) { // DONE
 void Sorting::createRList() {
     srand(time(0));
     for (int i = 0; i < length; i++) {
-        values[i] = rand() % 10000;
+        values[i] = rand() % length;
     } // for
 } // createRList
 
