@@ -83,8 +83,6 @@ void Sorting::sSort() {
     for (int current = 0; current < endIndex; current++) {
        std::swap(values[current] , values[minIndex(values, current, endIndex)]);
     } // for
-    printList(); // print is fine right here
-    cout << "\t#Selection-sort comparisons: " << comparisons << endl; // class var comparisons
 } // sSort
 
 /**

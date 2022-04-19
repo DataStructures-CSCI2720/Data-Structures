@@ -78,6 +78,8 @@ void options(Sorting &s) {
     switch (op) {
     case 's': // Selection Sort
         s.sSort();
+        s.printList();
+        cout << "\t#Selection-sort comparisons: " << s.getCom() << endl;
         break;
     case 'm': // Merge Sort
         s.mSort(s.values, 0, s.getLength()-1);
