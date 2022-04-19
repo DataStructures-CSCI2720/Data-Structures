@@ -16,9 +16,9 @@ Sorting::Sorting(int size) {
 void Sorting::printList() { // DONE for now
     for (int i = 0; i < length; i++) {
         cout << values[i] << " ";
-    }
+    } // for
     cout << endl;
-}
+} // printList
 
 void Sorting::createList(char argv[]) { // DONE
     ifstream input(argv);
@@ -26,7 +26,7 @@ void Sorting::createList(char argv[]) { // DONE
     for (int i = 0; i < length; i++) {
         input >> num;
         values[i] = num;
-    } // while
+    } // for
 } // createList
 
 void Sorting::createRList() {
@@ -38,15 +38,15 @@ void Sorting::createRList() {
 
 int Sorting::minIndex(int arr[], int start, int end) { // used in selection sort 
     int indexOfMin = start;
-    for(int i = start + 1; i <= end; i++) {
+    for (int i = start + 1; i <= end; i++) {
         if (values[i] < values[indexOfMin]) {
             indexOfMin = i;
             
-        }
+        } // if
         comparisons++;
-    }
+    } // for
     return indexOfMin;
-}
+} // minIndex
 
 void Sorting::sSort() { 
     int endIndex = length - 1;
@@ -69,7 +69,7 @@ void Sorting::Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int 
         } else {
             temp[i] = arr[rightFirst];
             rightFirst++;
-        } // else
+        } // if
         i++;
         comparisons++; // comparisons made
     } // while
@@ -77,17 +77,17 @@ void Sorting::Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int 
         temp[i] = arr[leftFirst];
         leftFirst++;
         i++;
-    }
+    } // while
     while (rightFirst <= rightLast) {
         temp[i] = arr[rightFirst];
         rightFirst++;
         i++;
-    }
+    } // while
     for (i = saveFirst; i <= rightLast; i++) {
         arr[i] = temp[i];
-    }
+    } // for
 
-}
+} // Merge
 
 void Sorting::mSort(int arr[], int first, int last) {
     if (first < last) {
@@ -95,7 +95,7 @@ void Sorting::mSort(int arr[], int first, int last) {
         mSort(arr, first, middle);
         mSort(arr, middle + 1, last);
         Merge(arr, first, middle, middle + 1, last);
-    }
+    } // if
 } // mSort
 
 void Sorting::ReheapDown(int arr[], int root, int bottom) {
@@ -113,25 +113,24 @@ void Sorting::ReheapDown(int arr[], int root, int bottom) {
 	            maxChild  =  rightChild ;
             } else {
                 maxChild  =  leftChild ;
-            }
-        }
+            } // if
+        } // if
         comparisons++;
         if  (values[ root ] < values[maxChild]) {
 	        comparisons++;
             swap(values[root], values[maxChild]);
-	        ReheapDown(arr, maxChild, bottom);
-            
-        }
-    }
+	        ReheapDown(arr, maxChild, bottom);   
+        } // if
+    } // if
 } // reheapdown
 
 void Sorting::hSort(int arr[], int numValues) { // i think comparison value is right or close.
     int i;
-    for(i = numValues/2-1; i >= 0; i--) {
+    for (i = numValues/2-1; i >= 0; i--) {
         ReheapDown(arr, i, numValues - 1);
     } // for
 
-    for(i = numValues - 1; i >= 1; i--) {
+    for (i = numValues - 1; i >= 1; i--) {
         std::swap(arr[0], arr[i]);
         ReheapDown(arr, 0, i - 1);
     } // for
@@ -141,23 +140,23 @@ int Sorting::Split(int arr[], int first, int last) {
     int pivot, index, i;
     index = last;
     pivot = first;
-    for(i=last; i > first; i--) {
-        if(arr[i] > arr[pivot]) {
+    for (i=last; i > first; i--) {
+        comparisons++;
+        if (arr[i] > arr[pivot]) {
             std::swap(arr[i], arr[index]);
             index--;
-            comparisons++;
-        }
-    }
+        } // if
+    } // for
     std::swap(arr[pivot], arr[index]);
     return index;
-}
+} // Split
 
 void Sorting::qSortf(int arr[], int first, int last) {
     if (first < last) {
         int splitPoint = Split(arr, first, last);
         qSortf(arr, first, splitPoint - 1);
         qSortf(arr, splitPoint + 1, last);    
-    }
+    } // if
 
 } // qSortf
 
@@ -165,26 +164,26 @@ int Sorting::randomSplit(int arr[], int first, int last) {
     int pivot, index, i;
     index = last;
     srand(time(0));
-    long random = rand() % 10000;
+    int random = first + (rand() % (last - first + 1));
     pivot = first;
     std::swap(arr[pivot], arr[random]); // swaps first value with a random value
-    for(i=last; i > first; i--) {
-        if(arr[i] > arr[pivot]) {
+    for (i=last; i > first; i--) {
+        comparisons++;
+        if (arr[i] > arr[pivot]) {
             std::swap(arr[i], arr[index]);
             index--;
-            comparisons++;
-        }
-    }
+        } // if
+    } // for
     std::swap(arr[pivot], arr[index]);
     return index;
-}
+} // randomSplit
 
 void Sorting::qSortr(int arr[], int first, int last) { 
     if (first < last) {
         int splitPoint = randomSplit(arr, first, last);
         qSortf(arr, first, splitPoint - 1);
         qSortf(arr, splitPoint + 1, last);    
-    }
+    } // if
 } // qSortr
 
 long Sorting::getCom() const {

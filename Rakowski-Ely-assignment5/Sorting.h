@@ -5,14 +5,11 @@
 class Sorting {
     
     private:
-        //int values[10000];
         long comparisons = 0;
-        //int* values;
         int length = 0;
     
     public:
-        //int values[10000];
-        int* values; // gonna leave it but public arrays are DUMB
+        int* values;
 
         Sorting(int size);
 
