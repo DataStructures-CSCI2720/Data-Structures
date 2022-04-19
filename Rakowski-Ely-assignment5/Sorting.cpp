@@ -8,19 +8,34 @@
 
 using namespace std;
 
+/**
+ * @brief Construct a new Sorting object with user defined size.
+ * Default size is 10000 for provided files.
+ * 
+ * @param size size of list
+ */
 Sorting::Sorting(int size) {
     length = size;
     values = new int[size];
 } // Sorting
 
-void Sorting::printList() { // DONE for now
+/**
+ * @brief Prints the items in the list
+ * 
+ */
+void Sorting::printList() {
     for (int i = 0; i < length; i++) {
         cout << values[i] << " ";
     } // for
     cout << endl;
 } // printList
 
-void Sorting::createList(char argv[]) { // DONE
+/**
+ * @brief Creates a 10000 long list with values from file
+ * 
+ * @param argv 
+ */
+void Sorting::createList(char argv[]) {
     ifstream input(argv);
     int num;
     for (int i = 0; i < length; i++) {
@@ -29,14 +44,26 @@ void Sorting::createList(char argv[]) { // DONE
     } // for
 } // createList
 
+/**
+ * @brief Creates a list with random values at each position
+ * 
+ */
 void Sorting::createRList() {
     srand(time(0));
     for (int i = 0; i < length; i++) {
-        values[i] = rand() % length;
+        values[i] = rand() % length;        // each value is between 0 and # of values
     } // for
 } // createRList
 
-int Sorting::minIndex(int arr[], int start, int end) { // used in selection sort 
+/**
+ * @brief Finds the index of minimum value in a list
+ * 
+ * @param arr reference of array
+ * @param start beginning location
+ * @param end ending location
+ * @return int index of minimum value
+ */
+int Sorting::minIndex(int arr[], int start, int end) { 
     int indexOfMin = start;
     for (int i = start + 1; i <= end; i++) {
         if (values[i] < values[indexOfMin]) {
@@ -47,6 +74,10 @@ int Sorting::minIndex(int arr[], int start, int end) { // used in selection sort
     return indexOfMin;
 } // minIndex
 
+/**
+ * @brief Selection sort works at O(N^2) and iterates through the entire list
+ * 
+ */
 void Sorting::sSort() { 
     int endIndex = length - 1;
     for (int current = 0; current < endIndex; current++) {
@@ -56,6 +87,15 @@ void Sorting::sSort() {
     cout << "\t#Selection-sort comparisons: " << comparisons << endl; // class var comparisons
 } // sSort
 
+/**
+ * @brief Merge combines two parts of an array into one helping the merge sort function
+ * 
+ * @param arr reference to array
+ * @param leftFirst first value of left part
+ * @param leftLast last value of left part
+ * @param rightFirst first value of right part
+ * @param rightLast last value of right part
+ */
 void Sorting::Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int rightLast) {
     int temp[length];
     int i = leftFirst;
@@ -70,7 +110,7 @@ void Sorting::Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int 
             rightFirst++;
         } // if
         i++;
-        comparisons++; // comparisons made
+        comparisons++;
     } // while
     while (leftFirst <= leftLast) {
         temp[i] = arr[leftFirst];
@@ -88,6 +128,14 @@ void Sorting::Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int 
 
 } // Merge
 
+/**
+ * @brief Merge Sort works at O(Nlog(N)) complexity and uses
+ * divide and conquer to sort a list
+ * 
+ * @param arr reference of array
+ * @param first first value
+ * @param last last value
+ */
 void Sorting::mSort(int arr[], int first, int last) {
     if (first < last) {
         int middle = (first + last) / 2;
@@ -97,6 +145,13 @@ void Sorting::mSort(int arr[], int first, int last) {
     } // if
 } // mSort
 
+/**
+ * @brief Takes root value and heaps down to bottom of tree
+ * 
+ * @param arr reference of array
+ * @param root root of tree index
+ * @param bottom bottom of tree index
+ */
 void Sorting::ReheapDown(int arr[], int root, int bottom) {
     int maxChild;
     int rightChild;
@@ -123,7 +178,14 @@ void Sorting::ReheapDown(int arr[], int root, int bottom) {
     } // if
 } // reheapdown
 
-void Sorting::hSort(int arr[], int numValues) { // i think comparison value is right or close.
+/**
+ * @brief Heap Sort works at O(Nlog(N)) complexity and heaps values down 
+ * the tree until values are properly sorted
+ * 
+ * @param arr reference of array
+ * @param numValues number of values
+ */
+void Sorting::hSort(int arr[], int numValues) {
     int i;
     for (i = numValues/2-1; i >= 0; i--) {
         ReheapDown(arr, i, numValues - 1);
@@ -135,6 +197,14 @@ void Sorting::hSort(int arr[], int numValues) { // i think comparison value is r
     } // for
 } // hSort
 
+/**
+ * @brief Helper to Quick Sort splits the middle of the list
+ * 
+ * @param arr reference to array
+ * @param first first value in sub array
+ * @param last last value of sub array
+ * @return int middle of list
+ */
 int Sorting::Split(int arr[], int first, int last) { 
     int pivot, index, i;
     index = last;
@@ -150,15 +220,31 @@ int Sorting::Split(int arr[], int first, int last) {
     return index;
 } // Split
 
+/**
+ * @brief Quick Sort works at O(Nlog(N)) complexity and uses
+ * divide and conquer to sort find split points and sorts the left
+ * and right sides of the split
+ * 
+ * @param arr reference of array
+ * @param first first value of sub array
+ * @param last last value of sub array
+ */
 void Sorting::qSortf(int arr[], int first, int last) {
     if (first < last) {
         int splitPoint = Split(arr, first, last);
         qSortf(arr, first, splitPoint - 1);
         qSortf(arr, splitPoint + 1, last);    
     } // if
-
 } // qSortf
 
+/**
+ * @brief Helper to Quick Sort with random pivot value
+ * 
+ * @param arr reference of array
+ * @param first first value of sub array
+ * @param last last value of sub array
+ * @return int random split point
+ */
 int Sorting::randomSplit(int arr[], int first, int last) { 
     int pivot, index, i;
     index = last;
@@ -177,6 +263,14 @@ int Sorting::randomSplit(int arr[], int first, int last) {
     return index;
 } // randomSplit
 
+/**
+ * @brief Quick Sort with random pivot works at O(Nlog(N)) complexity
+ * and applies similar Quick Sort function but with a random split point
+ * 
+ * @param arr reference of array
+ * @param first first value of sub array
+ * @param last last value of sub array
+ */
 void Sorting::qSortr(int arr[], int first, int last) { 
     if (first < last) {
         int splitPoint = randomSplit(arr, first, last);
@@ -185,10 +279,21 @@ void Sorting::qSortr(int arr[], int first, int last) {
     } // if
 } // qSortr
 
+/**
+ * @brief Returns number of comparions completed while sorting
+ * a list
+ * 
+ * @return long number of comparisons
+ */
 long Sorting::getCom() const {
     return comparisons;
 } // getCom
 
+/**
+ * @brief Returns the length of the list
+ * 
+ * @return int length of list
+ */
 int Sorting::getLength() const {
     return length;
 } // getLength
