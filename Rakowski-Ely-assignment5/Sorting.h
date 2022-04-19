@@ -7,13 +7,20 @@ class Sorting {
     private:
         //int values[10000];
         long comparisons = 0;
+        //int* values;
+        int length = 0;
     
     public:
-        int values[10000];
+        //int values[10000];
+        int* values; // gonna leave it but public arrays are DUMB
+
+        Sorting(int size);
 
         void printList();
 
         void createList(char argv[]);
+
+        void createRList();
 
         int minIndex(int arr[], int start, int end);
 
@@ -36,6 +43,8 @@ class Sorting {
         void qSortr(int arr[], int first, int last);
 
         long getCom() const;
+
+        int getLength() const;
 };
 
 #endif

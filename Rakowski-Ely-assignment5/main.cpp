@@ -26,10 +26,27 @@ void startUp(int argc, char *argv[]) {
         cout << "Invalid file input! Exiting...\n";
         exit(0);
     } // if
-    Sorting s;
-    s.createList(argv[1]);
-    printCmd();
-    options(s);
+    char op;
+    cout << "Read file or custom array?\n";
+    cout << "\tr - read file\tc - custom array: ";
+    cin >> op;
+    if (op == 'r') {
+        Sorting s(10000);
+        s.createList(argv[1]);
+        printCmd();
+        options(s);
+    } else if (op == 'c') {
+        int num;
+        cout << "Number of items in the list: ";
+        cin >> num;
+        Sorting s(num);
+        s.createRList();
+        printCmd();
+        options(s);
+    } else {
+        cout << "Command not recognized. Exiting...\n";
+        exit(0);
+    } // if
 } // startUp
 
 void options(Sorting &s) {
@@ -41,21 +58,21 @@ void options(Sorting &s) {
         s.sSort();
         break;
     case 'm': // works i believe
-        s.mSort(s.values, 0, 9999);
+        s.mSort(s.values, 0, s.getLength()-1);
         s.printList();
         cout << "\t#Merge-sort comparisons: " << s.getCom() << endl;
         break;
     case 'h':
-        s.hSort(s.values, 10000);
+        s.hSort(s.values, s.getLength());
         s.printList();
         cout << "\t#Heap-sort comparisons: " << s.getCom() << endl;
         break;
     case 'q':
-        s.qSortf(s.values, 0, 9999);
+        //s.qSortf(s.values, 0, 9999);
         s.printList();
         break;
     case 'r':
-        s.qSortr(s.values, 0, 9999);
+        //s.qSortr(s.values, 0, 9999);
         s.printList();
         break;
     default:

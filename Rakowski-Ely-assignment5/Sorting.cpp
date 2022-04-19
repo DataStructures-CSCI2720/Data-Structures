@@ -3,11 +3,18 @@
 #include <string>
 #include <fstream>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
+Sorting::Sorting(int size) {
+    length = size;
+    values = new int[size];
+} // Sorting
+
 void Sorting::printList() { // DONE for now
-    for (int i = 0; i < 10000; i++) {
+    for (int i = 0; i < length; i++) {
         cout << values[i] << " ";
     }
     cout << endl;
@@ -16,11 +23,18 @@ void Sorting::printList() { // DONE for now
 void Sorting::createList(char argv[]) { // DONE
     ifstream input(argv);
     int num;
-    for (int i = 0; i < 10000; i++) {
+    for (int i = 0; i < length; i++) {
         input >> num;
         values[i] = num;
     } // while
 } // createList
+
+void Sorting::createRList() {
+    srand(time(0));
+    for (int i = 0; i < length; i++) {
+        values[i] = rand() % 10000;
+    } // for
+} // createRList
 
 int Sorting::minIndex(int arr[], int start, int end) { // used in selection sort 
     int indexOfMin = start;
@@ -35,7 +49,7 @@ int Sorting::minIndex(int arr[], int start, int end) { // used in selection sort
 }
 
 void Sorting::sSort() { 
-    int endIndex = 10000 - 1;
+    int endIndex = length - 1;
     for (int current = 0; current < endIndex; current++) {
        std::swap(values[current] , values[minIndex(values, current, endIndex)]);
     } // for
@@ -44,7 +58,7 @@ void Sorting::sSort() {
 } // sSort
 
 void Sorting::Merge(int arr[], int leftFirst, int leftLast, int rightFirst, int rightLast) {
-    int temp[10000];
+    int temp[length];
     int i = leftFirst;
     int saveFirst = leftFirst;
 
@@ -124,7 +138,7 @@ void Sorting::hSort(int arr[], int numValues) { // i think comparison value is r
 } // hSort
 
 int Sorting::Split(int arr[], int first, int last) { // worried the pivot is not done correctly
-    
+    return 1;
 }
 
 void Sorting::qSortf(int arr[], int first, int last) { // this method works but not the sub method
@@ -168,3 +182,7 @@ void Sorting::qSortr(int arr[], int first, int last) { // works correctly
 long Sorting::getCom() const {
     return comparisons;
 } // getCom
+
+int Sorting::getLength() const {
+    return length;
+} // getLength
