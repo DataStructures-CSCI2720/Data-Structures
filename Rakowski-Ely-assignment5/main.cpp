@@ -6,9 +6,9 @@
 
 using namespace std;
 
-void printCmd();
-void startUp(int argc, char *argv[]);
-void options(Sorting &s);
+void printCmd();                            // prints user commands
+void startUp(int argc, char *argv[]);       // starts the program and creates list of #s
+void options(Sorting &s);                   // prompts user with commands to sort list
 
 int main (int argc, char *argv[]) {
     startUp(argc, argv);

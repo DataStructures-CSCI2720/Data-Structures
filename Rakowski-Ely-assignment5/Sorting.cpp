@@ -40,8 +40,7 @@ int Sorting::minIndex(int arr[], int start, int end) { // used in selection sort
     int indexOfMin = start;
     for (int i = start + 1; i <= end; i++) {
         if (values[i] < values[indexOfMin]) {
-            indexOfMin = i;
-            
+            indexOfMin = i;   
         } // if
         comparisons++;
     } // for
