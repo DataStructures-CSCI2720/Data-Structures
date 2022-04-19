@@ -68,12 +68,14 @@ void options(Sorting &s) {
         cout << "\t#Heap-sort comparisons: " << s.getCom() << endl;
         break;
     case 'q':
-        //s.qSortf(s.values, 0, 9999);
+        s.qSortf(s.values, 0, 9999);
         s.printList();
+        cout << "\t#Quick-sort-fp comparisons: " << s.getCom() << endl;
         break;
     case 'r':
-        //s.qSortr(s.values, 0, 9999);
+        s.qSortr(s.values, 0, 9999);
         s.printList();
+        cout << "\t#Quick-sort-rp comparisons: " << s.getCom() << endl;
         break;
     default:
         cout << "Command not recognized. Exiting...\n";

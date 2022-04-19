@@ -137,11 +137,22 @@ void Sorting::hSort(int arr[], int numValues) { // i think comparison value is r
     } // for
 } // hSort
 
-int Sorting::Split(int arr[], int first, int last) { // worried the pivot is not done correctly
-    return 1;
+int Sorting::Split(int arr[], int first, int last) { 
+    int pivot, index, i;
+    index = last;
+    pivot = first;
+    for(i=last; i > first; i--) {
+        if(arr[i] > arr[pivot]) {
+            std::swap(arr[i], arr[index]);
+            index--;
+            comparisons++;
+        }
+    }
+    std::swap(arr[pivot], arr[index]);
+    return index;
 }
 
-void Sorting::qSortf(int arr[], int first, int last) { // this method works but not the sub method
+void Sorting::qSortf(int arr[], int first, int last) {
     if (first < last) {
         int splitPoint = Split(arr, first, last);
         qSortf(arr, first, splitPoint - 1);
@@ -150,30 +161,27 @@ void Sorting::qSortf(int arr[], int first, int last) { // this method works but 
 
 } // qSortf
 
-int Sorting::randomSplit(int arr[], int first, int last) { // does not work correctly
-    int pivot = arr[4269]; // pivot is this number that i picked
-    int splitPoint = first;
-    int i;
-    int t;
-
-    for(i = first; i < last; i++) {
-        if(arr[i] <= pivot) {
-            t = arr[i];
-            arr[i] = arr[splitPoint];
-            arr[splitPoint] = t;
-            splitPoint++;
+int Sorting::randomSplit(int arr[], int first, int last) { 
+    int pivot, index, i;
+    index = last;
+    srand(time(0));
+    long random = rand() % 10000;
+    pivot = first;
+    std::swap(arr[pivot], arr[random]); // swaps first value with a random value
+    for(i=last; i > first; i--) {
+        if(arr[i] > arr[pivot]) {
+            std::swap(arr[i], arr[index]);
+            index--;
+            comparisons++;
         }
     }
-    t = arr[last];
-    arr[last] = arr[splitPoint];
-    arr[splitPoint] = t;
-    
-    return splitPoint;
+    std::swap(arr[pivot], arr[index]);
+    return index;
 }
 
-void Sorting::qSortr(int arr[], int first, int last) { // works correctly
+void Sorting::qSortr(int arr[], int first, int last) { 
     if (first < last) {
-        int splitPoint = Split(arr, first, last);
+        int splitPoint = randomSplit(arr, first, last);
         qSortf(arr, first, splitPoint - 1);
         qSortf(arr, splitPoint + 1, last);    
     }
