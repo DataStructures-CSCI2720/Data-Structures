@@ -5,7 +5,7 @@ How to run the file:
     "make runordered" runs the ./main ordered.txt
     "make runreverse" runs the ./main reverse.txt
     "make runrandom" runs the ./main random.txt
-    -when prompted with "read file or custom array?" type 'r'
+    -when prompted with "read file or custom array?" type 'r' (this was used to test different data input sizes for later in the assignment) 
     -follow prompt to choose appropriate sorting algorithm
 
 How to run program with custom, random list:
@@ -13,3 +13,7 @@ How to run program with custom, random list:
     -when prompted with "read file or custom array?" type 'c'
     -enter value of number of items in random list
     -follow prompt to choose appropriate sorting algorithm
+
+    Contributions: 
+    Collins: Selection, Merge, Heap
+    Matt: Quick, Readme, comments
